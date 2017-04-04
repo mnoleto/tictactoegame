@@ -1,0 +1,8 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_effects = require('redux-saga/effects');
+// import GameApi from '../services/Game';
+
+describe('gameSaga', function () {
+  it('should fetch players', function () {
+
+  });
+});

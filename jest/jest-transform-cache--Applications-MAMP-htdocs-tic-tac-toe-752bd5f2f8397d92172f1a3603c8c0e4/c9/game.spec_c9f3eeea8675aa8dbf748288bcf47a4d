@@ -1,0 +1,63 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_game = require('./game'); /* istanbul ignore next */var _game2 = _interopRequireDefault(_game);
+var /* istanbul ignore next */_actionTypes = require('./actionTypes'); /* istanbul ignore next */var _actionTypes2 = _interopRequireDefault(_actionTypes);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+describe('games reducer', function () {
+  it('should return the initial state', function () {
+    expect( /* istanbul ignore next */(0, _game2.default)(undefined, {})).toEqual({ error: false, board: [], players: [], result: {}, turn: '' });
+  });
+
+  it('should handle the NEW_GAME', function () {
+    expect( /* istanbul ignore next */(0, _game2.default)({}, { type: /* istanbul ignore next */_actionTypes2.default.NEW_GAME })).toEqual({ error: false });
+  });
+
+  // it('should handle the NEW_GAME_SUCCESS', () => {
+  //   expect(reducer({}, {type: Types.NEW_GAME_SUCCESS, data: ['Player 1', 'Player 2']})).toEqual({error: false, data: ['Player 1', 'Player 2']});
+  //   expect(reducer({data: ['Player 1', 'Player 2']}, {type: Types.NEW_GAME_SUCCESS, data: ['Player 3', 'Player 4']})).toEqual({error: false, data: ['Player 3', 'Player 4']});
+  // });
+
+  // it('should handle the NEW_GAME_FAILURE', () => {
+  //   expect(reducer({}, {type: Types.NEW_GAME_FAILURE})).toEqual({error: true});
+  // });
+
+  it('should handle the NEW_ROUND', function () {
+    expect( /* istanbul ignore next */(0, _game2.default)({}, { type: /* istanbul ignore next */_actionTypes2.default.NEW_ROUND })).toEqual({ error: false });
+  });
+
+  // it('should handle the NEW_ROUND_SUCCESS', () => {
+  //   expect(reducer({}, {type: Types.NEW_ROUND_SUCCESS, data: ['Player 1', 'Player 2']})).toEqual({error: false, data: ['Player 1', 'Player 2']});
+  //   expect(reducer({data: ['Player 1', 'Player 2']}, {type: Types.NEW_ROUND_SUCCESS, data: ['Player 3', 'Player 4']})).toEqual({error: false, data: ['Player 3', 'Player 4']});
+  // });
+
+  // it('should handle the NEW_ROUND_FAILURE', () => {
+  //   expect(reducer({}, {type: Types.NEW_ROUND_FAILURE})).toEqual({error: true});
+  // });
+
+  it('should handle the SEND_PLAYERS_NAME', function () {
+    expect( /* istanbul ignore next */(0, _game2.default)({}, { type: /* istanbul ignore next */_actionTypes2.default.SEND_PLAYERS_NAME, players: ['Player 1', 'Player 2'] })).toEqual({
+      error: false,
+      players: ['Player 1', 'Player 2'] });
+
+  });
+
+  // it('should handle the SEND_PLAYERS_NAME_SUCCESS', () => {
+  //   expect(reducer({}, {type: Types.SEND_PLAYERS_NAME_SUCCESS, data: ['Player 1', 'Player 2']})).toEqual({error: false, data: ['Player 1', 'Player 2']});
+  //   expect(reducer({data: ['Player 1', 'Player 2']}, {type: Types.SEND_PLAYERS_NAME_SUCCESS, data: ['Player 3', 'Player 4']})).toEqual({error: false, data: ['Player 3', 'Player 4']});
+  // });
+
+  // it('should handle the SEND_PLAYERS_NAME_FAILURE', () => {
+  //   expect(reducer({}, {type: Types.SEND_PLAYERS_NAME_FAILURE})).toEqual({error: true});
+  // });
+
+  it('should handle the REGISTER_MOVE', function () {
+    expect( /* istanbul ignore next */(0, _game2.default)({}, { type: /* istanbul ignore next */_actionTypes2.default.REGISTER_MOVE })).toEqual({ error: false });
+  });
+
+  // it('should handle the REGISTER_MOVE_SUCCESS', () => {
+  //   expect(reducer({}, {type: Types.REGISTER_MOVE_SUCCESS, data: ['Player 1', 'Player 2']})).toEqual({error: false, data: ['Player 1', 'Player 2']});
+  //   expect(reducer({data: ['Player 1', 'Player 2']}, {type: Types.REGISTER_MOVE_SUCCESS, data: ['Player 3', 'Player 4']})).toEqual({error: false, data: ['Player 3', 'Player 4']});
+  // });
+
+  // it('should handle the REGISTER_MOVE_FAILURE', () => {
+  //   expect(reducer({}, {type: Types.REGISTER_MOVE_FAILURE})).toEqual({error: true});
+  // });
+});

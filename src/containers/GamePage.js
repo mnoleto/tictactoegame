@@ -15,20 +15,21 @@ export class GamePage extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevProps.game.players !== this.props.game.players || prevProps.game.result !== this.props.game.result) {
+    if(prevProps.game.players !== this.props.game.players || prevProps.game.result.status !== this.props.game.result.status) {
       const { fetchPlayers } = this.props.playersActions;
       fetchPlayers();
     }
   }
 
   renderContent() {
-    const { newGame, sendPlayersName, registerMove } = this.props.gameActions;
+    const { newGame, newRound, sendPlayersName, registerMove } = this.props.gameActions;
     const { board, players, result, turn } = this.props.game;
 
     if(result.status === 'finished' || result.status === 'draw') {
       return (
         <GameResult
           onNewGameClick={newGame}
+          onNewRoundClick={newRound}
           players={players}
           result={result} />
       );
@@ -76,7 +77,7 @@ GamePage.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    allPlayers: state.players.data,
+    allPlayers: state.allPlayers.data,
     game: state.game
   };
 }

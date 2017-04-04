@@ -110,13 +110,13 @@ describe('Game', () => {
     expect(GameApi.board).toEqual(['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E']);
   });
 
-  it('existingUser', () => {
-    expect(GameApi.existingUser).toBeDefined();
+  it('existingPlayer', () => {
+    expect(GameApi.existingPlayer).toBeDefined();
 
     GameApi.startGame('Player 1', 'Player 2');
 
-    expect(GameApi.existingUser('Player 1')).toBeTruthy();
-    expect(GameApi.existingUser('Player 3')).toBeFalsy();
+    expect(GameApi.existingPlayer('Player 1')).toBeTruthy();
+    expect(GameApi.existingPlayer('Player 3')).toBeFalsy();
   });
 
   it('fetchPlayers', () => {
@@ -130,8 +130,15 @@ describe('Game', () => {
 
   it('generateName', () => {
     expect(GameApi.generateName).toBeDefined();
-
     expect(GameApi.generateName()).toEqual('Player 1');
+  });
+
+  it('getPlayerByName', () => {
+    expect(GameApi.getPlayerByName).toBeDefined();
+    GameApi.startGame('Player 1', 'Player 2');
+    expect(GameApi.getPlayerByName('Player 2')).toEqual(new Player('Player 2'));
+    expect(GameApi.getPlayerByName('Player 1')).toEqual(new Player('Player 1'));
+    expect(GameApi.getPlayerByName('Player 3')).toBeUndefined();
   });
 
   it('isFinished', () => {
@@ -144,7 +151,7 @@ describe('Game', () => {
     });
 
     it('finish the row game after 5 moves', () => {
-      GameApi.registerMove(0)
+      GameApi.registerMove(0);
       expect(GameApi.result).toEqual({status: 'running'});
       GameApi.registerMove(3);
       GameApi.registerMove(1);
@@ -190,7 +197,7 @@ describe('Game', () => {
       GameApi.registerMove(8);
       GameApi.registerMove(5);
       expect(GameApi.result).toEqual({status: 'draw'});
-    })
+    });
   });
 
   it('insertPlayers', () => {
@@ -210,6 +217,28 @@ describe('Game', () => {
     ]);
 
     expect(GameApi.insertPlayers('')).toEqual(['Player 5', 'Player 6']);
+  });
+
+  it('newGame', () => {
+    expect(GameApi.newGame).toBeDefined();
+    expect(GameApi.newGame()).toEqual({
+      board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],
+      players: [],
+      result: {status: 'waiting'},
+      turn: ''
+    });
+  });
+
+  it('newRound', () => {
+    expect(GameApi.newRound).toBeDefined();
+    GameApi.startGame('Player 1', 'Player 2');
+    expect(GameApi.activePlayers).toEqual(['Player 1', 'Player 2']);
+    expect(GameApi.newRound()).toEqual({
+      board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],
+      players: ['Player 2', 'Player 1'],
+      result: {status: 'waiting'},
+      turn: ''
+    });
   });
 
   it('registerMove', () => {
@@ -245,12 +274,23 @@ describe('Game', () => {
 
   it('resetGame', () => {
     expect(GameApi.resetGame).toBeDefined();
+    GameApi.startGame('Player 1', 'Player 2');
+    GameApi.resetGame();
+    expect(GameApi.activePlayers).toEqual([]);
+    expect(GameApi.board).toEqual(['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E']);
+    expect(GameApi.moves).toEqual(0);
+    expect(GameApi.result).toEqual({status: 'waiting'});
+    expect(GameApi.turn).toEqual('');
+  });
+
+  it('resetRound', () => {
+    expect(GameApi.resetRound).toBeDefined();
 
     GameApi.resetGame();
     expect(GameApi.board).toEqual(['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E']);
     expect(GameApi.moves).toEqual(0);
-    expect(GameApi.result).toEqual({status: 'running'});
-    expect(GameApi.turn).toEqual('X');
+    expect(GameApi.result).toEqual({status: 'waiting'});
+    expect(GameApi.turn).toEqual('');
   });
 
   it('resetPlayers', () => {
@@ -287,5 +327,22 @@ describe('Game', () => {
       result: {status: 'running'},
       turn: 'X'
     });
+  });
+
+  it('test games with diferent players', () => {
+    GameApi.startGame('Player 1', 'Player 2');
+    GameApi.registerMove(0); // X start
+    GameApi.registerMove(1);
+    GameApi.registerMove(4);
+    GameApi.registerMove(5);
+    GameApi.registerMove(8); // X win
+    GameApi.newGame();
+    GameApi.startGame('Player 3', 'Player 4');
+    GameApi.registerMove(0); // X start
+    GameApi.registerMove(1);
+    GameApi.registerMove(4);
+    GameApi.registerMove(5);
+    GameApi.registerMove(8); // X win
+    GameApi.newGame();
   });
 });

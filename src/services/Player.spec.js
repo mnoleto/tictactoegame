@@ -26,6 +26,23 @@ describe('Player', () => {
     expect(PlayerApi._player).toEqual({"defeats": 0, "draws": 0, "name": "John", "wins": 0});
   });
 
+  // GETS AND SETTERS
+  it('get and set name', () => {
+    PlayerApi.name = 'Player';
+    expect(PlayerApi.name).toEqual('Player');
+
+    PlayerApi.name = 'Second Player';
+    expect(PlayerApi.name).toEqual('Second Player');
+  });
+
+  it('get and set player', () => {
+    PlayerApi.player = {wins: 3};
+    expect(PlayerApi.player).toEqual({ name: 'John', wins: 3, defeats: 0, draws: 0 });
+
+    PlayerApi.player = {defeats: 5};
+    expect(PlayerApi.player).toEqual({ name: 'John', wins: 3, defeats: 5, draws: 0 });
+  });
+
   it('add', () => {
     expect(PlayerApi.add).toBeDefined();
 
@@ -47,54 +64,27 @@ describe('Player', () => {
     expect(PlayerApi._player.draws).toEqual(0);
   });
 
-  // it('increaseScore', () => {
-  //   expect(PlayerApi.increaseScore).toBeDefined();
-  //   PlayerApi.increaseScore('John', 'wins');
-  //   expect(PlayerApi._players[0].wins).toEqual(1);
-  //   expect(PlayerApi._players[0].defeats).toEqual(0);
-  //   expect(PlayerApi._players[0].draws).toEqual(0);
+  it('increaseScore', () => {
+    expect(PlayerApi.increaseScore).toBeDefined();
 
-  //   PlayerApi.add('Player 2');
-  //   PlayerApi.increaseScore('Player 2', 'defeats');
-  //   expect(PlayerApi._players[1].defeats).toEqual(1);
-  //   expect(PlayerApi._players[1].wins).toEqual(0);
-  //   expect(PlayerApi._players[1].draws).toEqual(0);
+    PlayerApi.increaseScore('wins');
+    expect(PlayerApi._player.wins).toEqual(1);
+    expect(PlayerApi._player.defeats).toEqual(0);
+    expect(PlayerApi._player.draws).toEqual(0);
 
+    PlayerApi.increaseScore('wins');
+    expect(PlayerApi._player.wins).toEqual(2);
+    expect(PlayerApi._player.defeats).toEqual(0);
+    expect(PlayerApi._player.draws).toEqual(0);
 
-  //   PlayerApi.increaseScore('Player 2', 'wins');
-  //   expect(PlayerApi._players[1].defeats).toEqual(1);
-  //   expect(PlayerApi._players[1].wins).toEqual(1);
-  //   expect(PlayerApi._players[1].draws).toEqual(0);
+    PlayerApi.increaseScore('defeats');
+    expect(PlayerApi._player.wins).toEqual(2);
+    expect(PlayerApi._player.defeats).toEqual(1);
+    expect(PlayerApi._player.draws).toEqual(0);
 
-  //   PlayerApi.increaseScore('Player 2', 'wins');
-  //   expect(PlayerApi._players[1].defeats).toEqual(1);
-  //   expect(PlayerApi._players[1].wins).toEqual(2);
-  //   expect(PlayerApi._players[1].draws).toEqual(0);
-
-  //   PlayerApi.increaseScore('John', 'draws');
-  //   expect(PlayerApi._players[0].wins).toEqual(1);
-  //   expect(PlayerApi._players[0].defeats).toEqual(0);
-  //   expect(PlayerApi._players[0].draws).toEqual(1);
-  // });
-
-  // it('setResult', () => {
-  //   expect(PlayerApi.setResult).toBeDefined();
-    
-  //   PlayerApi.insertPlayer('Player 1', 'Player 2');
-  //   PlayerApi.setResult({winner: 'Player 1', loser: 'Player 2'});
-  //   expect(PlayerApi._players[0]).toEqual({name: 'Player 1', wins: 1, defeats: 0, draws: 0});
-  //   expect(PlayerApi._players[1]).toEqual({name: 'Player 2', wins: 0, defeats: 1, draws: 0});
-
-  //   PlayerApi.setResult({winner: 'Player 1', loser: 'Player 2'});
-  //   expect(PlayerApi._players[0]).toEqual({name: 'Player 1', wins: 2, defeats: 0, draws: 0});
-  //   expect(PlayerApi._players[1]).toEqual({name: 'Player 2', wins: 0, defeats: 2, draws: 0});
-
-  //   PlayerApi.setResult({winner: 'Player 2', loser: 'Player 1'});
-  //   expect(PlayerApi._players[0]).toEqual({name: 'Player 1', wins: 2, defeats: 1, draws: 0});
-  //   expect(PlayerApi._players[1]).toEqual({name: 'Player 2', wins: 1, defeats: 2, draws: 0});
-
-  //   PlayerApi.setResult({draw: ['Player 2', 'Player 1']});
-  //   expect(PlayerApi._players[0]).toEqual({name: 'Player 1', wins: 2, defeats: 1, draws: 1});
-  //   expect(PlayerApi._players[1]).toEqual({name: 'Player 2', wins: 1, defeats: 2, draws: 1});
-  // });
+    PlayerApi.increaseScore('draws');
+    expect(PlayerApi._player.wins).toEqual(2);
+    expect(PlayerApi._player.defeats).toEqual(1);
+    expect(PlayerApi._player.draws).toEqual(1);
+  });
 });

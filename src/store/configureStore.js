@@ -31,7 +31,7 @@ function configureStoreDev(initialState) {
     logger,
 
     // Redux middleware that spits an error on you when you try to mutate your state either inside a dispatch or between dispatches.
-    reduxImmutableStateInvariant(),
+    // reduxImmutableStateInvariant(),
     sagaMiddleware,
   ];
 

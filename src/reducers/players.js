@@ -27,10 +27,13 @@ export const fetchPlayersRequest = (state = INITIAL_STATE, actions) => {
  * @return newState: [Object]
  */
 export const fetchPlayersSuccess = (state = INITIAL_STATE, actions) => {
-  return Object.assign({}, state, {
-    error: false,
-    data: actions.data
-  });
+  if(actions.data !== state.data) {
+    return Object.assign({}, state, {
+      error: false,
+      data: actions.data
+    });
+  }
+  return state;
 };
 
 /*

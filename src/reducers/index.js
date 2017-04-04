@@ -2,10 +2,10 @@
  import { combineReducers } from 'redux';
  import {routerReducer} from 'react-router-redux';
  import game from './game';
- import players from './players';
+ import allPlayers from './players';
 
  export default combineReducers ({
   routing: routerReducer,
   game,
-  players
+  allPlayers
  });

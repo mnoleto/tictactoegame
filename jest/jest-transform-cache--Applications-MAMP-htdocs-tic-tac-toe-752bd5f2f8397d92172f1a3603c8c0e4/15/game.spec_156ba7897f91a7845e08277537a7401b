@@ -1,0 +1,8 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_game = require('./game'); /* istanbul ignore next */var _game2 = _interopRequireDefault(_game);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+describe('game actions', function () {
+  it('should create an action to new game', function () {
+    expect( /* istanbul ignore next */_game2.default.newGame).toBeDefined();
+    expect( /* istanbul ignore next */_game2.default.newGame()).toEqual({ type: 'NEW_GAME' });
+  });
+});

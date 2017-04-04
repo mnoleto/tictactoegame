@@ -1,0 +1,18 @@
+/* istanbul ignore next */'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.Creators = exports.Types = undefined;var /* istanbul ignore next */_reduxsauce = require('reduxsauce'); /* istanbul ignore next */
+
+/*
+                                                                                                                                                                                                                                                 * build an object which contains Types and Creators.
+                                                                                                                                                                                                                                                 */var _createActions =
+/* istanbul ignore next */(0, _reduxsauce.createActions)({
+  newGame: null,
+  newGameSuccess: ['board', 'players', 'result', 'turn'],
+  newGameFailure: null,
+  sendPlayersName: ['playerX', 'playerO'],
+  sendPlayersNameSuccess: ['board', 'players', 'result', 'turn'],
+  sendPlayersNameFailure: null,
+  registerMove: ['position'],
+  registerMoveSuccess: ['board', 'players', 'result', 'turn'],
+  registerMoveFailure: null },
+{}); /* istanbul ignore next */var Types = _createActions.Types,Creators = _createActions.Creators; // options - the 2nd parameter is optional - prepend the string to all created types.
+/* istanbul ignore next */exports.Types = Types;exports.Creators = Creators;exports.default =
+Creators;

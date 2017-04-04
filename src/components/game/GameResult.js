@@ -3,7 +3,7 @@ import '../../styles/game/GameResult.scss';
 
 class GameResult extends Component {
   render() {
-    const { onNewGameClick, players, result } = this.props;
+    const { onNewGameClick, onNewRoundClick, players, result } = this.props;
     
     let message;
 
@@ -18,7 +18,10 @@ class GameResult extends Component {
     return (
       <div className="game-result">
         <p>{message}</p>
-        <button type="button" className="new-game-button" onClick={onNewGameClick}>New Game</button>
+        <div className="buttons">
+          <button type="button" className="new-round-button" onClick={onNewRoundClick}>New Round</button>
+          <button type="button" className="new-game-button" onClick={onNewGameClick}>New Game</button>
+        </div>
       </div>
     );
   }
@@ -27,6 +30,7 @@ class GameResult extends Component {
 
 GameResult.propTypes = {
   onNewGameClick: PropTypes.func,
+  onNewRoundClick: PropTypes.func,
   players: PropTypes.array,
   result: PropTypes.object
 }

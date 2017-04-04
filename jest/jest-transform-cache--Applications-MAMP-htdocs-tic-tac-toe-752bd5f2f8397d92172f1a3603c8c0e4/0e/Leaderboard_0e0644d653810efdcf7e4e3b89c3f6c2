@@ -1,0 +1,69 @@
+/* istanbul ignore next */'use strict';Object.defineProperty(exports, "__esModule", { value: true });var _createClass = function () {function defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}return function (Constructor, protoProps, staticProps) {if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;};}();var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+/* istanbul ignore next */require('../../styles/game/Leaderboard.scss'); /* istanbul ignore next */function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self, call) {if (!self) {throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call && (typeof call === "object" || typeof call === "function") ? call : self;}function _inherits(subClass, superClass) {if (typeof superClass !== "function" && superClass !== null) {throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;}var
+
+Leaderboard = function (_Component) {_inherits(Leaderboard, _Component);
+  function /* istanbul ignore next */Leaderboard(props) {/* istanbul ignore next */_classCallCheck(this, Leaderboard);return _possibleConstructorReturn(this, (Leaderboard.__proto__ || Object.getPrototypeOf(Leaderboard)).call(this,
+    props));
+  }_createClass(Leaderboard, [{ key: 'render', value: function render()
+
+    {/* istanbul ignore next */var
+      allPlayers = this.props.allPlayers;
+
+      var playersItens = /* istanbul ignore next */void 0;
+      if (allPlayers && allPlayers.length > 0) {
+        var orderedPlayers = allPlayers.sort(function (a, b) {
+          var scoreA = parseInt(a.wins) * 3 - parseInt(a.defeats),
+          scoreB = parseInt(a.wins) * 3 - parseInt(a.defeats);
+
+          console.log(a.name, scoreA);
+          console.log(b.name, scoreB);
+          return scoreB - scoreA;
+          // let winsA = parseInt(a.wins), defeatsA = parseInt(a.defeats),
+          //   winsB = parseInt(b.wins), defeatsB = parseInt(a.defeats);
+
+          // if(winsB < winsA) { return -1; }
+          // if(winsB > winsA) { return 1; }
+          // if(defeatsB > defeatsA) { return -1; }
+          // if(defeatsB < defeatsA) { return 1; }
+          // return 0;
+        });
+
+        playersItens = orderedPlayers.map(function (value, index) {
+          return (
+            /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'tr', /* istanbul ignore next */{ key: 'leaderboard_' + index },
+              /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'td', /* istanbul ignore next */{ className: 'position' }, index + 1),
+              /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'td', /* istanbul ignore next */{ className: 'name' }, value.name),
+              /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'td', /* istanbul ignore next */{ className: 'wins' }, value.wins),
+              /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'td', /* istanbul ignore next */{ className: 'defeats' }, value.defeats),
+              /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'td', /* istanbul ignore next */{ className: 'draws' }, value.draws)));
+
+
+        });
+      }
+
+      return (
+        /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'div', /* istanbul ignore next */{ className: 'leaderboard' },
+          /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'h4', /* istanbul ignore next */{ className: 'title' }, /* istanbul ignore next */'Leaderboard'),
+          /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'table', /* istanbul ignore next */{ cellPadding: '0', cellSpacing: '0' },
+            /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'thead', /* istanbul ignore next */null,
+              /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'tr', /* istanbul ignore next */{ className: 'heading' },
+                /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'th', /* istanbul ignore next */{ colSpan: '2', className: 'name' }, /* istanbul ignore next */'Name'),
+                /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'th', /* istanbul ignore next */{ className: 'wins' }, /* istanbul ignore next */'Wins'),
+                /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'th', /* istanbul ignore next */{ className: 'defeats' }, /* istanbul ignore next */'Defeats'),
+                /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'th', /* istanbul ignore next */{ className: 'draws' }, /* istanbul ignore next */'Draws'))),
+
+
+            /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'tbody', /* istanbul ignore next */null,
+              playersItens))));
+
+
+
+
+    } }]);return Leaderboard;}(_react.Component);
+;
+
+Leaderboard.propTypes = {
+  allPlayers: /* istanbul ignore next */_react.PropTypes.array }; /* istanbul ignore next */exports.default =
+
+
+Leaderboard;

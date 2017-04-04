@@ -1,0 +1,10 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_effects = require('redux-saga/effects');
+var /* istanbul ignore next */_Game = require('../services/Game'); /* istanbul ignore next */var _Game2 = _interopRequireDefault(_Game);
+var /* istanbul ignore next */_sagas = require('../sagas'); /* istanbul ignore next */function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+describe('gameSaga', function () {
+  it('should fetch players', function () {
+    var generator = /* istanbul ignore next */(0, _sagas.fetchPlayers)();
+    // expect(generator.next().value).toEqual(apply(GameApi, GameApi.fetchPlayers()));
+  });
+});

@@ -3,10 +3,8 @@ import Player from './Player';
 class Game {
   /*
    * constructor
-   * @param playerX [String]: player X name
-   * @param playerO [String]: player O name
    */
-  constructor(playerX, playerO) {
+  constructor() {
     this._activePlayers = [];
     this._board = [];
     this._grid = 3; // default 3x3 board _grid
@@ -17,7 +15,21 @@ class Game {
   }
 
   // GETS AND SETTERS
+  /*
+   * function responsible for get the _activePlayers value
+   * @return _activePlayers [Array]
+   */
+  get activePlayers() {
+    return this._activePlayers;
+  }
 
+  /*
+   * function responsible for set the _activePlayers value
+   * @param value [Array]
+   */
+  set activePlayers(value) {
+    this._activePlayers = value;
+  }
   /*
    * function responsible for get the _board value
    * @return _board [Array]
@@ -98,6 +110,7 @@ class Game {
     this._turn = value;
   }
 
+  // METHODS
   /*
    * public function that advance to the next turn
    */
@@ -117,10 +130,16 @@ class Game {
    * @param playerName [String]: player name
    * @returns [Boolean]: true if exist, false if not
    */
-  existingUser(playerName) {
-    return (this.players.find((value) => {
-      return value.name === playerName;
-    })) ? true : false;
+  existingPlayer(playerName) {
+    if(this.players.length > 0) {
+      let player = this.players.find((value) => {
+        if(value.name === playerName) {
+          return value;
+        }
+      });
+      return (player) ? true : false;
+    }
+    return false;
   }
 
   /*
@@ -128,6 +147,7 @@ class Game {
    * @return players [Array]: array of registered players
    */
   fetchPlayers() {
+    if(this.players.length === 0) { return []; }
     return this.players.map((value) => value._player);
   }
 
@@ -137,6 +157,16 @@ class Game {
    */
   generateName() {
     return ('Player ' + (this.players.length + 1));
+  }
+
+  /*
+   * public function that return a player by a givin
+   * @return name [String]: name generated using the array of players length
+   */
+  getPlayerByName(playerName) {
+    return this.players.find((value) => {
+      return (value._player.name === playerName);
+    });
   }
 
   /*
@@ -151,10 +181,10 @@ class Game {
       // check rows
       for(i = 0; i < 6; i = i + 3) {
         if(this.board[i] !== 'E' && this.board[i] === this.board[i + 1] && this.board[i + 1] == this.board[i + 2]) {
-          this.result = {
+          this.updatePlayerScore(this.result = {
             status: 'finished',
             winner: this.board[i]
-          };
+          });
           return true;
         }
       }
@@ -162,10 +192,10 @@ class Game {
       // check cols
       for(i = 0; i <= 2; i ++) {
         if(this.board[i] !== 'E' && this.board[i] === this.board[i + 3] && this.board[i + 3] == this.board[i + 6]) {
-          this.result = {
+          this.updatePlayerScore(this.result = {
             status: 'finished',
             winner: this.board[i]
-          };
+          });
           return true;
         }
       }
@@ -173,18 +203,18 @@ class Game {
       // check diagonals
       for(i = 0, j = 4; i <= 2; i = i + 2, j = j - 2) {
         if(this.board[i] !== 'E' && this.board[i] === this.board[i + j] && this.board[i + j] == this.board[i + 2*j]) {
-          this.result = {
+          this.updatePlayerScore(this.result = {
             status: 'finished',
             winner: this.board[i]
-          };
+          });
           return true;
         }
       }
 
       if(this.moves === 9) {
-        this.result = {
+        this.updatePlayerScore(this.result = {
           status: 'draw'
-        };
+        });
         return true;
       }
     }
@@ -202,25 +232,44 @@ class Game {
    */
   insertPlayers(playerX, playerO) {
     let nameX = playerX, nameO = playerO;
-    if(!playerX || playerX === '' || !this.existingUser(playerX)) {
+    if(!playerX || playerX === '' || !this.existingPlayer(playerX)) {
       nameX = (playerX === '' || !playerX) ? this.generateName() : playerX;
-      this.players.push(new Player(nameX));
+      this._players.push(new Player(nameX));
     }
 
-    if(!playerO || playerO === '' || !this.existingUser(playerO)) {
+    if(!playerO || playerO === '' || !this.existingPlayer(playerO)) {
       nameO = (playerO === '' || !playerO) ? this.generateName() : playerO;
-      this.players.push(new Player(nameO));
+      this._players.push(new Player(nameO));
     }
-    this._activePlayers = [nameX, nameO];
-    return this._activePlayers;
+    this.activePlayers = [nameX, nameO];
+    return this.activePlayers;
   }
 
+  /*
+   * public function that ends a game and prepare for start a new one
+   * @return game [String]: board reset, players empty, result waiting and turn empty
+   */
   newGame() {
     this.resetGame();
 
     return {
       board: this.board,
-      players: this._activePlayers,
+      players: this.activePlayers,
+      result: this.result,
+      turn: this.turn
+    };
+  }
+
+  /*
+   * public function that ends a round, switch players and prepare for start a new round
+   * @return game [String]: board reset, players empty, result waiting and turn empty
+   */
+  newRound() {
+    this.resetRound();
+
+    return {
+      board: this.board,
+      players: [this.activePlayers[1], this.activePlayers[0]],
       result: this.result,
       turn: this.turn
     };
@@ -229,7 +278,7 @@ class Game {
   /*
    * public function that start the game
    * @param letter [String]: X or O as possible letters
-   * @return result [Object]: if the game is running - send the next turn; if is finished - send the winner
+   * @return game [Object]: if the game is running - send the next turn; if is finished - send the winner
    */
   registerMove(position) {
     if(position < Math.pow(this._grid, 2) && this.board[position] === 'E' ) {
@@ -241,7 +290,7 @@ class Game {
     
     return {
       board: this.board,
-      players: this._activePlayers,
+      players: this.activePlayers,
       result: this.result,
       turn: this.turn
     };
@@ -251,7 +300,17 @@ class Game {
    * public function that reset the game to its initial state
    */
   resetGame() {
-    this._activePlayers = [];
+    this.activePlayers = [];
+    this.moves = 0;
+    this.emptyBoard();
+    this.result = {status: 'waiting'};
+    this.turn = '';
+  }
+
+  /*
+   * public function that reset the round to its initial state
+   */
+  resetRound() {
     this.moves = 0;
     this.emptyBoard();
     this.result = {status: 'waiting'};
@@ -281,6 +340,24 @@ class Game {
       result: this.result,
       turn: this.turn
     };
+  }
+
+  updatePlayerScore(result) {
+    let playerX = this.getPlayerByName(this.activePlayers[0]),
+      playerO = this.getPlayerByName(this.activePlayers[1]);
+
+    if(result.status === 'draw') {
+      playerX.increaseScore('draws');
+      playerO.increaseScore('draws');
+    } else {
+      if(result.winner === 'X') {
+        playerX.increaseScore('wins');
+        playerO.increaseScore('defeats');
+      } else {
+        playerX.increaseScore('defeats');
+        playerO.increaseScore('wins');
+      }
+    }
   }
 }
 

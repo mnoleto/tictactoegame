@@ -9,15 +9,8 @@ class Players {
     this.add(playerName);
   }
 
-  /*
-   * public function that add a player to the players array
-   * @param playerName [String]: player name
-   * @return playerName [String]: return the saved name
-   */
-  add(playerName) {
-    let name = String(playerName);
-    this._player = Object.assign({}, this.INITIAL_STATE, {name});
-  }
+
+  // GETS AND SETTERS
 
   /*
    * public function that returns the player name
@@ -28,7 +21,15 @@ class Players {
   }
 
   /*
-   * public function that returns the player name
+   * public function that set the player name
+   * @param value [String]: player name
+   */
+  set name(value) {
+    this._player = Object.assign({}, this.INITIAL_STATE, {name: value});
+  }
+
+  /*
+   * public function that returns the player
    * @return playerName [String]: return the saved name
    */
   get player() {
@@ -36,24 +37,31 @@ class Players {
   }
 
   /*
-   * public function that increase the player wins, defeats or draws
-   * @param playerName [String]: player name
-   * @param type [String]: type of result to be increased - wins, defeats or draws
+   * public function that set the player value
+   * @param value [Object]: object with name, wins, defeats and draws
    */
-  // increaseScore(type) {
-  //   let property = {};
-  //   property[type] = this._player[type] + 1;
-  //   this._players = Object.assign({}, this._player, property);
-  // }
+  set player(value) {
+    this._player = Object.assign({}, this._player, value);
+  }
+
+  // METHODS
+  /*
+   * public function that add a player properties
+   * @param playerName [String]: player name
+   * @return playerName [String]: return the saved name
+   */
+  add(playerName) {
+    this.name = String(playerName);
+  }
 
   /*
-   * public function that set the result of a match
-   * @param type [String]: type of result (wins, defeats or draws)
+   * public function that increase the player wins, defeats or draws
+   * @param type [String]: type of result to be increased - wins, defeats or draws
    */
-  setResult(type) {
+  increaseScore(type) {
     let property = {};
     property[type] = this._player[type] + 1;
-    this._player = Object.assign({}, this._player, property);
+    this.player = property;
   }
 }
 

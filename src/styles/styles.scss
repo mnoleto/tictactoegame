@@ -10,17 +10,6 @@
   vertical-align: top;
 }
 
-// Mobile font-size adjustment
-html{
-  font-size: 90%;
-}
-
-@media(min-width:60em){
-  html{
-    font-size: 100%;
-  }
-}
-
 body, html {
   height: 100%;
   margin: 0px;
@@ -62,4 +51,9 @@ a, button {
 
 button:focus, input:focus {
   outline: none;
+}
+
+
+object[type='application/gas-events-uni'], object[type='application/gas-events'], object[type='application/gas-events-cef'] {
+    display: none;
 }

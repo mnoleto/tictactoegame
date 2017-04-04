@@ -11,7 +11,14 @@ class Leaderboard extends Component {
 
     let playersItens;
     if(allPlayers && allPlayers.length > 0) {
-      playersItens = allPlayers.map((value, index) => {
+      const orderedPlayers = allPlayers.sort((a, b) => {
+        let scoreA = (parseInt(a.wins)*3) + parseInt(a.draws),
+          scoreB = (parseInt(b.wins)*3) + parseInt(b.draws);
+        
+        return scoreB - scoreA;
+      });
+
+      playersItens = orderedPlayers.map((value, index) => {
         return (
           <tr key={'leaderboard_' + index}>
             <td className="position">{index + 1}</td>

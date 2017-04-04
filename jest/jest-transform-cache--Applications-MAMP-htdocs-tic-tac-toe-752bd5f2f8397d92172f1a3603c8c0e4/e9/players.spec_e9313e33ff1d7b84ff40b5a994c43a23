@@ -1,0 +1,22 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_players = require('./players'); /* istanbul ignore next */var _players2 = _interopRequireDefault(_players);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+describe('players actions', function () {
+  // FETCH PLAYERS ACTIONS
+  it('should create an action to fetch players', function () {
+    expect( /* istanbul ignore next */_players2.default.fetchPlayers).toBeDefined();
+    expect( /* istanbul ignore next */_players2.default.fetchPlayers()).toEqual({ type: 'FETCH_PLAYERS' });
+  });
+
+  it('should create an action to fetch players succcess', function () {
+    expect( /* istanbul ignore next */_players2.default.fetchPlayersSuccess).toBeDefined();
+    expect( /* istanbul ignore next */_players2.default.fetchPlayersSuccess([{ name: 'Player 1', wins: 0, defeats: 0, draws: 0 }, { name: 'Player 2', wins: 0, defeats: 0, draws: 0 }])).toEqual({
+      type: 'FETCH_PLAYERS_SUCCESS',
+      data: [{ name: 'Player 1', wins: 0, defeats: 0, draws: 0 }, { name: 'Player 2', wins: 0, defeats: 0, draws: 0 }] });
+
+  });
+
+  it('should create an action to fetch players failure', function () {
+    expect( /* istanbul ignore next */_players2.default.fetchPlayersFailure).toBeDefined();
+    expect( /* istanbul ignore next */_players2.default.fetchPlayersFailure()).toEqual({ type: 'FETCH_PLAYERS_FAILURE' });
+  });
+});

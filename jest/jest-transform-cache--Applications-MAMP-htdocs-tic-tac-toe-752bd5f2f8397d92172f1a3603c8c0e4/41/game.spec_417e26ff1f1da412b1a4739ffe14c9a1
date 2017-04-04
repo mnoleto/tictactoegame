@@ -1,0 +1,62 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_game = require('./game'); /* istanbul ignore next */var _game2 = _interopRequireDefault(_game);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+describe('game actions', function () {
+  // NEW GAME ACTIONS
+  it('should create an action to new game', function () {
+    expect( /* istanbul ignore next */_game2.default.newGame).toBeDefined();
+    expect( /* istanbul ignore next */_game2.default.newGame()).toEqual({ type: 'NEW_GAME' });
+  });
+
+  it('should create an action to new game succcess', function () {
+    expect( /* istanbul ignore next */_game2.default.newGameSuccess).toBeDefined();
+    expect( /* istanbul ignore next */_game2.default.newGameSuccess(['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'], [], {}, '')).toEqual({
+      type: 'NEW_GAME_SUCCESS',
+      board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],
+      players: [],
+      result: {},
+      turn: '' });
+
+    expect( /* istanbul ignore next */_game2.default.newGameSuccess(['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'], [], { result: 'waiting' }, '')).toEqual({
+      type: 'NEW_GAME_SUCCESS',
+      board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],
+      players: [],
+      result: { result: 'waiting' },
+      turn: '' });
+
+  });
+
+  it('should create an action to new game failure', function () {
+    expect( /* istanbul ignore next */_game2.default.newGameFailure).toBeDefined();
+    expect( /* istanbul ignore next */_game2.default.newGameFailure()).toEqual({ type: 'NEW_ROUND_FAILURE' });
+  });
+
+  // NEW ROUND ACTIONS
+
+  it('should create an action to new round', function () {
+    expect( /* istanbul ignore next */_game2.default.newRound).toBeDefined();
+    expect( /* istanbul ignore next */_game2.default.newRound()).toEqual({ type: 'NEW_ROUND' });
+  });
+
+  it('should create an action to new round succcess', function () {
+    expect( /* istanbul ignore next */_game2.default.newRoundSuccess).toBeDefined();
+    expect( /* istanbul ignore next */_game2.default.newRoundSuccess(['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'], [], {}, '')).toEqual({
+      type: 'NEW_ROUND_SUCCESS',
+      board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],
+      players: [],
+      result: {},
+      turn: '' });
+
+    expect( /* istanbul ignore next */_game2.default.newRoundSuccess(['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'], [], { result: 'waiting' }, '')).toEqual({
+      type: 'NEW_ROUND_SUCCESS',
+      board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],
+      players: [],
+      result: { result: 'waiting' },
+      turn: '' });
+
+  });
+
+  it('should create an action to new round failure', function () {
+    expect( /* istanbul ignore next */_game2.default.newRoundFailure).toBeDefined();
+    expect( /* istanbul ignore next */_game2.default.newRoundFailure()).toEqual({ type: 'NEW_ROUND_FAILURE' });
+  });
+});

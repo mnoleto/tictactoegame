@@ -1,17 +1,15 @@
 @import '../_colors.scss';
 
-$border-width: 15px;
-
 .game-button {
   background-color: transparent;
   border: 0px;
-  border-bottom: $border-width solid $dark-blue;
-  border-right: $border-width solid $dark-blue;
+  border-bottom: 10px solid $dark-blue;
+  border-right: 10px solid $dark-blue;
   display: inline-block;
   font-family: 'Quicksand', sans-serif;
-  font-size: 800%;
+  font-size: 400%;
   font-weight: 700;
-  height: 180px;
+  height: 100px;
   padding: 0px;
   width: 32%;
   &:nth-child(3n+3) {
@@ -25,5 +23,11 @@ $border-width: 15px;
   }
   .o {
     color: #fff;
+  }
+  @media (min-width: 992px) {
+    border-bottom: 15px solid $dark-blue;
+    border-right: 15px solid $dark-blue;
+    font-size: 800%;
+    height: 180px;
   }
 }
