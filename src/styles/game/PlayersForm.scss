@@ -1,0 +1,55 @@
+@import '../_colors.scss';
+
+$input-height: 50px;
+
+.player-input {
+  display: inline-block;
+  margin: 0px 5px;
+  // width: 50%;
+  label {
+    background-color: #fff;
+    border-radius: 4px 0px 0px 4px;
+    color: $blue;
+    display: inline-block;
+    height: $input-height;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 200%;
+    font-weight: 700;
+    line-height: $input-height;
+    padding: 0px 10px;
+  }
+  input[type="text"] {
+    border: 0px;
+    border-radius: 0px 4px 4px 0px;
+    color: $dark-blue;
+    font-size: 200%;
+    height: $input-height;
+  }
+  &.inactive label, &.inactive input {
+    opacity: 0.5;
+  }
+}
+
+.players-form {
+  margin-bottom: 50px;
+  width: 100%;
+  text-align: center;
+  legend {
+    font-size: 120%;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+  }
+}
+
+.start-game-button {
+  background-color: lighten($blue, 20%);
+  border: 0px;
+  color: $dark-blue;
+  display: block;
+  font-size: 100%;
+  margin: 15px auto 10px;
+  padding: 10px 20px;
+}

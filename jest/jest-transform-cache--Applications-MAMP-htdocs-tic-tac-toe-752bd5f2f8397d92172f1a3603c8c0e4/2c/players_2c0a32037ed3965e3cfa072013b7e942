@@ -1,0 +1,7 @@
+/* istanbul ignore next */'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.Creators = exports.Types = undefined;var /* istanbul ignore next */_reduxsauce = require('reduxsauce'); /* istanbul ignore next */var _createActions =
+
+/* istanbul ignore next */(0, _reduxsauce.createActions)({
+  sendPlayersNameRequest: ['playerX', 'playerO'],
+  sendPlayersNameSuccess: ['data'],
+  sendPlayersNameFailure: null },
+{}); /* istanbul ignore next */var Types = _createActions.Types,Creators = _createActions.Creators; /* istanbul ignore next */exports.Types = Types;exports.Creators = Creators;

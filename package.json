@@ -8,7 +8,6 @@
   "scripts": {
     "preinstall": "node tools/nodeVersionCheck.js",
     "setup": "node tools/setup/setupMessage.js && npm install && node tools/setup/setup.js",
-    "remove-demo": "babel-node tools/removeDemo.js",
     "start-message": "babel-node tools/startMessage.js",
     "prestart": "npm-run-all --parallel start-message",
     "start": "npm-run-all --parallel test:watch open:src lint:watch",
@@ -38,7 +37,10 @@
     "react-router": "3.0.0",
     "react-router-redux": "4.0.7",
     "redux": "3.6.0",
-    "redux-thunk": "2.1.0"
+    "redux-logger": "3.0.1",
+    "redux-saga": "0.14.4",
+    "redux-thunk": "2.1.0",
+    "reduxsauce": "0.4.1"
   },
   "devDependencies": {
     "autoprefixer": "6.5.4",

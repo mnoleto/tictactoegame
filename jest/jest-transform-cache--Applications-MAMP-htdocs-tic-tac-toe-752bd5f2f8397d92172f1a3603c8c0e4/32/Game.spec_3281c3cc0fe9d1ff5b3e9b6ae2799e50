@@ -1,0 +1,25 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_Game = require('./Game'); /* istanbul ignore next */var _Game2 = _interopRequireDefault(_Game);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// Game class is responsible for control the game
+// CONTRACTS
+// Should have a INITIAL_STATE for the board
+// Should start the game
+// Should return the game status
+// Should alternate the players turns
+// Should save the players moves on the board
+// Should reset the game board
+// Should change the game state
+// Should check if the game is finished
+// Should return the winner and loser or return if is a draw
+
+describe('Game', function () {
+  var GameApi = /* istanbul ignore next */void 0;
+
+  beforeEach(function () {
+    GameApi = new /* istanbul ignore next */_Game2.default();
+  });
+
+  it('Api exist', function () {
+    expect(GameApi).toBeDefined();
+  });
+});

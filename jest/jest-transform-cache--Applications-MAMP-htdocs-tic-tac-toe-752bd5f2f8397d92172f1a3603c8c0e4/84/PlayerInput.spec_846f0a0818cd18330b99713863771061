@@ -1,0 +1,37 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+var /* istanbul ignore next */_enzyme = require('enzyme');
+var /* istanbul ignore next */_PlayerInput = require('./PlayerInput'); /* istanbul ignore next */var _PlayerInput2 = _interopRequireDefault(_PlayerInput);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// PlayerInput is responsible for render the game grid
+// CONTRACTS
+// 1. 
+
+describe('PlayerInput', function () {
+  var props = /* istanbul ignore next */void 0,mountedPlayerInput = /* istanbul ignore next */void 0;
+  var playerInput = function playerInput() {
+    if (!mountedPlayerInput) {
+      mountedPlayerInput = /* istanbul ignore next */(0, _enzyme.mount)(
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_PlayerInput2.default, props));
+
+    }
+    return mountedPlayerInput;
+  };
+
+  beforeEach(function () {
+    props = {
+      label: 'X' };
+
+    mountedPlayerInput = undefined;
+  });
+
+  it('render the PlayerInput', function () {
+    var playerInputWrapper = /* istanbul ignore next */(0, _enzyme.shallow)( /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_PlayerInput2.default, /* istanbul ignore next */{ label: 'x' }));
+    expect(playerInputWrapper).toMatchSnapshot();
+  });
+
+  it('render a div as root element', function () {
+    var playerInputElement = playerInput().find('div');
+    var wrappingDiv = playerInputElement.first();
+    expect(wrappingDiv.children()).toEqual(playerInput().children());
+  });
+});

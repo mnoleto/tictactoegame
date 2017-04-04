@@ -1,0 +1,63 @@
+@import '../_colors.scss';
+
+.leaderboard {
+  color: $dark-blue;
+  display: block;
+  margin: 0 auto 30px;
+  width: 100%;
+  &:after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+  .title {
+    margin-bottom: 5px;
+    text-align: center;
+  }
+  table {
+    background: $white;
+    margin: 0 auto;
+    width: 50%;
+  }
+  td, th {
+    padding: 3px 10px;
+    text-align: center;
+  }
+  tr.heading {
+    background-color: lighten($blue, 30%);
+  }
+  td.name, th.name {
+    text-align: left;
+  }
+  td.position {
+    font-weight: 700;
+    width: 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  .leaderboard {
+    width: 740px;
+    table {
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .leaderboard {
+    width: 960px;
+    table {
+      width: 70%;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .leaderboard {
+    width: 1170px;
+    table {
+      width: 50%;
+    }
+  }
+}

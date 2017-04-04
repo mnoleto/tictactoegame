@@ -1,0 +1,52 @@
+/* istanbul ignore next */'use strict';Object.defineProperty(exports, "__esModule", { value: true });var _createClass = function () {function defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}return function (Constructor, protoProps, staticProps) {if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;};}();var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+/* istanbul ignore next */require('../../styles/game/PlayersForm.scss'); /* istanbul ignore next */function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self, call) {if (!self) {throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call && (typeof call === "object" || typeof call === "function") ? call : self;}function _inherits(subClass, superClass) {if (typeof superClass !== "function" && superClass !== null) {throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;}var
+
+PlayersForm = function (_Component) {_inherits(PlayersForm, _Component);
+  function /* istanbul ignore next */PlayersForm(props) {/* istanbul ignore next */_classCallCheck(this, PlayersForm);var _this = _possibleConstructorReturn(this, (PlayersForm.__proto__ || Object.getPrototypeOf(PlayersForm)).call(this,
+    props));
+    /* istanbul ignore next */_this.state = {
+      playerX: '',
+      playerO: '' };
+
+    /* istanbul ignore next */_this.sendData = /* istanbul ignore next */_this.sendData.bind( /* istanbul ignore next */_this); /* istanbul ignore next */return _this;
+  }_createClass(PlayersForm, [{ key: 'sendData', value: function sendData()
+
+    {/* istanbul ignore next */var
+      onStartGame = this.props.onStartGame;
+      var playerX = this.refs.playerX.value,
+      playerO = this.refs.playerO.value;
+
+      if (playerX !== '' && playerO !== '') {
+        onStartGame(playerX, playerO);
+      }
+    } }, { key: 'render', value: function render()
+
+    {/* istanbul ignore next */var
+      result = this.props.result;
+
+      return (
+        /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'form', /* istanbul ignore next */{ className: 'players-form' },
+          /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'legend', /* istanbul ignore next */null, /* istanbul ignore next */'Please, inform the players name below:'),
+
+          /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'div', /* istanbul ignore next */{ className: 'player-input active' },
+            /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'label', /* istanbul ignore next */null, /* istanbul ignore next */'X'),
+            /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'input', /* istanbul ignore next */{ type: 'text', ref: 'playerX' })),
+
+
+          /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'div', /* istanbul ignore next */{ className: 'player-input active' },
+            /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'label', /* istanbul ignore next */null, /* istanbul ignore next */'O'),
+            /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'input', /* istanbul ignore next */{ type: 'text', ref: 'playerO', disabled: result && result.status === 'running' ? 'disabled' : '' })),
+
+
+          /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'button', /* istanbul ignore next */{ type: 'button', className: 'start-game-button', onClick: this.sendData }, /* istanbul ignore next */'start game')));
+
+
+    } }]);return PlayersForm;}(_react.Component);
+;
+
+PlayersForm.propTypes = {
+  onStartGame: /* istanbul ignore next */_react.PropTypes.func,
+  result: /* istanbul ignore next */_react.PropTypes.string }; /* istanbul ignore next */exports.default =
+
+
+PlayersForm;

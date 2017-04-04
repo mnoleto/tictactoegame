@@ -1,0 +1,11 @@
+/* istanbul ignore next */'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.PlayersCreators = exports.PlayersTypes = undefined;var /* istanbul ignore next */_reduxsauce = require('reduxsauce'); /* istanbul ignore next */
+
+/*
+                                                                                                                                                                                                                                                               * build an object which contains Types and Creators.
+                                                                                                                                                                                                                                                               */var _createActions =
+/* istanbul ignore next */(0, _reduxsauce.createActions)({
+  getplayers: null,
+  getplayersSuccess: ['players'],
+  getplayersFailure: null },
+{}); /* istanbul ignore next */var PlayersTypes = _createActions.PlayersTypes,PlayersCreators = _createActions.PlayersCreators; // options - the 2nd parameter is optional - prepend the string to all created types.
+/* istanbul ignore next */exports.PlayersTypes = PlayersTypes;exports.PlayersCreators = PlayersCreators;

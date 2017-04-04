@@ -1,0 +1,17 @@
+/* istanbul ignore next */"use strict";Object.defineProperty(exports, "__esModule", { value: true });var /* istanbul ignore next */_react = require("react"); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+var PlayersForm = function PlayersForm() {
+
+  return (
+    /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */"form", /* istanbul ignore next */{ className: "players-form" },
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */"legend", /* istanbul ignore next */null, /* istanbul ignore next */"Please, inform the players names below:"),
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */"label", /* istanbul ignore next */null, /* istanbul ignore next */"X"),
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */"input", /* istanbul ignore next */{ type: "text", value: "" }),
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */"label", /* istanbul ignore next */null, /* istanbul ignore next */"O"),
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */"input", /* istanbul ignore next */{ type: "text", value: "" })));
+
+
+
+}; /* istanbul ignore next */exports.default =
+
+PlayersForm;

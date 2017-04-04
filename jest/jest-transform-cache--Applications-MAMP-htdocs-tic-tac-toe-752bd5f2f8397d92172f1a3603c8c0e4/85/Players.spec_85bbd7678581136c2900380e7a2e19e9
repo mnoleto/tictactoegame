@@ -1,0 +1,37 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_Players = require('./Players'); /* istanbul ignore next */var _Players2 = _interopRequireDefault(_Players);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// Player is responble for control the game players
+// CONTRACT
+// Should have a initial state
+// Should insert a player by name
+// Should insert two players
+// Should check if the player already exist before  insert
+// Should insert each player if 0 wins, 0 loses and 0 draws at first
+// Should set the game result for each player (wins, loses, draws)
+// Should sum the result of the game for existing players
+// Should reset the players
+
+describe('Player', function () {
+  var PlayersApi = /* istanbul ignore next */void 0;
+
+  beforeEach(function () {
+    PlayersApi = new /* istanbul ignore next */_Players2.default();
+  });
+
+  it('INITIAL_STATE', function () {
+    expect(PlayersApi.INITIAL_STATE).toEqual({ name: '', wins: 0, loses: 0, draws: 0 });
+  });
+
+  it('inserPlayer', function () {
+    PlayersApi.inserPlayer('Player 1');
+    expect(PlayersApi.players).toEqual([{ name: 'Player 1', wins: 0, loses: 0, draws: 0 }]);
+  });
+
+  // it('insertPlayer', () => {
+  //   Players.insertPlayer('Player 1');
+  //   expect(Players.players).toEqual([{name: 'Player 1'}, {name: 'Player 2'}]);
+
+  //   Players.insertPlayers('Player 3', 'Player 4');
+  //   expect(Players.players).toEqual([{name: 'Player 1'}, {name: 'Player 2'}, {name: 'Player 3'}, {name: 'Player 4'}]);
+  // });
+});

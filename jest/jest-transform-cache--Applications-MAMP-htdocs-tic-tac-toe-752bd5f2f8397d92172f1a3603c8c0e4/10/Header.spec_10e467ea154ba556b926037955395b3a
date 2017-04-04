@@ -1,0 +1,63 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+var /* istanbul ignore next */_enzyme = require('enzyme');
+var /* istanbul ignore next */_Header = require('./Header'); /* istanbul ignore next */var _Header2 = _interopRequireDefault(_Header);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// Header is responsible for render the game title
+// CONTRACTS
+// 1. Should always render the component
+// 2. Should render a header element as root element
+// 3. Should header a header with the default class
+// 4. Should render a h1 element inside the header
+// 5. Should render the h1 if the default class
+// 6. Should have the content Tic Tac Toe Game inside the h1 element
+
+describe('Header', function () {
+  var props = /* istanbul ignore next */void 0,mountedHeader = /* istanbul ignore next */void 0;
+  var header = function header() {
+    if (!mountedHeader) {
+      mountedHeader = /* istanbul ignore next */(0, _enzyme.mount)(
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_Header2.default, props));
+
+    }
+    return mountedHeader;
+  };
+
+  beforeEach(function () {
+    props = {};
+    mountedHeader = undefined;
+  });
+
+  it('always render the Header', function () {
+    var headerWrapper = /* istanbul ignore next */(0, _enzyme.shallow)(
+    /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_Header2.default, /* istanbul ignore next */null));
+
+    expect(headerWrapper).toMatchSnapshot();
+  });
+
+  it('header contains everything else that gets rendered', function () {
+    var headerElement = header().find('header');
+    var wrappingHeader = headerElement.first();
+    expect(wrappingHeader.children()).toEqual(header().children());
+  });
+
+  it('render a h1 element inside the header', function () {
+    var headerElement = header().find('header');
+    var hElement = headerElement.find('h1');
+    expect(hElement.length).toEqual(1);
+  });
+
+  it('displays "Tic Tac Toe" text as h1 content', function () {
+    expect(header().find('h1').text()).toEqual('Tic Tac Toe');
+  });
+
+  it('header renders with default class', function () {
+    var headerElement = header().find('header');
+    expect(headerElement.hasClass('app-header')).toBeTruthy();
+  });
+
+  it('h1 renders with default class', function () {
+    var headerElement = header().find('header');
+    var hElement = headerElement.find('h1');
+    expect(hElement.hasClass('app-title')).toBeTruthy();
+  });
+});

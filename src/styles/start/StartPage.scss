@@ -1,0 +1,15 @@
+@import '../_colors.scss';
+
+.start-page {
+  text-align: center;
+}
+
+.play-button {
+  background-color: $white;
+  color: $blue;
+  font-size: 150%;
+  font-weight: 400;
+  padding: 10px 30px;
+  text-decoration: none;
+  text-transform: uppercase;
+}

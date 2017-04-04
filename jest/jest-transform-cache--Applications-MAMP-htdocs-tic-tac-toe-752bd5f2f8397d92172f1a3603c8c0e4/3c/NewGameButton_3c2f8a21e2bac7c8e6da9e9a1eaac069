@@ -1,0 +1,13 @@
+/* istanbul ignore next */'use strict';Object.defineProperty(exports, "__esModule", { value: true });var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+var /* istanbul ignore next */_reactReduxRouter = require('react-redux-router'); /* istanbul ignore next */var _reactReduxRouter2 = _interopRequireDefault(_reactReduxRouter);
+/* istanbul ignore next */require('../../styles/start/NewGameButton.scss'); /* istanbul ignore next */function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+var NewGameButton = function NewGameButton() {
+
+  return (
+    /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'button', /* istanbul ignore next */{ type: 'button', className: 'new-game-button' }, /* istanbul ignore next */'Start New Game'));
+
+
+}; /* istanbul ignore next */exports.default =
+
+NewGameButton;

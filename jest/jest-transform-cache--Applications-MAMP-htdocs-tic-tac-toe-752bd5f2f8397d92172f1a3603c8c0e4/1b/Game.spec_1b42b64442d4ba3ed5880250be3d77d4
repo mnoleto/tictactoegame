@@ -1,0 +1,13 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_Game = require('./Game'); /* istanbul ignore next */var _Game2 = _interopRequireDefault(_Game);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+describe('Game', function () {
+  var GameApi = /* istanbul ignore next */void 0;
+
+  beforeEach(function () {
+    GameApi = new /* istanbul ignore next */_Game2.default();
+  });
+
+  it('Api exist', function () {
+    expect(GameApi).toBeDefined();
+  });
+});

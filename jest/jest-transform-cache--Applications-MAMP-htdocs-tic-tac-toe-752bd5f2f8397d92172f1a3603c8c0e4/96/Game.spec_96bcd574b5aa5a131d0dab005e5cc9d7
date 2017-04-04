@@ -1,0 +1,220 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_Game = require('./Game'); /* istanbul ignore next */var _Game2 = _interopRequireDefault(_Game);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// Game class is responsible for control the game
+// CONTRACTS
+// 1. Should start the game
+//    Should change the game status
+//    Should create the board with empty spaces
+//    Should set the first player turn
+// 2. Should insert two players
+//    Should return the players saved name
+//    Should generate a default name if receives empty
+// 3. Should check if the player already exist before insert
+// 4. Should allow to register moves
+//    Should register moves only to existing cells
+//    Should register moves only to empty cells
+//    Should save the players moves on the board
+//    Should check if the game is finished
+//    Should increment the move counter
+//    Should return the result
+// 4.1. If is finished
+//      Should test the rows for a winner
+//      Should test the cols for a winner
+//      Should test the diagonal for a winner
+//      Should set the winner and loser names or return if is a draw
+//      Should change the game result
+// 4.2. If is not finished
+//      Should increase the move counter
+//      Should alternate the players turns
+// 5. Should check if the game
+//    Should only check if is finished after 5 moves
+//    Should set the result - who is the winner and loser or return if is a draw
+// 6. Should reset the players
+// 7. Should reset the game
+
+describe('Game', function () {
+  var GameApi = /* istanbul ignore next */void 0;
+  var INITIAL_STATE = { name: '', wins: 0, defeats: 0, draws: 0 };
+
+  beforeEach(function () {
+    GameApi = new /* istanbul ignore next */_Game2.default('Player 1', 'Player 2');
+  });
+
+  it('Api exist', function () {
+    expect(GameApi).toBeDefined();
+  });
+
+  it('constructor', function () {
+    expect(GameApi._grid).toEqual(3);
+    expect(GameApi._movesCounter).toEqual(0);
+    expect(GameApi._result).toEqual({ status: 'running' });
+  });
+
+  it('emptyBoard', function () {
+    expect(GameApi.emptyBoard).toBeDefined();
+    GameApi.emptyBoard();
+    expect(GameApi._board).toEqual(['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E']);
+  });
+
+  it('insertPlayers', function () {
+    expect(GameApi.insertPlayers).toBeDefined();
+    expect(GameApi.insertPlayers('Player 1', 'Player 2')).toEqual(['Player 1', 'Player 2']);
+    //   expect(GameApi._players).toEqual([
+    //     Object.assign({}, INITIAL_STATE, {name: 'Player 1'}), 
+    //     Object.assign({}, INITIAL_STATE, {name: 'Player 2'})
+    //   ]);
+
+    expect(GameApi.insertPlayers('Player 3', 'Player 4')).toEqual(['Player 3', 'Player 4']);
+    //   expect(GameApi._players).toEqual([
+    //     Object.assign({}, INITIAL_STATE, {name: 'Player 1'}), 
+    //     Object.assign({}, INITIAL_STATE, {name: 'Player 2'}), 
+    //     Object.assign({}, INITIAL_STATE, {name: 'Player 3'}), 
+    //     Object.assign({}, INITIAL_STATE, {name: 'Player 4'})
+    //   ]);
+
+    expect(GameApi.insertPlayers('')).toEqual(['Player 5', 'Player 6']);
+  });
+
+  it('generateName', function () {
+    expect(GameApi.generateName).toBeDefined();
+    expect(GameApi.generateName()).toEqual('Player 3');
+  });
+
+  // it('setTurn', () => {
+  //   expect(GameApi.setTurn).toBeDefined();
+
+  //   GameApi.setTurn('X');
+  //   expect(GameApi._turn).toEqual('X');
+
+  //   GameApi.setTurn('O');
+  //   expect(GameApi._turn).toEqual('O');
+  // });
+
+  // it('isFinished', () => {
+  //   expect(GameApi.isFinished).toBeDefined();
+  // });
+
+  // it('existingUser', () => {
+  //   expect(GameApi.existingUser).toBeDefined();
+
+  //   expect(GameApi.existingUser('John')).toBeTruthy();
+  //   expect(GameApi.existingUser('Player 2')).toBeFalsy();
+
+  //   expect(GameApi._players).toEqual([Object.assign({}, INITIAL_STATE, {name: 'John'})]);
+  // });
+
+  // describe('isFinished possibilities', () => {
+  //  it('finish the row game after 5 moves', () => {
+  //     GameApi.registerMove(0);
+  //     GameApi.registerMove(3);
+  //     expect(GameApi._result).toEqual({status: 'running', turn: 'X'});
+
+  //     GameApi.registerMove(1);
+  //     expect(GameApi._result).toEqual({status: 'running', turn: 'O'});
+
+  //     GameApi.registerMove(8);
+  //     GameApi.registerMove(2);
+  //     expect(GameApi._result).toEqual({status: 'finished', winner: 'X'});
+  //   });
+
+  //   it('finish the column game after 7 moves', () => {
+  //     GameApi.registerMove(0);
+  //     GameApi.registerMove(3);
+  //     GameApi.registerMove(1);
+  //     GameApi.registerMove(8);
+  //     GameApi.registerMove(4);
+  //     expect(GameApi._result).toEqual({status: 'running', turn: 'O'});
+
+  //     GameApi.registerMove(7);
+  //     GameApi.registerMove(2);
+  //     expect(GameApi._result).toEqual({status: 'finished', winner: 'X'});
+  //   });
+
+  //   it('finish the diagonal after 9 moves', () => {
+  //     GameApi.registerMove(0);
+  //     GameApi.registerMove(6);
+  //     GameApi.registerMove(4);
+  //     GameApi.registerMove(3);
+  //     GameApi.registerMove(2);
+  //     GameApi.registerMove(1);
+  //     GameApi.registerMove(7);
+  //     GameApi.registerMove(5);
+  //     GameApi.registerMove(8);
+  //     expect(GameApi._result).toEqual({status: 'finished', winner: 'X'});
+  //   });
+
+  //   it('it draws after 9 moves', () => {
+  //     GameApi.registerMove(0);
+  //     GameApi.registerMove(6);
+  //     GameApi.registerMove(4);
+  //     GameApi.registerMove(3);
+  //     GameApi.registerMove(2);
+  //     GameApi.registerMove(1);
+  //     GameApi.registerMove(7);
+  //     GameApi.registerMove(8);
+  //     GameApi.registerMove(5);
+  //     expect(GameApi._result).toEqual({status: 'draw'});
+  //   })
+  // });
+
+  // it('registerMove', () => {
+  //   expect(GameApi.registerMove).toBeDefined();
+
+  //   GameApi.registerMove(0);
+  //   expect(GameApi._board[0]).toEqual('X');
+  //   expect(GameApi._movesCounter).toEqual(1);
+
+  //   GameApi.registerMove(1);
+  //   expect(GameApi._board[1]).toEqual('O');
+  //   expect(GameApi._movesCounter).toEqual(2);
+
+  //   GameApi.registerMove(12);
+  //   expect(GameApi._board[12]).toBeUndefined();
+  //   expect(GameApi._movesCounter).toEqual(2);
+
+  //   GameApi.registerMove(1);
+  //   expect(GameApi._board[1]).toEqual('O');
+  //   expect(GameApi._movesCounter).toEqual(2);
+
+  //   GameApi.registerMove(3);
+  //   expect(GameApi.registerMove(6)).toEqual({status: 'running', turn: 'X'});
+  //   expect(GameApi._movesCounter).toEqual(4);
+  // });
+
+  // it('alternateTurns', () => {
+  //   expect(GameApi.alternateTurns).toBeDefined();
+  //   expect(GameApi._turn).toEqual('X');
+
+  //   GameApi.alternateTurns();
+  //   expect(GameApi._turn).toEqual('O');
+
+  //   GameApi.alternateTurns();
+  //   expect(GameApi._turn).toEqual('X');
+  // });
+
+  // it('fetchPlayer', () => {
+  //   expect(GameApi.fetchPlayer).toBeDefined();
+  //   GameApi.insertPlayer('Player 1', 'Player 2');
+  //   expect(GameApi.fetchPlayer()).toEqual([
+  //     Object.assign({}, INITIAL_STATE, {name: 'Player 1'}), 
+  //     Object.assign({}, INITIAL_STATE, {name: 'Player 2'})]);
+  // });
+
+  // it('resetPlayer', () => {
+  //   expect(GameApi.resetPlayer).toBeDefined();
+  //   GameApi.insertPlayer('Player 1', 'Player 2');
+  //   GameApi.resetPlayer();
+  //   expect(GameApi.fetchPlayer()).toEqual([]);
+  // });
+
+  // it('resetGame', () => {
+  //   expect(GameApi.resetGame).toBeDefined();
+
+  //   GameApi.resetGame();
+
+  //   expect(GameApi._board).toEqual([]);
+  //   expect(GameApi._movesCounter).toEqual(0);
+  //   expect(GameApi._result).toEqual({});
+  //   expect(GameApi._turn).toEqual('');
+  // });
+});

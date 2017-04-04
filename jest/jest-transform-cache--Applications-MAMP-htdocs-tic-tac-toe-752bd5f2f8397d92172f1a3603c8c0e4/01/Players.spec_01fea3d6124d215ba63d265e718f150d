@@ -1,0 +1,54 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_Players = require('./Players'); /* istanbul ignore next */var _Players2 = _interopRequireDefault(_Players);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// Player is responble for control the game players
+// CONTRACT
+// Should have a initial state
+// Should add a player by name
+// Should insert two players
+// Should check if the player already exist before  insert
+// Should insert each player if 0 wins, 0 loses and 0 draws at first
+// Should set the game result for each player (wins, loses, draws)
+// Should sum the result of the game for existing players
+// Should reset the players
+
+describe('Player', function () {
+  var PlayersApi = /* istanbul ignore next */void 0;
+  var INITIAL_STATE = { name: '', wins: 0, loses: 0, draws: 0 };
+
+  beforeEach(function () {
+    PlayersApi = new /* istanbul ignore next */_Players2.default();
+  });
+
+  it('INITIAL_STATE', function () {
+    expect(PlayersApi.INITIAL_STATE).toEqual(INITIAL_STATE);
+  });
+
+  it('add', function () {
+    PlayersApi.add('Player 1');
+    expect(PlayersApi.players).toEqual([Object.assign({}, INITIAL_STATE, { name: 'Player 1' })]);
+
+    PlayersApi.add('Player 2');
+    expect(PlayersApi.players).toEqual([
+    Object.assign({}, INITIAL_STATE, { name: 'Player 1' }),
+    Object.assign({}, INITIAL_STATE, { name: 'Player 2' })]);
+  });
+
+  it('insertPlayers', function () {
+    PlayersApi.insertPlayers('Player 1', 'Player 2');
+    expect(PlayersApi.players).toEqual([
+    Object.assign({}, INITIAL_STATE, { name: 'Player 1' }),
+    Object.assign({}, INITIAL_STATE, { name: 'Player 2' })]);
+
+    PlayersApi.insertPlayers('Player 3', 'Player 4');
+    expect(PlayersApi.players).toEqual([
+    Object.assign({}, INITIAL_STATE, { name: 'Player 1' }),
+    Object.assign({}, INITIAL_STATE, { name: 'Player 2' }),
+    Object.assign({}, INITIAL_STATE, { name: 'Player 3' }),
+    Object.assign({}, INITIAL_STATE, { name: 'Player 4' })]);
+  });
+
+  it('existingUser', function () {
+    PlayersApi.add('Player 1');
+    expect(PlayersApi.existingUser('Player 1')).toBeTruthy();
+  });
+});

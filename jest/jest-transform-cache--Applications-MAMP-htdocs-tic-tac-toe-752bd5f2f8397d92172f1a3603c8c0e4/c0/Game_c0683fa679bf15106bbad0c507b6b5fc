@@ -1,0 +1,11 @@
+/* istanbul ignore next */'use strict';Object.defineProperty(exports, "__esModule", { value: true });function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}var Game =
+function /* istanbul ignore next */Game() {/* istanbul ignore next */_classCallCheck(this, Game);
+  this.board = [];
+  this.grid = 3; // default 3x3 board grid
+  this.movesCounter = 0;
+  this.status = 'stop'; // start the game with stop status
+  this.turn = '';
+}; /* istanbul ignore next */exports.default =
+
+
+Game;

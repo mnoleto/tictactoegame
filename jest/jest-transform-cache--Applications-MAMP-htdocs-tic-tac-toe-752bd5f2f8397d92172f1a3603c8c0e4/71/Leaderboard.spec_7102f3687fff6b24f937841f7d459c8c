@@ -1,0 +1,35 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+var /* istanbul ignore next */_enzyme = require('enzyme');
+var /* istanbul ignore next */_Leaderboard = require('./Leaderboard'); /* istanbul ignore next */var _Leaderboard2 = _interopRequireDefault(_Leaderboard);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// Leaderboard is responsible for render the game grid
+// CONTRACTS
+// 1. 
+
+describe('Leaderboard', function () {
+  var props = /* istanbul ignore next */void 0,mountedLeaderboard = /* istanbul ignore next */void 0;
+  var leaderboard = function leaderboard() {
+    if (!mountedLeaderboard) {
+      mountedLeaderboard = /* istanbul ignore next */(0, _enzyme.mount)(
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_Leaderboard2.default, props));
+
+    }
+    return mountedLeaderboard;
+  };
+
+  beforeEach(function () {
+    props = {};
+    mountedLeaderboard = undefined;
+  });
+
+  it('render the Leaderboard', function () {
+    var leaderboardWrapper = /* istanbul ignore next */(0, _enzyme.shallow)( /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_Leaderboard2.default, /* istanbul ignore next */null));
+    expect(leaderboardWrapper).toMatchSnapshot();
+  });
+
+  it('render a div as root element', function () {
+    var leaderboardElement = leaderboard().find('div');
+    var wrappingDiv = leaderboardElement.first();
+    expect(wrappingDiv.children()).toEqual(leaderboard().children());
+  });
+});

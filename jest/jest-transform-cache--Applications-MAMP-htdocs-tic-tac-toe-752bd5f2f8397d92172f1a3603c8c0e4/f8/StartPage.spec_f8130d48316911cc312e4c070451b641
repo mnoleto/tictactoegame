@@ -1,0 +1,62 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+var /* istanbul ignore next */_enzyme = require('enzyme');
+var /* istanbul ignore next */_StartPage = require('./StartPage'); /* istanbul ignore next */var _StartPage2 = _interopRequireDefault(_StartPage);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// StartPage is responsible for render the game grid
+// CONTRACTS
+// 1. Should render a StartPage
+// 2. Should render a div element as root element
+// 3. Should always render the root element with "start-page" as class
+// 4. Should always have a welcome message
+// 5. Should always have a link with /game 
+
+describe('StartPage', function () {
+  var props = /* istanbul ignore next */void 0,mountedStartPage = /* istanbul ignore next */void 0;
+  var startPage = function startPage() {
+    if (!mountedStartPage) {
+      mountedStartPage = /* istanbul ignore next */(0, _enzyme.mount)(
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_StartPage2.default, props));
+
+    }
+    return mountedStartPage;
+  };
+
+  beforeEach(function () {
+    props = {};
+    mountedStartPage = undefined;
+  });
+
+  it('render a StartPage', function () {
+    var startPageWrapper = /* istanbul ignore next */(0, _enzyme.shallow)(
+    /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_StartPage2.default, /* istanbul ignore next */null));
+
+    expect(startPageWrapper).toMatchSnapshot();
+  });
+
+  it('always render a div as container for start page', function () {
+    var startPageElement = startPage().find('div');
+    var wrappingDiv = startPageElement.first();
+    expect(wrappingDiv.children()).toEqual(startPage().children());
+  });
+
+  it('always render the root element with "start-page" as class', function () {
+    var startPageElement = startPage().find('div');
+    var wrappingDiv = startPageElement.first();
+    expect(wrappingDiv.hasClass('start-page')).toBeTruthy();
+  });
+
+  it('always render the welcome message', function () {
+    var startPageElement = startPage().find('div');
+    var welcomeMessageElement = startPageElement.find('.welcome-message');
+    expect(welcomeMessageElement.length).toEqual(1);
+  });
+
+  it('always render a link', function () {
+    var startPageElement = startPage().find('div');
+    var linkElement = startPageElement.find('a.new-game-button');
+    expect(linkElement.length).toEqual(1);
+    // expect(linkElement.props('to')).toEqual('/game');
+    /* istanbul ignore next */var href = linkElement[0].attribs.href;
+    console.log(href);
+  });
+});

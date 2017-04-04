@@ -1,0 +1,18 @@
+@import './_colors.scss';
+
+.app-header {
+  // margin: 10px 0;
+  text-align: center;
+  width: 100%;
+  img {
+    display: inline-block;
+    margin-right: 7px;
+    width: 75px;
+    text-align: center;
+  }
+}
+
+.app-title {
+  color: $white;
+  font-weight: 200;
+}

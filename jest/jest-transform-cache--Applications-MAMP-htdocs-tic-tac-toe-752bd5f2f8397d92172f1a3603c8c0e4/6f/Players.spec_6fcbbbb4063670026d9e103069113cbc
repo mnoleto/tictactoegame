@@ -1,0 +1,173 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_Players = require('./Players'); /* istanbul ignore next */var _Players2 = _interopRequireDefault(_Players);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// Player class is responble for control the players
+// CONTRACT
+// 1. Should have a initial state
+// 2. Should add a player by name
+//    Should add only strings as name
+//    Should return the saved name
+//    Should generate a default name if receives empty
+//    Should insert each player if 0 wins, 0 defeats and 0 draws at first
+// 3. Should insert two players
+//    Should return the players saved name
+// 4. Should check if the player already exist before insert
+// 5. Should set the game result for a player and increase wins or defeats or draws
+// 6. Should get the players object
+// 7. Should reset the players
+
+describe('Player', function () {
+  var PlayersApi = /* istanbul ignore next */void 0;
+  var INITIAL_STATE = { name: '', wins: 0, defeats: 0, draws: 0 };
+
+  beforeEach(function () {
+    PlayersApi = new /* istanbul ignore next */_Players2.default();
+  });
+
+  it('Api exist', function () {
+    expect(PlayersApi).toBeDefined();
+  });
+
+  it('INITIAL_STATE', function () {
+    expect(PlayersApi.INITIAL_STATE).toEqual(INITIAL_STATE);
+  });
+
+  it('add', function () {
+    expect(PlayersApi.add('John')).toEqual('John');
+    expect(PlayersApi.players).toEqual([Object.assign({}, INITIAL_STATE, { name: 'John' })]);
+
+    PlayersApi.add('Mark');
+    expect(PlayersApi.players).toEqual([
+    Object.assign({}, INITIAL_STATE, { name: 'John' }),
+    Object.assign({}, INITIAL_STATE, { name: 'Mark' })]);
+
+
+    PlayersApi.add(3);
+    expect(PlayersApi.players).toEqual([
+    Object.assign({}, INITIAL_STATE, { name: 'John' }),
+    Object.assign({}, INITIAL_STATE, { name: 'Mark' }),
+    Object.assign({}, INITIAL_STATE, { name: '3' })]);
+
+
+    PlayersApi.add();
+    expect(PlayersApi.players).toEqual([
+    Object.assign({}, INITIAL_STATE, { name: 'John' }),
+    Object.assign({}, INITIAL_STATE, { name: 'Mark' }),
+    Object.assign({}, INITIAL_STATE, { name: '3' }),
+    Object.assign({}, INITIAL_STATE, { name: 'Player 4' })]);
+
+
+    PlayersApi.add('');
+    expect(PlayersApi.players).toEqual([
+    Object.assign({}, INITIAL_STATE, { name: 'John' }),
+    Object.assign({}, INITIAL_STATE, { name: 'Mark' }),
+    Object.assign({}, INITIAL_STATE, { name: '3' }),
+    Object.assign({}, INITIAL_STATE, { name: 'Player 4' }),
+    Object.assign({}, INITIAL_STATE, { name: 'Player 5' })]);
+
+  });
+
+  it('generateName', function () {
+    expect(PlayersApi.generateName()).toEqual('Player 1');
+  });
+
+  it('insertPlayers', function () {
+    expect(PlayersApi.insertPlayers('Player 1', 'Player 2')).toEqual(['Player 1', 'Player 2']);
+    expect(PlayersApi.players).toEqual([
+    Object.assign({}, INITIAL_STATE, { name: 'Player 1' }),
+    Object.assign({}, INITIAL_STATE, { name: 'Player 2' })]);
+
+
+    expect(PlayersApi.insertPlayers('Player 3', 'Player 4')).toEqual(['Player 3', 'Player 4']);
+    expect(PlayersApi.players).toEqual([
+    Object.assign({}, INITIAL_STATE, { name: 'Player 1' }),
+    Object.assign({}, INITIAL_STATE, { name: 'Player 2' }),
+    Object.assign({}, INITIAL_STATE, { name: 'Player 3' }),
+    Object.assign({}, INITIAL_STATE, { name: 'Player 4' })]);
+
+
+    expect(PlayersApi.insertPlayers('')).toEqual(['Player 5', 'Player 6']);
+  });
+
+  it('existingUser', function () {
+    PlayersApi.add('Player 1');
+    expect(PlayersApi.existingUser('Player 1')).toBeTruthy();
+    expect(PlayersApi.existingUser('Player 2')).toBeFalsy();
+
+    PlayersApi.add('Player 1');
+    expect(PlayersApi.players).toEqual([Object.assign({}, INITIAL_STATE, { name: 'Player 1' })]);
+  });
+
+  it('should insert a player with 0 wins, 0 defeats and 0 draws', function () {
+    PlayersApi.add('Player 1');
+    expect(PlayersApi.players[0].wins).toEqual(0);
+    expect(PlayersApi.players[0].defeats).toEqual(0);
+    expect(PlayersApi.players[0].draws).toEqual(0);
+
+    PlayersApi.add('Player 2');
+    expect(PlayersApi.players[1].wins).toEqual(0);
+    expect(PlayersApi.players[1].defeats).toEqual(0);
+    expect(PlayersApi.players[1].draws).toEqual(0);
+  });
+
+  it('increaseScore', function () {
+    PlayersApi.add('Player 1');
+    PlayersApi.increaseScore('Player 1', 'wins');
+    expect(PlayersApi.players[0].wins).toEqual(1);
+    expect(PlayersApi.players[0].defeats).toEqual(0);
+    expect(PlayersApi.players[0].draws).toEqual(0);
+
+    PlayersApi.add('Player 2');
+    PlayersApi.increaseScore('Player 2', 'defeats');
+    expect(PlayersApi.players[1].defeats).toEqual(1);
+    expect(PlayersApi.players[1].wins).toEqual(0);
+    expect(PlayersApi.players[1].draws).toEqual(0);
+
+
+    PlayersApi.increaseScore('Player 2', 'wins');
+    expect(PlayersApi.players[1].defeats).toEqual(1);
+    expect(PlayersApi.players[1].wins).toEqual(1);
+    expect(PlayersApi.players[1].draws).toEqual(0);
+
+    PlayersApi.increaseScore('Player 2', 'wins');
+    expect(PlayersApi.players[1].defeats).toEqual(1);
+    expect(PlayersApi.players[1].wins).toEqual(2);
+    expect(PlayersApi.players[1].draws).toEqual(0);
+
+    PlayersApi.increaseScore('Player 1', 'draws');
+    expect(PlayersApi.players[0].wins).toEqual(1);
+    expect(PlayersApi.players[0].defeats).toEqual(0);
+    expect(PlayersApi.players[0].draws).toEqual(1);
+  });
+
+  it('setResult', function () {
+    PlayersApi.insertPlayers('Player 1', 'Player 2');
+    PlayersApi.setResult({ winner: 'Player 1', loser: 'Player 2' });
+    expect(PlayersApi.players[0]).toEqual({ name: 'Player 1', wins: 1, defeats: 0, draws: 0 });
+    expect(PlayersApi.players[1]).toEqual({ name: 'Player 2', wins: 0, defeats: 1, draws: 0 });
+
+    PlayersApi.setResult({ winner: 'Player 1', loser: 'Player 2' });
+    expect(PlayersApi.players[0]).toEqual({ name: 'Player 1', wins: 2, defeats: 0, draws: 0 });
+    expect(PlayersApi.players[1]).toEqual({ name: 'Player 2', wins: 0, defeats: 2, draws: 0 });
+
+    PlayersApi.setResult({ winner: 'Player 2', loser: 'Player 1' });
+    expect(PlayersApi.players[0]).toEqual({ name: 'Player 1', wins: 2, defeats: 1, draws: 0 });
+    expect(PlayersApi.players[1]).toEqual({ name: 'Player 2', wins: 1, defeats: 2, draws: 0 });
+
+    PlayersApi.setResult({ draw: ['Player 2', 'Player 1'] });
+    expect(PlayersApi.players[0]).toEqual({ name: 'Player 1', wins: 2, defeats: 1, draws: 1 });
+    expect(PlayersApi.players[1]).toEqual({ name: 'Player 2', wins: 1, defeats: 2, draws: 1 });
+  });
+
+  it('fetchPlayers', function () {
+    PlayersApi.insertPlayers('Player 1', 'Player 2');
+    expect(PlayersApi.fetchPlayers()).toEqual([
+    Object.assign({}, INITIAL_STATE, { name: 'Player 1' }),
+    Object.assign({}, INITIAL_STATE, { name: 'Player 2' })]);
+  });
+
+  it('resetPlayers', function () {
+    PlayersApi.insertPlayers('Player 1', 'Player 2');
+    PlayersApi.resetPlayers();
+    expect(PlayersApi.fetchPlayers()).toEqual([]);
+  });
+});

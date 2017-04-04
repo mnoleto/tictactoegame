@@ -1,0 +1,29 @@
+@import '../_colors.scss';
+
+$border-width: 15px;
+
+.game-button {
+  background-color: transparent;
+  border: 0px;
+  border-bottom: $border-width solid $dark-blue;
+  border-right: $border-width solid $dark-blue;
+  display: inline-block;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 800%;
+  font-weight: 700;
+  height: 180px;
+  padding: 0px;
+  width: 32%;
+  &:nth-child(3n+3) {
+    border-right: 0px solid $dark-blue;
+  }
+  &:nth-child(1n+7) {
+    border-bottom: 0px solid $dark-blue;
+  }
+  .x {
+    color: #000;
+  }
+  .o {
+    color: #fff;
+  }
+}

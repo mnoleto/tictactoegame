@@ -1,0 +1,29 @@
+.game-board {
+  display: block;
+  margin: 0 auto 30px;
+  padding: 0 10%;
+  width: 100%;
+  &:after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+}
+
+@media (min-width: 768px) {
+  .game-board {
+    width: 740px;
+  }
+}
+
+@media (min-width: 992px) {
+  .game-board {
+    width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .game-board {
+    width: 1170px;
+  }
+}

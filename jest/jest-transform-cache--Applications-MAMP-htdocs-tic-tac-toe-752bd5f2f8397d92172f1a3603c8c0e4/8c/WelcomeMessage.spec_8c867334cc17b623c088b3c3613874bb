@@ -1,0 +1,35 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+var /* istanbul ignore next */_enzyme = require('enzyme');
+var /* istanbul ignore next */_WelcomeMessage = require('./WelcomeMessage'); /* istanbul ignore next */var _WelcomeMessage2 = _interopRequireDefault(_WelcomeMessage);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// WelcomeMessage is responsible for render the game grid
+// CONTRACTS
+// 1. 
+
+describe('WelcomeMessage', function () {
+  var props = /* istanbul ignore next */void 0,mountedWelcomeMessage = /* istanbul ignore next */void 0;
+  var welcomeMessage = function welcomeMessage() {
+    if (!mountedWelcomeMessage) {
+      mountedWelcomeMessage = /* istanbul ignore next */(0, _enzyme.mount)(
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_WelcomeMessage2.default, props));
+
+    }
+    return mountedWelcomeMessage;
+  };
+
+  beforeEach(function () {
+    props = {};
+    mountedWelcomeMessage = undefined;
+  });
+
+  it('render the WelcomeMessage', function () {
+    var welcomeMessageWrapper = /* istanbul ignore next */(0, _enzyme.shallow)( /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_WelcomeMessage2.default, /* istanbul ignore next */null));
+    expect(welcomeMessageWrapper).toMatchSnapshot();
+  });
+
+  it('render a div as root element', function () {
+    var welcomeMessageElement = welcomeMessage().find('div');
+    var wrappingDiv = welcomeMessageElement.first();
+    expect(wrappingDiv.children()).toEqual(welcomeMessage().children());
+  });
+});

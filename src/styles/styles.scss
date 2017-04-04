@@ -1,31 +1,65 @@
-/* Variables */
-$vin-blue: #5bb7db;
-$vin-green: #60b044;
-$vin-red: #ff0000;
+@import './_colors.scss';
 
-/* Styles */
-body {
-  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  line-height: 1.4em;
-  color: #4d4d4d;
-  min-width: 230px;
-  max-width: 550px;
-  margin: 0 auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-  font-weight: 300;
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: top;
 }
 
-td {
-	padding: 12px;
+// Mobile font-size adjustment
+html{
+  font-size: 90%;
+}
+
+@media(min-width:60em){
+  html{
+    font-size: 100%;
+  }
+}
+
+body, html {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background-color: $blue;
+  color: $white;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: 300%;
 }
 
 h2 {
-	color: $vin-blue;
+  font-size: 250%;
 }
 
-.savings { color: $vin-green; }
-.loss { color: $vin-red; }
-input.small { width: 46px; }
-td.fuel-savings-label { width: 175px; }
+h3 {
+  font-size: 200%
+}
+
+h4 {
+  font-size: 150%;
+}
+
+a, button {
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  -webkit-transition: 0.3s ease-in-out all;
+  transition: 0.3s ease-in-out all;
+}
+
+button:focus, input:focus {
+  outline: none;
+}

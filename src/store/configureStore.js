@@ -1,40 +1,48 @@
 import {createStore, compose, applyMiddleware} from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
-import thunk from 'redux-thunk';
+import logger from 'redux-logger';
+import createSagaMiddleware from 'redux-saga';
+import gameSaga from '../sagas';
 import rootReducer from '../reducers';
+
+// create the saga middleware
+const sagaMiddleware = createSagaMiddleware();
 
 function configureStoreProd(initialState) {
   const middlewares = [
     // Add other middleware on this line...
-
-    // thunk middleware can also accept an extra argument to be passed to each thunk action
-    // https://github.com/gaearon/redux-thunk#injecting-a-custom-argument
-    thunk,
+    sagaMiddleware,
   ];
 
-  return createStore(rootReducer, initialState, compose(
-    applyMiddleware(...middlewares)
+  const store = createStore(rootReducer, initialState, compose(
+      applyMiddleware(...middlewares)
     )
   );
+
+  // then run the saga
+  sagaMiddleware.run(gameSaga);
+
+  return store;
 }
 
 function configureStoreDev(initialState) {
   const middlewares = [
     // Add other middleware on this line...
+    logger,
 
     // Redux middleware that spits an error on you when you try to mutate your state either inside a dispatch or between dispatches.
     reduxImmutableStateInvariant(),
-
-    // thunk middleware can also accept an extra argument to be passed to each thunk action
-    // https://github.com/gaearon/redux-thunk#injecting-a-custom-argument
-    thunk,
+    sagaMiddleware,
   ];
 
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools
   const store = createStore(rootReducer, initialState, composeEnhancers(
-    applyMiddleware(...middlewares)
+      applyMiddleware(...middlewares)
     )
   );
+
+  // then run the saga
+  sagaMiddleware.run(gameSaga);
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

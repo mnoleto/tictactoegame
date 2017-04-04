@@ -1,0 +1,27 @@
+/* istanbul ignore next */'use strict';Object.defineProperty(exports, "__esModule", { value: true });var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+var /* istanbul ignore next */_PlayerInput = require('./PlayerInput'); /* istanbul ignore next */var _PlayerInput2 = _interopRequireDefault(_PlayerInput);
+/* istanbul ignore next */require('../../styles/game/PlayersForm.scss'); /* istanbul ignore next */function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+var PlayersForm = function PlayersForm( /* istanbul ignore next */_ref) {/* istanbul ignore next */var onStartGame = _ref.onStartGame;
+
+  return (
+    /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'form', /* istanbul ignore next */{ className: 'players-form' },
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'legend', /* istanbul ignore next */null, /* istanbul ignore next */'Please, inform the players name below:'),
+
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_PlayerInput2.default, /* istanbul ignore next */{
+        label: 'X' }),
+
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_PlayerInput2.default, /* istanbul ignore next */{
+        label: 'O' }),
+
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'button', /* istanbul ignore next */{ type: 'button', className: 'start-game-button', onClick: onStartGame }, /* istanbul ignore next */'start game')));
+
+
+
+};
+
+PlayersForm.propTypes = {
+  onStartGame: /* istanbul ignore next */_react.PropTypes.func.isRequired }; /* istanbul ignore next */exports.default =
+
+
+PlayersForm;

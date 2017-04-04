@@ -1,0 +1,75 @@
+/* istanbul ignore next */'use strict';Object.defineProperty(exports, "__esModule", { value: true });var _createClass = function () {function defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}return function (Constructor, protoProps, staticProps) {if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;};}();function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}var Game = function () {
+  function /* istanbul ignore next */Game() {/* istanbul ignore next */_classCallCheck(this, Game);
+    this.board = [];
+    this.grid = 3; // default 3x3 board grid
+    this.movesCounter = 0;
+    this.result = {}; // stores the result of the game
+    this.status = 'waiting'; // start the game with 'waiting' status, other values: 'running' and 'finished'
+    this.turn = '';
+  }
+
+  /*
+     * public function that advance to the next turn
+     */_createClass(Game, [{ key: 'alternateTurns', value: function alternateTurns()
+    {
+
+    }
+
+    /*
+       * public function that change the game status
+       * @param status [String]: game status
+       */ }, { key: 'changeGameStatus', value: function changeGameStatus(
+    status) {
+      this.status = status;
+    }
+
+    /*
+       * public function that fill the board with empty spaces
+       */ }, { key: 'emptyBoard', value: function emptyBoard()
+    {
+      this.board = ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'];
+    }
+
+    /*
+       * public function that check if the game is finished after each move and store the result
+       * @return result [Boolean]: status = true if the game is finished or false if is not
+       */ }, { key: 'isFinished', value: function isFinished()
+    {
+
+    }
+
+    /*
+       * public function that start the game
+       * @param letter [String]: X or O as possible letters
+       * @return status [Object]: return if the game is running or if is finished - if is finished have to send the result
+       */ }, { key: 'registerMove', value: function registerMove(
+    letter, position) {
+      this.board[position] = letter;
+    }
+
+    /*
+       * public function that reset the game to its initial state
+       */ }, { key: 'resetGame', value: function resetGame()
+    {
+
+    }
+
+    /*
+       * public function that start the game
+       * @param letter [String]: X or O as possible letters
+       */ }, { key: 'setTurn', value: function setTurn(
+    letter) {
+      this.turn = letter;
+    }
+
+    /*
+       * public function that start the game
+       */ }, { key: 'startGame', value: function startGame()
+    {
+      this.changeGameStatus('running');
+      this.emptyBoard();
+      this.setTurn('X');
+    } }]);return Game;}(); /* istanbul ignore next */exports.default =
+
+
+Game;

@@ -1,0 +1,296 @@
+/* istanbul ignore next */'use strict';Object.defineProperty(exports, "__esModule", { value: true });var _createClass = function () {function defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}return function (Constructor, protoProps, staticProps) {if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;};}();var /* istanbul ignore next */_Player = require('./Player'); /* istanbul ignore next */var _Player2 = _interopRequireDefault(_Player);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}var
+
+Game = function () {
+  /*
+                     * constructor
+                     * @param playerX [String]: player X name
+                     * @param playerO [String]: player O name
+                     */
+  function /* istanbul ignore next */Game(playerX, playerO) {/* istanbul ignore next */_classCallCheck(this, Game);
+    this._activePlayers = [];
+    this._board = [];
+    this._grid = 3; // default 3x3 board _grid
+    this._moves = 0;
+    this._players = [];
+    this._result = { status: 'running' }; // stores the result of the game
+    this._turn = 'X';
+  }
+
+  // GETS AND SETTERS
+
+  /*
+   * function responsible for get the _board value
+   * @return _board [Array]
+   */_createClass(Game, [{ key: 'alternateTurns',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+                                                   * public function that advance to the next turn
+                                                   */value: function alternateTurns()
+    {
+      this.turn = this.turn === 'X' ? 'O' : 'X';
+    }
+
+    /*
+       * public function that fill the board with empty spaces
+       */ }, { key: 'emptyBoard', value: function emptyBoard()
+    {
+      this.board = ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'];
+    }
+
+    /*
+       * public function that check if the player already exist
+       * @param playerName [String]: player name
+       * @returns [Boolean]: true if exist, false if not
+       */ }, { key: 'existingUser', value: function existingUser(
+    playerName) {
+      return this.players.find(function (value) {
+        return value.name === playerName;
+      }) ? true : false;
+    }
+
+    /*
+       * public function that returns the array of players
+       * @return players [Array]: array of registered players
+       */ }, { key: 'fetchPlayers', value: function fetchPlayers()
+    {
+      return this.players.map(function (value) /* istanbul ignore next */{return value.player;});
+    }
+
+    /*
+       * public function that generate names in sequence
+       * @return name [String]: name generated using the array of players length
+       */ }, { key: 'generateName', value: function generateName()
+    {
+      return 'Player ' + (this.players.length + 1);
+    }
+
+    /*
+       * public function that check if the game is finished after each move and store the result
+       * @return result [Boolean]: true if the game is finished or false if is not
+       */ }, { key: 'isFinished', value: function isFinished()
+    {
+      // after the first player third move, checks if anybody wan the game
+      if (this.moves >= 5) {
+        var i = /* istanbul ignore next */void 0,j = /* istanbul ignore next */void 0;
+
+        // check rows
+        for (i = 0; i < 6; i = i + 3) {
+          if (this.board[i] !== 'E' && this.board[i] === this.board[i + 1] && this.board[i + 1] == this.board[i + 2]) {
+            this.result = {
+              status: 'finished',
+              winner: this.board[i] };
+
+            return true;
+          }
+        }
+
+        // check cols
+        for (i = 0; i <= 2; i++) {
+          if (this.board[i] !== 'E' && this.board[i] === this.board[i + 3] && this.board[i + 3] == this.board[i + 6]) {
+            this.result = {
+              status: 'finished',
+              winner: this.board[i] };
+
+            return true;
+          }
+        }
+
+        // check diagonals
+        for (i = 0, j = 4; i <= 2; i = i + 2, j = j - 2) {
+          if (this.board[i] !== 'E' && this.board[i] === this.board[i + j] && this.board[i + j] == this.board[i + 2 * j]) {
+            this.result = {
+              status: 'finished',
+              winner: this.board[i] };
+
+            return true;
+          }
+        }
+
+        if (this.moves === 9) {
+          this.result = {
+            status: 'draw' };
+
+          return true;
+        }
+      }
+
+      // if there is not winner, the game is still running and the next player shoul move
+      this.result = { status: 'running' };
+
+      return false;
+    }
+
+    /*
+       * public function that insert two players to the players array
+       * @param playerX [String]: player X name
+       * @param playerO [String]: player O name
+       */ }, { key: 'insertPlayers', value: function insertPlayers(
+    playerX, playerO) {
+      var nameX = playerX,nameO = playerO;
+      if (!playerX || playerX === '' || !this.existingUser(playerX)) {
+        nameX = playerX === '' || !playerX ? this.generateName() : playerX;
+        this.players.push(new /* istanbul ignore next */_Player2.default(nameX));
+      }
+
+      if (!playerO || playerO === '' || !this.existingUser(playerO)) {
+        nameO = playerO === '' || !playerO ? this.generateName() : playerO;
+        this.players.push(new /* istanbul ignore next */_Player2.default(nameO));
+      }
+      this._activePlayers = [nameX, nameO];
+      return this._activePlayers;
+    }
+
+    /*
+       * public function that start the game
+       * @param letter [String]: X or O as possible letters
+       * @return result [Object]: if the game is running - send the next turn; if is finished - send the winner
+       */ }, { key: 'registerMove', value: function registerMove(
+    position) {
+      if (position < Math.pow(this._grid, 2) && this.board[position] === 'E') {
+        // this.board[position] = this.turn;
+        this.moves++;
+        this.alternateTurns();
+        this.isFinished();
+      }
+
+      return {
+        board: this.board,
+        players: this._activePlayers,
+        result: this.result,
+        turn: this.turn };
+
+    }
+
+    /*
+       * public function that reset the game to its initial state
+       */ }, { key: 'resetGame', value: function resetGame()
+    {
+      this.moves = 0;
+      this.emptyBoard();
+      this.result = { status: 'running' };
+      this.turn = 'X';
+    }
+
+    /*
+       * public function that resets the array of players
+       */ }, { key: 'resetPlayers', value: function resetPlayers()
+    {
+      this.players = [];
+    }
+
+    /*
+       * public function that start the game
+       * @param players [Array]: playerX and playerO
+       */ }, { key: 'startGame', value: function startGame(
+    playerX, playerO) {
+      this.resetGame();
+
+      return {
+        board: this.board,
+        players: this.insertPlayers(playerX, playerO),
+        result: this.result,
+        turn: this.turn };
+
+    } }, { key: 'board', get: function get() {return this._board;} /*
+                                                                    * function responsible for set the _board value
+                                                                    * @param value [Array]
+                                                                    */, set: function set(value) {this._board = value;} /*
+                                                                                                                         * function responsible for get the _moves value
+                                                                                                                         * @return _moves [Number]
+                                                                                                                         */ }, { key: 'moves', get: function get() {return this._moves;} /*
+                                                                                                                                                                                          * function responsible for set the _moves value
+                                                                                                                                                                                          * @param value [Number]
+                                                                                                                                                                                          */, set: function set(value) {this._moves = value;} /*
+                                                                                                                                                                                                                                               * function responsible for get the _players value
+                                                                                                                                                                                                                                               * @return _players [Array]
+                                                                                                                                                                                                                                               */ }, { key: 'players', get: function get() {return this._players;} /*
+                                                                                                                                                                                                                                                                                                                    * function responsible for set the _players value
+                                                                                                                                                                                                                                                                                                                    * @param value [Array]
+                                                                                                                                                                                                                                                                                                                    */, set: function set(value) {this._players = value;} /*
+                                                                                                                                                                                                                                                                                                                                                                           * function responsible for get the _result value
+                                                                                                                                                                                                                                                                                                                                                                           * @return _result [Object]
+                                                                                                                                                                                                                                                                                                                                                                           */ }, { key: 'result', get: function get() {return this._result;} /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                              * function responsible for set the _result value
+                                                                                                                                                                                                                                                                                                                                                                                                                                              * @param value [Object]
+                                                                                                                                                                                                                                                                                                                                                                                                                                              */, set: function set(value) {this._result = value;} /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    * function responsible for get the _turn value
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    * @return _turn [String]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    */ }, { key: 'turn', get: function get() {return this._turn;} /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * function responsible for set the _turn value
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @param value [String]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   */, set: function set(value) {this._turn = value;} }]);return Game;}(); /* istanbul ignore next */exports.default = Game;

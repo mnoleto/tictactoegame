@@ -1,0 +1,54 @@
+/* istanbul ignore next */'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.GamePage = undefined;var _createClass = function () {function defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}return function (Constructor, protoProps, staticProps) {if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;};}();var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+var /* istanbul ignore next */_reactRedux = require('react-redux');
+var /* istanbul ignore next */_redux = require('redux');
+var /* istanbul ignore next */_PlayersForm = require('../components/game/PlayersForm'); /* istanbul ignore next */var _PlayersForm2 = _interopRequireDefault(_PlayersForm);
+var /* istanbul ignore next */_GameBoard = require('../components/game/GameBoard'); /* istanbul ignore next */var _GameBoard2 = _interopRequireDefault(_GameBoard);
+var /* istanbul ignore next */_game = require('../actions/game'); /* istanbul ignore next */function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self, call) {if (!self) {throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call && (typeof call === "object" || typeof call === "function") ? call : self;}function _inherits(subClass, superClass) {if (typeof superClass !== "function" && superClass !== null) {throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;}var
+
+GamePage = exports.GamePage = function (_Component) {_inherits(GamePage, _Component);
+  function /* istanbul ignore next */GamePage(props) {/* istanbul ignore next */_classCallCheck(this, GamePage);return _possibleConstructorReturn(this, (GamePage.__proto__ || Object.getPrototypeOf(GamePage)).call(this,
+    props));
+  }_createClass(GamePage, [{ key: 'render', value: function render()
+
+    {/* istanbul ignore next */var _props =
+      this.props,actions = _props.actions,game = _props.game; /* istanbul ignore next */var _props$game =
+      this.props.game,result = _props$game.result,turn = _props$game.turn;
+
+      return (
+        /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'div', /* istanbul ignore next */{ className: 'game-page' },
+          /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_PlayersForm2.default, /* istanbul ignore next */{
+            onStartGame: actions.sendPlayersName,
+            result: result,
+            turn: turn }),
+
+          result.status && result.status === 'running' &&
+          /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_GameBoard2.default, /* istanbul ignore next */{
+            game: game,
+            onClickButton: actions.registerMove })));
+
+
+
+    } }]);return GamePage;}(_react.Component);
+;
+
+GamePage.propTypes = {
+  actions: /* istanbul ignore next */_react.PropTypes.object.isRequired,
+  game: /* istanbul ignore next */_react.PropTypes.object };
+
+
+function mapStateToProps(state) {
+  return {
+    game: state.game };
+
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: /* istanbul ignore next */(0, _redux.bindActionCreators)( /* istanbul ignore next */_game.Creators, dispatch) };
+
+} /* istanbul ignore next */exports.default =
+
+/* istanbul ignore next */(0, _reactRedux.connect)(
+mapStateToProps,
+mapDispatchToProps)(
+GamePage);

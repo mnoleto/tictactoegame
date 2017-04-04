@@ -1,0 +1,7 @@
+/* istanbul ignore next */"use strict";Object.defineProperty(exports, "__esModule", { value: true });function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}var Players =
+function /* istanbul ignore next */Players() {/* istanbul ignore next */_classCallCheck(this, Players);
+  this.players = [];
+}; /* istanbul ignore next */exports.default =
+
+
+Players;

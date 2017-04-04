@@ -1,0 +1,46 @@
+/* istanbul ignore next */'use strict';Object.defineProperty(exports, "__esModule", { value: true });var _createClass = function () {function defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}return function (Constructor, protoProps, staticProps) {if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;};}();function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}} /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * Constructs a player array and is responsible to count the number of wins, defeats and draws
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */var
+Players = function () {
+  function /* istanbul ignore next */Players(playerName) {/* istanbul ignore next */_classCallCheck(this, Players);
+    this.INITIAL_STATE = { name: '', wins: 0, defeats: 0, draws: 0 }; // initial state of each player
+    this._player = {};
+
+    this.add(playerName);
+  }
+
+  /*
+     * public function that add a player to the players array
+     * @param playerName [String]: player name
+     * @return playerName [String]: return the saved name
+     */_createClass(Players, [{ key: 'add', value: function add(
+    playerName) {
+      var name = String(playerName);
+      this._players = Object.assign({}, this.INITIAL_STATE, { name: name });
+    }
+
+
+
+    /*
+       * public function that increase the player wins, defeats or draws
+       * @param playerName [String]: player name
+       * @param type [String]: type of result to be increased - wins, defeats or draws
+       */
+    // increaseScore(type) {
+    //   let property = {};
+    //   property[type] = this._player[type] + 1;
+    //   this._players = Object.assign({}, this._player, property);
+    // }
+
+    /*
+     * public function that set the result of a match
+     * @param type [String]: type of result (wins, defeats or draws)
+     */ }, { key: 'setResult', value: function setResult(
+    type) {
+      var property = {};
+      property[type] = this._player[type] + 1;
+      this._players = Object.assign({}, this._player, property);
+    } }]);return Players;}(); /* istanbul ignore next */exports.default =
+
+
+Players;
