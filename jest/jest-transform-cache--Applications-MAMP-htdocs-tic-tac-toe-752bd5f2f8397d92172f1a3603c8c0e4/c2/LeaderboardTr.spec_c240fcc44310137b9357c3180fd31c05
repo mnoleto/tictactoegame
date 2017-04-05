@@ -1,0 +1,82 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+var /* istanbul ignore next */_enzyme = require('enzyme');
+var /* istanbul ignore next */_LeaderboardTr = require('./LeaderboardTr'); /* istanbul ignore next */var _LeaderboardTr2 = _interopRequireDefault(_LeaderboardTr);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// LeaderboardTr is responsible for render the game grid
+describe('LeaderboardTr', function () {
+  var props = /* istanbul ignore next */void 0,mountedLeaderboardTr = /* istanbul ignore next */void 0;
+  var leaderboardTr = function leaderboardTr() {
+    if (!mountedLeaderboardTr) {
+      mountedLeaderboardTr = /* istanbul ignore next */(0, _enzyme.mount)(
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'table', /* istanbul ignore next */null,
+        /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'tbody', /* istanbul ignore next */null,
+          /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_LeaderboardTr2.default, props))));
+
+
+
+    }
+    return mountedLeaderboardTr;
+  };
+
+  beforeEach(function () {
+    props = {
+      defeats: 0,
+      draws: 0,
+      name: 'Player 1',
+      position: 0,
+      wins: 0 };
+
+    mountedLeaderboardTr = undefined;
+  });
+
+  it('should render the LeaderboardTr', function () {
+    var leaderboardTrWrapper = /* istanbul ignore next */(0, _enzyme.shallow)(
+    /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'table', /* istanbul ignore next */null,
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'tbody', /* istanbul ignore next */null,
+        /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_LeaderboardTr2.default, props))));
+
+
+
+    expect(leaderboardTrWrapper).toMatchSnapshot();
+  });
+
+  it('should have 5 td', function () {
+    var tdElements = leaderboardTr().find('td');
+    expect(tdElements.length).toEqual(5);
+  });
+
+  it('should the first td has the player position', function () {
+    var trRenderer = leaderboardTr();
+    var trElement = trRenderer.find('tr');
+    var firstTd = trElement.childAt(0);
+    expect(firstTd.hasClass('position')).toBeTruthy();
+  });
+
+  it('should the second td has the player name', function () {
+    var trRenderer = leaderboardTr();
+    var trElement = trRenderer.find('tr');
+    var firstTd = trElement.childAt(1);
+    expect(firstTd.hasClass('name')).toBeTruthy();
+  });
+
+  it('should the third td has the wins score', function () {
+    var trRenderer = leaderboardTr();
+    var trElement = trRenderer.find('tr');
+    var firstTd = trElement.childAt(2);
+    expect(firstTd.hasClass('wins')).toBeTruthy();
+  });
+
+  it('should the forth td has the defeats score', function () {
+    var trRenderer = leaderboardTr();
+    var trElement = trRenderer.find('tr');
+    var firstTd = trElement.childAt(3);
+    expect(firstTd.hasClass('defeats')).toBeTruthy();
+  });
+
+  it('should the fifth td has the draws score', function () {
+    var trRenderer = leaderboardTr();
+    var trElement = trRenderer.find('tr');
+    var firstTd = trElement.childAt(4);
+    expect(firstTd.hasClass('draws')).toBeTruthy();
+  });
+});

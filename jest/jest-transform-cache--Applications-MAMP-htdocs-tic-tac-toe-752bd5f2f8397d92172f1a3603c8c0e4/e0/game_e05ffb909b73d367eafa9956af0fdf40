@@ -1,0 +1,63 @@
+/* istanbul ignore next */'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.playersNameRequest = exports.success = exports.request = exports.INITIAL_STATE = undefined;var _HANDLERS;var /* istanbul ignore next */_reduxsauce = require('reduxsauce');
+var /* istanbul ignore next */_actionTypes = require('./actionTypes'); /* istanbul ignore next */var _actionTypes2 = _interopRequireDefault(_actionTypes);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
+
+// initial state
+var INITIAL_STATE = /* istanbul ignore next */exports.INITIAL_STATE = { board: [], players: [], result: {}, turn: '' };
+
+
+// REDUCERS
+// - all reducers fire in response to actions
+
+/*
+ * function to request data
+ * @param state [Object]: 
+ * @param actions [Object]
+ * @return newState: [Object]
+ */
+var request = /* istanbul ignore next */exports.request = function request() {/* istanbul ignore next */var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE; /* istanbul ignore next */var actions = arguments[1];
+  return state;
+};
+
+/*
+    * function called when data request returns sucessfully
+    * @param state [Object]: 
+    * @param actions [Object]
+    * @return newState: [Object]
+    */
+var success = /* istanbul ignore next */exports.success = function success() {/* istanbul ignore next */var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE; /* istanbul ignore next */var actions = arguments[1];
+  return Object.assign({}, state, {
+    board: actions.board,
+    players: actions.players.map(function (value) /* istanbul ignore next */{return value;}),
+    result: actions.result,
+    turn: actions.turn });
+
+};
+
+/*
+    * function to request the player name
+    * @param state [Object]: 
+    * @param actions [Object]
+    * @return newState: [Object]
+    */
+var playersNameRequest = /* istanbul ignore next */exports.playersNameRequest = function playersNameRequest() {/* istanbul ignore next */var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE; /* istanbul ignore next */var actions = arguments[1];
+  return Object.assign({}, state, {
+    players: [actions.playerX, actions.playerO] });
+
+};
+
+
+// map action types to our reducer functions
+var HANDLERS = /* istanbul ignore next */(_HANDLERS = {}, _defineProperty(_HANDLERS,
+/* istanbul ignore next */_actionTypes2.default.NEW_GAME, request), _defineProperty(_HANDLERS,
+/* istanbul ignore next */_actionTypes2.default.NEW_GAME_SUCCESS, success), _defineProperty(_HANDLERS,
+/* istanbul ignore next */_actionTypes2.default.NEW_ROUND, request), _defineProperty(_HANDLERS,
+/* istanbul ignore next */_actionTypes2.default.NEW_ROUND_SUCCESS, success), _defineProperty(_HANDLERS,
+/* istanbul ignore next */_actionTypes2.default.SEND_PLAYERS_NAME, playersNameRequest), _defineProperty(_HANDLERS,
+/* istanbul ignore next */_actionTypes2.default.SEND_PLAYERS_NAME_SUCCESS, success), _defineProperty(_HANDLERS,
+/* istanbul ignore next */_actionTypes2.default.REGISTER_MOVE, request), _defineProperty(_HANDLERS,
+/* istanbul ignore next */_actionTypes2.default.REGISTER_MOVE_SUCCESS, success), _defineProperty(_HANDLERS,
+/* istanbul ignore next */_actionTypes2.default.RESET_GAME, request), _defineProperty(_HANDLERS,
+/* istanbul ignore next */_actionTypes2.default.RESET_GAME_SUCCESS, success), _HANDLERS); /* istanbul ignore next */exports.default =
+
+
+/* istanbul ignore next */(0, _reduxsauce.createReducer)(INITIAL_STATE, HANDLERS);

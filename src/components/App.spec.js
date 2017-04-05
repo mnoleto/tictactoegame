@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from'react-dom';
 import { mount, shallow } from 'enzyme';
 import App from './App';
 
@@ -22,6 +23,11 @@ describe('App', () => {
     mountedApp = undefined;
   });
 
+  it('renders without crashing', () => {
+      const div = document.createElement('div');
+      ReactDOM.render(<App/>, div);
+  });
+
   it('render the App', () => {
     const appWrapper = shallow(<App />);
     expect(appWrapper).toMatchSnapshot();
@@ -31,5 +37,19 @@ describe('App', () => {
     const appElement = app().find('div');
     let wrappingDiv = appElement.first();
     expect(wrappingDiv.children()).toEqual(app().children());
+  });
+
+  it('render the Header', () => {
+    const headerElement = app().find('header.app-header');
+    expect(headerElement.length).toEqual(1);
+  });
+
+  it('renders children when passed in', () => {
+    const appWrapper = shallow(
+      <App>
+        <div className="unique" />
+      </App>
+    );
+    expect(appWrapper.contains(<div className="unique" />)).toBeTruthy();
   });
 });

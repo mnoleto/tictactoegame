@@ -293,12 +293,6 @@ describe('Game', () => {
     expect(GameApi.turn).toEqual('');
   });
 
-  it('resetPlayers', () => {
-    expect(GameApi.resetPlayers).toBeDefined();
-    GameApi.resetPlayers();
-    expect(GameApi.fetchPlayers()).toEqual([]);
-  });
-
   it('startGame', () => {
     expect(GameApi.startGame('Player 1' , 'Player 2')).toEqual({
       board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],

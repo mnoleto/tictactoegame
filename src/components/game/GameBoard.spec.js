@@ -3,9 +3,6 @@ import { mount, shallow } from 'enzyme';
 import GameBoard from './GameBoard';
 
 // GameBoard is responsible for render the game grid
-// CONTRACTS
-// 1. 
-
 describe('GameBoard', () => {
   let props, mountedGameBoard;
   const gameBoard = () => {
@@ -18,18 +15,26 @@ describe('GameBoard', () => {
   };
 
   beforeEach(() => {
-    props = {};
+    props = {
+      board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', ],
+      onClickButton: jest.fn()
+    };
     mountedGameBoard = undefined;
   });
 
-  it('render the GameBoard', () => {
-    const gameBoardWrapper = shallow(<GameBoard />);
+  it('should render the GameBoard', () => {
+    const gameBoardWrapper = shallow(<GameBoard {...props} />);
     expect(gameBoardWrapper).toMatchSnapshot();
   });
 
-  it('render a div as root element', () => {
+  it('should render a div as root element', () => {
     const gameBoardElement = gameBoard().find('div');
     let wrappingDiv = gameBoardElement.first();
     expect(wrappingDiv.children()).toEqual(gameBoard().children());
   });
+
+  it('should render 9 buttons', () => {
+    const buttonElements = gameBoard().find('button');
+    expect(buttonElements.length).toEqual(9);
+  })
 });

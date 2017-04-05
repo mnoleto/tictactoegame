@@ -32,4 +32,9 @@ describe('WelcomeMessage', () => {
     let wrappingDiv = welcomeMessageElement.first();
     expect(wrappingDiv.children()).toEqual(welcomeMessage().children());
   });
+
+  it('render a "p" as root element', () => {
+    const pElement = welcomeMessage().find('p');
+    expect(pElement.length).toEqual(1);
+  });
 });

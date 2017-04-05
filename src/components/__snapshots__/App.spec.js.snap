@@ -23,7 +23,7 @@ ShallowWrapper {
       "_compositeType": 0,
       "_context": Object {},
       "_currentElement": <App />,
-      "_debugID": 1,
+      "_debugID": 7,
       "_hostContainerInfo": null,
       "_hostParent": null,
       "_instance": App {
@@ -43,7 +43,7 @@ ShallowWrapper {
           "validateCallback": [Function],
         },
       },
-      "_mountOrder": 1,
+      "_mountOrder": 5,
       "_pendingCallbacks": null,
       "_pendingElement": null,
       "_pendingForceUpdate": false,
@@ -54,7 +54,7 @@ ShallowWrapper {
           className="app">
           <Header />
 </div>,
-        "_debugID": 2,
+        "_debugID": 8,
         "_renderedOutput": <div
           className="app">
           <Header />

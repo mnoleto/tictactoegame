@@ -19,7 +19,7 @@ class GameButton extends Component {
       <button type="button" className="game-button" onClick={this.handleClick}>{buttonLabel}</button>
     );
   }
-};
+}
 
 GameButton.propTypes = {
   label: PropTypes.string,

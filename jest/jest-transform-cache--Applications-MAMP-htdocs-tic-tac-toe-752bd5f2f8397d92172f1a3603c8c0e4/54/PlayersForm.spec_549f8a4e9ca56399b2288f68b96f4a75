@@ -1,0 +1,40 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+var /* istanbul ignore next */_enzyme = require('enzyme');
+var /* istanbul ignore next */_PlayersForm = require('./PlayersForm'); /* istanbul ignore next */var _PlayersForm2 = _interopRequireDefault(_PlayersForm);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// PlayersForm is responsible for render the game grid
+// CONTRACTS
+// 1. 
+
+describe('PlayersForm', function () {
+  var props = /* istanbul ignore next */void 0,mountedPlayersForm = /* istanbul ignore next */void 0;
+  var playersForm = function playersForm() {
+    if (!mountedPlayersForm) {
+      mountedPlayersForm = /* istanbul ignore next */(0, _enzyme.mount)(
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_PlayersForm2.default, props));
+
+    }
+    return mountedPlayersForm;
+  };
+
+  beforeEach(function () {
+    props = {
+      onStartGame: jest.fn(),
+      players: [],
+      result: { status: 'waiting' },
+      turn: '' };
+
+    mountedPlayersForm = undefined;
+  });
+
+  it('render the PlayersForm', function () {
+    var playersFormWrapper = /* istanbul ignore next */(0, _enzyme.shallow)( /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_PlayersForm2.default, props));
+    expect(playersFormWrapper).toMatchSnapshot();
+  });
+
+  // it('render a div as root element', () => {
+  //   const playersFormElement = playersForm().find('form');
+  //   let wrappingDiv = playersFormElement.first();
+  //   expect(wrappingDiv.children()).toEqual(playersForm().children());
+  // });
+});

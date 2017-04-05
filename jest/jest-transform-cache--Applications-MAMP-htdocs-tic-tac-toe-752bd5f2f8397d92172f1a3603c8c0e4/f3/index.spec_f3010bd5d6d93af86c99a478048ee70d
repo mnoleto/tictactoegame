@@ -1,0 +1,137 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_reduxSagaTesting = require('redux-saga-testing'); /* istanbul ignore next */var _reduxSagaTesting2 = _interopRequireDefault(_reduxSagaTesting);
+var /* istanbul ignore next */_effects = require('redux-saga/effects');
+var /* istanbul ignore next */_players = require('../actions/players'); /* istanbul ignore next */var _players2 = _interopRequireDefault(_players);
+var /* istanbul ignore next */_game = require('../actions/game'); /* istanbul ignore next */var _game2 = _interopRequireDefault(_game);
+var /* istanbul ignore next */_Game = require('../services/Game'); /* istanbul ignore next */var _Game2 = _interopRequireDefault(_Game);
+
+var /* istanbul ignore next */_sagas = require('../sagas'); /* istanbul ignore next */function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+var Api = new /* istanbul ignore next */_Game2.default();
+var fetchPlayersMock = function fetchPlayersMock() /* istanbul ignore next */{return ['Player 1', 'Player 2'];};
+
+describe('fetchPlayers', function () {
+  var it = /* istanbul ignore next */(0, _reduxSagaTesting2.default)( /* istanbul ignore next */(0, _sagas.fetchPlayers)());
+
+  it('should have called the mock API and return an array of players', function (result) {
+    expect(result).toEqual( /* istanbul ignore next */(0, _effects.apply)(Api, Api.fetchPlayers));
+
+    // The API is not called so we have to give its expected response.
+    // specify what the API should have returned. 
+    return ['Player 1', 'Player 2'];
+  });
+
+  // test that on the next step some action is called
+  it('and then call the success action with the data returned by the API', function (result) {
+    expect(result).toEqual( /* istanbul ignore next */(0, _effects.put)( /* istanbul ignore next */_players2.default.fetchPlayersSuccess(['Player 1', 'Player 2'])));
+  });
+
+  it('and then do nothing', function (result) {
+    expect(result).toBeUndefined();
+  });
+});
+
+describe('newGame', function () {
+  var it = /* istanbul ignore next */(0, _reduxSagaTesting2.default)( /* istanbul ignore next */(0, _sagas.newGame)());
+
+  it('should have called the mock API', function (result) {
+    expect(result).toEqual( /* istanbul ignore next */(0, _effects.apply)(Api, Api.newGame));
+
+    // The API is not called so we have to give its expected response.
+    // specify what the API should have returned. 
+    return {
+      board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],
+      players: [],
+      result: { status: 'waiting' },
+      turn: '' };
+
+  });
+
+  // test that on the next step some action is called
+  it('and then call the success action with the data returned by the API', function (result) {
+    expect(result).toEqual( /* istanbul ignore next */(0, _effects.put)( /* istanbul ignore next */_game2.default.newGameSuccess(['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'], [], { status: 'waiting' }, '')));
+  });
+
+  it('and then do nothing', function (result) {
+    expect(result).toBeUndefined();
+  });
+});
+
+describe('newRound', function () {
+  var it = /* istanbul ignore next */(0, _reduxSagaTesting2.default)( /* istanbul ignore next */(0, _sagas.newRound)());
+
+  it('should have called the mock API', function (result) {
+    expect(result).toEqual( /* istanbul ignore next */(0, _effects.apply)(Api, Api.newRound));
+
+    // The API is not called so we have to give its expected response.
+    // specify what the API should have returned. 
+    return {
+      board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],
+      players: ['Player 2', 'Player 1'],
+      result: { status: 'waiting' },
+      turn: '' };
+
+  });
+
+  // test that on the next step some action is called
+  it('and then call the success action with the data returned by the API', function (result) {
+    expect(result).toEqual( /* istanbul ignore next */(0, _effects.put)( /* istanbul ignore next */_game2.default.newRoundSuccess(['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'], ['Player 2', 'Player 1'], { status: 'waiting' }, '')));
+  });
+
+  it('and then do nothing', function (result) {
+    expect(result).toBeUndefined();
+  });
+});
+
+describe('registerMove', function () {
+  var action = { position: 0 };
+  var it = /* istanbul ignore next */(0, _reduxSagaTesting2.default)( /* istanbul ignore next */(0, _sagas.registerMove)(action));
+
+  it('should have called the mock API', function (result) {
+    expect(result).toEqual( /* istanbul ignore next */(0, _effects.apply)(Api, Api.registerMove, [0]));
+
+    // The API is not called so we have to give its expected response.
+    // specify what the API should have returned. 
+    return {
+      board: ['X', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],
+      players: ['Player 1', 'Player 2'],
+      result: { status: 'running' },
+      turn: '' };
+
+  });
+
+  // test that on the next step some action is called
+  it('and then call the success action with the data returned by the API', function (result) {
+    expect(result).toEqual( /* istanbul ignore next */(0, _effects.put)( /* istanbul ignore next */_game2.default.registerMoveSuccess(['X', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'], ['Player 1', 'Player 2'], { status: 'running' }, '')));
+  });
+
+  it('and then do nothing', function (result) {
+    expect(result).toBeUndefined();
+  });
+});
+
+describe('sendPlayersName', function () {
+  var action = { playerX: 'Player 1', playerO: 'Player 2' };
+  var it = /* istanbul ignore next */(0, _reduxSagaTesting2.default)( /* istanbul ignore next */(0, _sagas.sendPlayersName)(action));
+
+  // it('should have called the mock API', result => {
+  //   expect(result).toEqual(apply(Api, Api.sendPlayersName, ['Player 1', 'Player 2']));
+
+  //   // The API is not called so we have to give its expected response.
+  //   // specify what the API should have returned. 
+  //   return {
+  //     board: ['X', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],
+  //     players: ['Player 1', 'Player 2'],
+  //     result: {status: 'running'},
+  //     turn: ''
+  //   };
+  // });
+
+  // test that on the next step some action is called
+  // it('and then call the success action with the data returned by the API', result => {
+  //   expect(result).toEqual(put(gameActions.sendPlayersNameSuccess(['X', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'], ['Player 1', 'Player 2'], {status: 'running'}, '')));
+  // });
+
+  // it('and then do nothing', result => {
+  //   expect(result).toBeUndefined();
+  // });
+});

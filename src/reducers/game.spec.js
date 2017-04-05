@@ -3,11 +3,11 @@ import Types from './actionTypes';
 
 describe('games reducer', () => {
   it('should return the initial state', () => {
-    expect(reducer(undefined, {})).toEqual({ error: false, board: [], players: [], result: {}, turn: '' });
+    expect(reducer(undefined, {})).toEqual({board: [], players: [], result: {}, turn: ''});
   });
 
   it('should handle the NEW_GAME', () => {
-    expect(reducer({}, {type: Types.NEW_GAME})).toEqual({error: false});
+    expect(reducer({}, {type: Types.NEW_GAME})).toEqual({});
   });
 
   it('should handle the NEW_GAME_SUCCESS', () => {
@@ -18,7 +18,6 @@ describe('games reducer', () => {
         result: {status: 'running'},
         turn: 'X'
     })).toEqual({
-      error: false, 
       board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'e'],
       players: ['Player 1', 'Player 2'],
       result: {status: 'running'},
@@ -26,12 +25,8 @@ describe('games reducer', () => {
     });
   });
 
-  it('should handle the NEW_GAME_FAILURE', () => {
-    expect(reducer({}, {type: Types.NEW_GAME_FAILURE})).toEqual({error: true});
-  });
-
   it('should handle the NEW_ROUND', () => {
-    expect(reducer({}, {type: Types.NEW_ROUND})).toEqual({error: false});
+    expect(reducer({}, {type: Types.NEW_ROUND})).toEqual({});
   });
 
   it('should handle the NEW_ROUND_SUCCESS', () => {
@@ -42,7 +37,6 @@ describe('games reducer', () => {
         result: {status: 'running'},
         turn: 'X'
     })).toEqual({
-      error: false, 
       board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'e'],
       players: ['Player 1', 'Player 2'],
       result: {status: 'running'},
@@ -50,13 +44,8 @@ describe('games reducer', () => {
     });
   });
 
-  it('should handle the NEW_ROUND_FAILURE', () => {
-    expect(reducer({}, {type: Types.NEW_ROUND_FAILURE})).toEqual({error: true});
-  });
-
   it('should handle the SEND_PLAYERS_NAME', () => {
     expect(reducer({}, {type: Types.SEND_PLAYERS_NAME, playerX: 'Player 1', playerO: 'Player 2'})).toEqual({
-      error: false,
       players: ['Player 1', 'Player 2']
     });
   });
@@ -69,7 +58,6 @@ describe('games reducer', () => {
         result: {status: 'running'},
         turn: 'X'
     })).toEqual({
-      error: false, 
       board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'e'],
       players: ['Player 1', 'Player 2'],
       result: {status: 'running'},
@@ -77,12 +65,8 @@ describe('games reducer', () => {
     });
   });
 
-  it('should handle the SEND_PLAYERS_NAME_FAILURE', () => {
-    expect(reducer({}, {type: Types.SEND_PLAYERS_NAME_FAILURE})).toEqual({error: true});
-  });
-
   it('should handle the REGISTER_MOVE', () => {
-    expect(reducer({}, {type: Types.REGISTER_MOVE})).toEqual({error: false});
+    expect(reducer({}, {type: Types.REGISTER_MOVE})).toEqual({});
   });
 
   it('should handle the REGISTER_MOVE_SUCCESS', () => {
@@ -93,15 +77,10 @@ describe('games reducer', () => {
         result: {status: 'running'},
         turn: 'X'
     })).toEqual({
-      error: false, 
       board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'e'],
       players: ['Player 1', 'Player 2'],
       result: {status: 'running'},
       turn: 'X'
     });
-  });
-
-  it('should handle the REGISTER_MOVE_FAILURE', () => {
-    expect(reducer({}, {type: Types.REGISTER_MOVE_FAILURE})).toEqual({error: true});
   });
 });

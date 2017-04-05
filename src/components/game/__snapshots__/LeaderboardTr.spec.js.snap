@@ -1,0 +1,49 @@
+exports[`LeaderboardTr should render the LeaderboardTr 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <table>
+    <tbody>
+        <LeaderboardTr
+            defeats={0}
+            draws={0}
+            name="Player 1"
+            position={0}
+            wins={0} />
+    </tbody>
+</table>,
+  "nodes": Array [
+    <table>
+      <tbody>
+            <LeaderboardTr
+                  defeats={0}
+                  draws={0}
+                  name="Player 1"
+                  position={0}
+                  wins={0} />
+      </tbody>
+</table>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": null,
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <table>
+    <tbody>
+        <LeaderboardTr
+            defeats={0}
+            draws={0}
+            name="Player 1"
+            position={0}
+            wins={0} />
+    </tbody>
+</table>,
+}
+`;

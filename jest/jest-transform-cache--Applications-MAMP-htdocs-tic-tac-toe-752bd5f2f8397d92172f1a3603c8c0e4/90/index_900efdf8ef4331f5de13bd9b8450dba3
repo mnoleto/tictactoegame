@@ -1,0 +1,59 @@
+/* istanbul ignore next */'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.
+
+
+
+
+fetchPlayers = fetchPlayers; /* istanbul ignore next */exports.
+
+
+
+
+
+
+
+
+newGame = newGame; /* istanbul ignore next */exports.
+
+
+
+
+
+
+
+
+newRound = newRound; /* istanbul ignore next */exports.
+
+
+
+
+
+
+
+
+registerMove = registerMove; /* istanbul ignore next */exports.
+
+
+
+
+
+
+
+
+sendPlayersName = sendPlayersName; /* istanbul ignore next */exports.
+
+
+
+
+
+
+
+
+gameSaga = gameSaga;var /* istanbul ignore next */_effects = require('redux-saga/effects');var /* istanbul ignore next */_Game = require('../services/Game'); /* istanbul ignore next */var _Game2 = _interopRequireDefault(_Game);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _marked = [fetchPlayers, newGame, newRound, registerMove, sendPlayersName, gameSaga].map(regeneratorRuntime.mark);var Api = new /* istanbul ignore next */_Game2.default();function fetchPlayers(action) /* istanbul ignore next */{var data;return regeneratorRuntime.wrap(function fetchPlayers$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.prev = 0;_context.next = 3;return (/* istanbul ignore next */(0, _effects.apply)(Api, Api.fetchPlayers));case 3:data = _context.sent;_context.next = 6;return (/* istanbul ignore next */(0, _effects.put)({ type: 'FETCH_PLAYERS_SUCCESS', data: data }));case 6:_context.next = 10;break;case 8:_context.prev = 8;_context.t0 = _context['catch'](0);case 10:case 'end':return _context.stop();}}}, _marked[0], this, [[0, 8]]);}function newGame(action) /* istanbul ignore next */{var data;return regeneratorRuntime.wrap(function newGame$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.prev = 0;_context2.next = 3;return (/* istanbul ignore next */(0, _effects.apply)(Api, Api.newGame));case 3:data = _context2.sent;_context2.next = 6;return (/* istanbul ignore next */(0, _effects.put)({ type: 'NEW_GAME_SUCCESS', board: data.board, players: data.players, result: data.result, turn: data.turn }));case 6:_context2.next = 10;break;case 8:_context2.prev = 8;_context2.t0 = _context2['catch'](0);case 10:case 'end':return _context2.stop();}}}, _marked[1], this, [[0, 8]]);}function newRound(action) /* istanbul ignore next */{var data;return regeneratorRuntime.wrap(function newRound$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:_context3.prev = 0;_context3.next = 3;return (/* istanbul ignore next */(0, _effects.apply)(Api, Api.newRound));case 3:data = _context3.sent;_context3.next = 6;return (/* istanbul ignore next */(0, _effects.put)({ type: 'NEW_ROUND_SUCCESS', board: data.board, players: data.players, result: data.result, turn: data.turn }));case 6:_context3.next = 10;break;case 8:_context3.prev = 8;_context3.t0 = _context3['catch'](0);case 10:case 'end':return _context3.stop();}}}, _marked[2], this, [[0, 8]]);}function registerMove(action) /* istanbul ignore next */{var data;return regeneratorRuntime.wrap(function registerMove$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:_context4.prev = 0;_context4.next = 3;return (/* istanbul ignore next */(0, _effects.apply)(Api, Api.registerMove, [action.position]));case 3:data = _context4.sent;_context4.next = 6;return (/* istanbul ignore next */(0, _effects.put)({ type: 'REGISTER_MOVE_SUCCESS', board: data.board, players: data.players, result: data.result, turn: data.turn }));case 6:_context4.next = 10;break;case 8:_context4.prev = 8;_context4.t0 = _context4['catch'](0);case 10:case 'end':return _context4.stop();}}}, _marked[3], this, [[0, 8]]);}function sendPlayersName(action) /* istanbul ignore next */{var data;return regeneratorRuntime.wrap(function sendPlayersName$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:_context5.prev = 0;_context5.next = 3;return (/* istanbul ignore next */(0, _effects.apply)(Api, Api.startGame, [action.playerX, action.playerO]));case 3:data = _context5.sent;_context5.next = 6;return (/* istanbul ignore next */(0, _effects.put)({ type: 'SEND_PLAYERS_NAME_SUCCESS', board: data.board, players: data.players, result: data.result, turn: data.turn }));case 6:_context5.next = 10;break;case 8:_context5.prev = 8;_context5.t0 = _context5['catch'](0);case 10:case 'end':return _context5.stop();}}}, _marked[4], this, [[0, 8]]);}function gameSaga() /* istanbul ignore next */{return regeneratorRuntime.wrap(function gameSaga$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:_context6.next = 2;return (
+            /* istanbul ignore next */(0, _effects.takeLatest)("FETCH_PLAYERS", fetchPlayers));case 2:_context6.next = 4;return (
+            /* istanbul ignore next */(0, _effects.takeLatest)("NEW_GAME", newGame));case 4:_context6.next = 6;return (
+            /* istanbul ignore next */(0, _effects.takeLatest)("NEW_ROUND", newRound));case 6:_context6.next = 8;return (
+            /* istanbul ignore next */(0, _effects.takeLatest)("REGISTER_MOVE", registerMove));case 8:_context6.next = 10;return (
+            /* istanbul ignore next */(0, _effects.takeLatest)("SEND_PLAYERS_NAME", sendPlayersName));case 10:case 'end':return _context6.stop();}}}, _marked[5], this);} /* istanbul ignore next */exports.default =
+
+
+gameSaga;

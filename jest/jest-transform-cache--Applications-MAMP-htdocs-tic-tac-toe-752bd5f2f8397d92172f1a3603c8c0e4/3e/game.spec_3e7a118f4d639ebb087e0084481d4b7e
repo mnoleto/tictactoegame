@@ -1,0 +1,92 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_game = require('./game'); /* istanbul ignore next */var _game2 = _interopRequireDefault(_game);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+describe('game actions', function () {
+  // NEW GAME ACTIONS
+  it('should create an action to new game', function () {
+    expect( /* istanbul ignore next */_game2.default.newGame).toBeDefined();
+    expect( /* istanbul ignore next */_game2.default.newGame()).toEqual({ type: 'NEW_GAME' });
+  });
+
+  it('should create an action to new game succcess', function () {
+    expect( /* istanbul ignore next */_game2.default.newGameSuccess).toBeDefined();
+    expect( /* istanbul ignore next */_game2.default.newGameSuccess(['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'], [], {}, '')).toEqual({
+      type: 'NEW_GAME_SUCCESS',
+      board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],
+      players: [],
+      result: {},
+      turn: '' });
+
+    expect( /* istanbul ignore next */_game2.default.newGameSuccess(['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'], [], { result: 'waiting' }, '')).toEqual({
+      type: 'NEW_GAME_SUCCESS',
+      board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],
+      players: [],
+      result: { result: 'waiting' },
+      turn: '' });
+
+  });
+
+  // NEW ROUND ACTIONS
+  it('should create an action to new round', function () {
+    expect( /* istanbul ignore next */_game2.default.newRound).toBeDefined();
+    expect( /* istanbul ignore next */_game2.default.newRound()).toEqual({ type: 'NEW_ROUND' });
+  });
+
+  it('should create an action to new round succcess', function () {
+    expect( /* istanbul ignore next */_game2.default.newRoundSuccess).toBeDefined();
+    expect( /* istanbul ignore next */_game2.default.newRoundSuccess(['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'], [], {}, '')).toEqual({
+      type: 'NEW_ROUND_SUCCESS',
+      board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],
+      players: [],
+      result: {},
+      turn: '' });
+
+    expect( /* istanbul ignore next */_game2.default.newRoundSuccess(['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'], [], { result: 'waiting' }, '')).toEqual({
+      type: 'NEW_ROUND_SUCCESS',
+      board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],
+      players: [],
+      result: { result: 'waiting' },
+      turn: '' });
+
+  });
+
+  // SEND PLAYERS NAME ACTIONS
+  it('should create an action to send the players name', function () {
+    expect( /* istanbul ignore next */_game2.default.sendPlayersName).toBeDefined();
+    expect( /* istanbul ignore next */_game2.default.sendPlayersName('Player 1', 'Player 2')).toEqual({
+      type: 'SEND_PLAYERS_NAME',
+      playerX: 'Player 1',
+      playerO: 'Player 2' });
+
+  });
+
+  it('should create an action to send the players name succcess', function () {
+    expect( /* istanbul ignore next */_game2.default.sendPlayersNameSuccess).toBeDefined();
+    expect( /* istanbul ignore next */_game2.default.sendPlayersNameSuccess(['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'], [], { status: 'running' }, 'X')).toEqual({
+      type: 'SEND_PLAYERS_NAME_SUCCESS',
+      board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],
+      players: [],
+      result: { status: 'running' },
+      turn: 'X' });
+
+  });
+
+  // REGISTER MOVE ACTIONS
+  it('should create an action to register the player move', function () {
+    expect( /* istanbul ignore next */_game2.default.registerMove).toBeDefined();
+    expect( /* istanbul ignore next */_game2.default.registerMove(0)).toEqual({
+      type: 'REGISTER_MOVE',
+      position: 0 });
+
+  });
+
+  it('should create an action to register the player move succcess', function () {
+    expect( /* istanbul ignore next */_game2.default.registerMoveSuccess).toBeDefined();
+    expect( /* istanbul ignore next */_game2.default.registerMoveSuccess(['X', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'], [], { status: 'running' }, 'O')).toEqual({
+      type: 'REGISTER_MOVE_SUCCESS',
+      board: ['X', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],
+      players: [],
+      result: { status: 'running' },
+      turn: 'O' });
+
+  });
+});

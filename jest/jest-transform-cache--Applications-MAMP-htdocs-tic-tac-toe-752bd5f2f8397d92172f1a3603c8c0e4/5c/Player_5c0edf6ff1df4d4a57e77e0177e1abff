@@ -1,0 +1,73 @@
+/* istanbul ignore next */'use strict';Object.defineProperty(exports, "__esModule", { value: true });var _createClass = function () {function defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}return function (Constructor, protoProps, staticProps) {if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;};}();function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}} /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * Constructs a player array and is responsible to count the number of wins, defeats and draws
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           */var
+Players = function () {
+  function /* istanbul ignore next */Players(playerName) {/* istanbul ignore next */_classCallCheck(this, Players);
+    this.INITIAL_STATE = { name: '', wins: 0, defeats: 0, draws: 0 }; // initial state of each player
+    this._player = {};
+
+    this.add(playerName);
+  }
+
+
+  // GETS AND SETTERS
+
+  /*
+   * public function that returns the player name
+   * @return playerName [String]: return the saved name
+   */_createClass(Players, [{ key: 'add',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // METHODS
+    /*
+     * public function that add a player properties
+     * @param playerName [String]: player name
+     * @return playerName [String]: return the saved name
+     */value: function add(
+    playerName) {
+      this.name = String(playerName);
+    }
+
+    /*
+       * public function that increase the player wins, defeats or draws
+       * @param type [String]: type of result to be increased - wins, defeats or draws
+       */ }, { key: 'increaseScore', value: function increaseScore(
+    type) {
+      var newScore = this._player[type] + 1;
+      this.player = /* istanbul ignore next */_defineProperty({}, type, newScore);
+    } }, { key: 'name', get: function get() {return this._player.name;} /*
+                                                                         * public function that set the player name
+                                                                         * @param value [String]: player name
+                                                                         */, set: function set(value) {this._player = Object.assign({}, this.INITIAL_STATE, { name: value });} /*
+                                                                                                                                                                                * public function that returns the player
+                                                                                                                                                                                * @return playerName [String]: return the saved name
+                                                                                                                                                                                */ }, { key: 'player', get: function get() {return this._player;} /*
+                                                                                                                                                                                                                                                   * public function that set the player value
+                                                                                                                                                                                                                                                   * @param value [Object]: object with name, wins, defeats and draws
+                                                                                                                                                                                                                                                   */, set: function set(value) {this._player = Object.assign({}, this._player, value);} }]);return Players;}(); /* istanbul ignore next */exports.default = Players;

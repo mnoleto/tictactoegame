@@ -14,10 +14,5 @@ describe('players actions', () => {
       data: [{name: 'Player 1', wins: 0, defeats: 0, draws: 0}, {name: 'Player 2', wins: 0, defeats: 0, draws: 0}]
     });
   });
-
-  it('should create an action to fetch players failure', () => {
-    expect(PlayersCreators.fetchPlayersFailure).toBeDefined();
-    expect(PlayersCreators.fetchPlayersFailure()).toEqual({type: 'FETCH_PLAYERS_FAILURE'});
-  });
 });
 

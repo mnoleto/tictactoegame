@@ -1,0 +1,94 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+var /* istanbul ignore next */_enzyme = require('enzyme');
+var /* istanbul ignore next */_PlayerInput = require('./PlayerInput'); /* istanbul ignore next */var _PlayerInput2 = _interopRequireDefault(_PlayerInput);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// PlayerInput is responsible for render the game grid
+describe('PlayerInput', function () {
+  var props = /* istanbul ignore next */void 0,mountedPlayerInput = /* istanbul ignore next */void 0;
+  var playerInput = function playerInput() {
+    if (!mountedPlayerInput) {
+      mountedPlayerInput = /* istanbul ignore next */(0, _enzyme.mount)(
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_PlayerInput2.default, props));
+
+    }
+    return mountedPlayerInput;
+  };
+
+  beforeEach(function () {
+    props = {
+      label: 'X',
+      onInputChange: jest.fn(),
+      player: 'playerX',
+      result: { status: 'waiting' },
+      turn: '',
+      value: 'Player 1' };
+
+    mountedPlayerInput = undefined;
+  });
+
+  it('should render the PlayerInput', function () {
+    var playerInputWrapper = /* istanbul ignore next */(0, _enzyme.shallow)( /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_PlayerInput2.default, props));
+    expect(playerInputWrapper).toMatchSnapshot();
+  });
+
+  it('div contains everything else that gets rendered', function () {
+    var playerInputElement = playerInput().find('div');
+    var wrapping = playerInputElement.first();
+    expect(wrapping.children()).toEqual(playerInput().children());
+  });
+
+  it('should render a label', function () {
+    var playerInputElement = playerInput().find('label');
+    expect(playerInputElement.length).toEqual(1);
+  });
+
+  it('displays the label prop as label text', function () {
+    var playerInputElement = playerInput().find('label');
+    expect(playerInputElement.text()).toEqual(props.label);
+  });
+
+  describe('css classes', function () {
+    it('should render a default class player-input', function () {
+      var playerInputElement = playerInput().find('div');
+      var wrapping = playerInputElement.first();
+      expect(wrapping.hasClass('player-input')).toBeTruthy();
+    });
+
+    it('should render an active class when its his turn', function () {
+      var inputRenderer = playerInput();
+      var wrapping = playerInput().find('div').first();
+      inputRenderer.setProps({ turn: 'X' });
+      expect(inputRenderer.state().class).toEqual('active');
+      expect(wrapping.hasClass('active')).toBeTruthy();
+      expect(wrapping.hasClass('inactive')).toBeFalsy();
+    });
+
+    it('should render an active class when its not his turn', function () {
+      var inputRenderer = playerInput();
+      var wrapping = playerInput().find('div').first();
+      inputRenderer.setProps({ turn: 'O' });
+      expect(inputRenderer.state().class).toEqual('inactive');
+      expect(wrapping.hasClass('inactive')).toBeTruthy();
+      expect(wrapping.hasClass('active')).toBeFalsy();
+    });
+  });
+
+  describe('input type=text', function () {
+    it('should render a input type=text', function () {
+      var playerInputElement = playerInput().find('input');
+      expect(playerInputElement.length).toEqual(1);
+    });
+
+    it('should change its value when change props', function () {
+
+    });
+
+    it('simulate change event', function () {
+
+    });
+
+    it('should be disabled when the status is running', function () {
+
+    });
+  });
+});

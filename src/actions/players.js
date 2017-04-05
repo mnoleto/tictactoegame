@@ -5,8 +5,7 @@ import { createActions } from 'reduxsauce';
  */
 export const { Types, Creators } = createActions({
   fetchPlayers: null,
-  fetchPlayersSuccess: ['data'],
-  fetchPlayersFailure: null
+  fetchPlayersSuccess: ['data']
 }, {}); // options - the 2nd parameter is optional - prepend the string to all created types.
 
 export default Creators;

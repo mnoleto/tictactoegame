@@ -59,9 +59,8 @@ class Players {
    * @param type [String]: type of result to be increased - wins, defeats or draws
    */
   increaseScore(type) {
-    let property = {};
-    property[type] = this._player[type] + 1;
-    this.player = property;
+    let newScore = this._player[type] + 1;
+    this.player = {[type]: newScore};
   }
 }
 

@@ -1,4 +1,4 @@
-exports[`PlayersForm render the PlayersForm 1`] = `
+exports[`PlayersForm should render the PlayersForm 1`] = `
 ShallowWrapper {
   "complexSelector": ComplexSelector {
     "buildPredicate": [Function],
@@ -11,24 +11,28 @@ ShallowWrapper {
     <legend>
         Please, inform the players name below:
     </legend>
-    <div
-        className="player-input active">
-        <label>
-            X
-        </label>
-        <input
-            disabled={false}
-            type="text" />
-    </div>
-    <div
-        className="player-input active">
-        <label>
-            O
-        </label>
-        <input
-            disabled={false}
-            type="text" />
-    </div>
+    <PlayerInput
+        label="X"
+        onInputChange={[Function]}
+        player="playerX"
+        result={
+            Object {
+                "status": "waiting",
+              }
+        }
+        turn=""
+        value="" />
+    <PlayerInput
+        label="O"
+        onInputChange={[Function]}
+        player="playerO"
+        result={
+            Object {
+                "status": "waiting",
+              }
+        }
+        turn=""
+        value="" />
     <button
         className="start-game-button"
         onClick={[Function]}
@@ -42,24 +46,28 @@ ShallowWrapper {
       <legend>
             Please, inform the players name below:
       </legend>
-      <div
-            className="player-input active">
-            <label>
-                  X
-            </label>
-            <input
-                  disabled={false}
-                  type="text" />
-      </div>
-      <div
-            className="player-input active">
-            <label>
-                  O
-            </label>
-            <input
-                  disabled={false}
-                  type="text" />
-      </div>
+      <PlayerInput
+            label="X"
+            onInputChange={[Function]}
+            player="playerX"
+            result={
+                  Object {
+                        "status": "waiting",
+                      }
+            }
+            turn=""
+            value="" />
+      <PlayerInput
+            label="O"
+            onInputChange={[Function]}
+            player="playerO"
+            result={
+                  Object {
+                        "status": "waiting",
+                      }
+            }
+            turn=""
+            value="" />
       <button
             className="start-game-button"
             onClick={[Function]}
@@ -74,15 +82,33 @@ ShallowWrapper {
       "_calledComponentWillUnmount": false,
       "_compositeType": 0,
       "_context": Object {},
-      "_currentElement": <PlayersForm />,
+      "_currentElement": <PlayersForm
+        onStartGame={[Function]}
+        players={Array []}
+        result={
+                Object {
+                        "status": "waiting",
+                      }
+        }
+        turn="" />,
       "_debugID": 1,
       "_hostContainerInfo": null,
       "_hostParent": null,
       "_instance": PlayersForm {
         "_reactInternalInstance": [Circular],
         "context": Object {},
-        "props": Object {},
+        "handleInputChange": [Function],
+        "props": Object {
+          "onStartGame": [Function],
+          "players": Array [],
+          "result": Object {
+            "status": "waiting",
+          },
+          "turn": "",
+        },
         "refs": Object {},
+        "renderFormFooter": [Function],
+        "renderFormHeader": [Function],
         "sendData": [Function],
         "state": Object {
           "playerO": "",
@@ -111,24 +137,28 @@ ShallowWrapper {
           <legend>
                     Please, inform the players name below:
           </legend>
-          <div
-                    className="player-input active">
-                    <label>
-                              X
-                    </label>
-                    <input
-                              disabled={false}
-                              type="text" />
-          </div>
-          <div
-                    className="player-input active">
-                    <label>
-                              O
-                    </label>
-                    <input
-                              disabled={false}
-                              type="text" />
-          </div>
+          <PlayerInput
+                    label="X"
+                    onInputChange={[Function]}
+                    player="playerX"
+                    result={
+                              Object {
+                                        "status": "waiting",
+                                      }
+                    }
+                    turn=""
+                    value="" />
+          <PlayerInput
+                    label="O"
+                    onInputChange={[Function]}
+                    player="playerO"
+                    result={
+                              Object {
+                                        "status": "waiting",
+                                      }
+                    }
+                    turn=""
+                    value="" />
           <button
                     className="start-game-button"
                     onClick={[Function]}
@@ -142,24 +172,28 @@ ShallowWrapper {
           <legend>
                     Please, inform the players name below:
           </legend>
-          <div
-                    className="player-input active">
-                    <label>
-                              X
-                    </label>
-                    <input
-                              disabled={false}
-                              type="text" />
-          </div>
-          <div
-                    className="player-input active">
-                    <label>
-                              O
-                    </label>
-                    <input
-                              disabled={false}
-                              type="text" />
-          </div>
+          <PlayerInput
+                    label="X"
+                    onInputChange={[Function]}
+                    player="playerX"
+                    result={
+                              Object {
+                                        "status": "waiting",
+                                      }
+                    }
+                    turn=""
+                    value="" />
+          <PlayerInput
+                    label="O"
+                    onInputChange={[Function]}
+                    player="playerO"
+                    result={
+                              Object {
+                                        "status": "waiting",
+                                      }
+                    }
+                    turn=""
+                    value="" />
           <button
                     className="start-game-button"
                     onClick={[Function]}
@@ -178,6 +212,14 @@ ShallowWrapper {
     "render": [Function],
   },
   "root": [Circular],
-  "unrendered": <PlayersForm />,
+  "unrendered": <PlayersForm
+    onStartGame={[Function]}
+    players={Array []}
+    result={
+        Object {
+            "status": "waiting",
+          }
+    }
+    turn="" />,
 }
 `;

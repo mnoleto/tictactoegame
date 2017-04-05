@@ -1,0 +1,47 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_reduxSagaTesting = require('redux-saga-testing'); /* istanbul ignore next */var _reduxSagaTesting2 = _interopRequireDefault(_reduxSagaTesting);
+var /* istanbul ignore next */_effects = require('redux-saga/effects');
+var /* istanbul ignore next */_game = require('../actions/game'); /* istanbul ignore next */var GameCreators = _interopRequireWildcard(_game);
+var /* istanbul ignore next */_sagas = require('../sagas');
+var /* istanbul ignore next */_Game = require('../services/Game'); /* istanbul ignore next */var _Game2 = _interopRequireDefault(_Game);function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;} else {var newObj = {};if (obj != null) {for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];}}newObj.default = obj;return newObj;}}function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+var Api = new /* istanbul ignore next */_Game2.default();
+var fetchPlayersMock = function fetchPlayersMock() /* istanbul ignore next */{return ['Player 1', 'Player 2'];};
+
+describe('fetchPlayers', function () {
+  describe('should fetch empty players', function () {
+    var it = /* istanbul ignore next */(0, _reduxSagaTesting2.default)( /* istanbul ignore next */(0, _sagas.fetchPlayers)());
+
+    it('should have called the mock API first, which we are going to specify the results of', function (result) {
+      expect(result).toEqual( /* istanbul ignore next */(0, _effects.apply)(Api, Api.fetchPlayers));
+      return [];
+    });
+
+    it('and then call the success action with the data returned by the API', function (result) {
+      console.log(GameCreators);
+      expect(result).toEqual( /* istanbul ignore next */(0, _effects.put)(GameCreators.fetchPlayersSuccess([])));
+    });
+
+    // it('and then do nothing', result => {
+    //   expect(result).toBeUndefined();
+    // });
+  });
+
+  // describe('should fetch empty players', () => {
+  //   Api.insertPlayers('Player 1', 'Player 2');
+
+  //   const it = sagaHelper(fetchPlayers());
+
+  //   it('should have called the API first, which will return the data array', result => {
+  //     expect(result).toEqual(apply(Api, Api.fetchPlayers));
+  //     return ['Player 1', 'Player 2'];
+  //   });
+
+  //   it('and then call the success action with the data returned by the API', result => {
+  //     expect(result).toEqual(put(GameActions.fetchPlayersSuccess(['Player 1', 'Player 3'])));
+  //   });
+
+  //   it('and then do nothing', result => {
+  //     expect(result).toBeUndefined();
+  //   });
+  // });
+});

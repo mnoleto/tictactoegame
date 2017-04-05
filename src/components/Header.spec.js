@@ -40,14 +40,13 @@ describe('Header', () => {
     expect(wrappingHeader.children()).toEqual(header().children());
   });
 
-  it('render a h1 element inside the header', () => {
-    const headerElement = header().find('header');
-    const hElement = headerElement.find('h1');
-    expect(hElement.length).toEqual(1);
+  it('render a "a" element inside the header', () => {
+    const aElement = header().find('a');
+    expect(aElement.length).toEqual(1);
   });
 
-  it('displays "Tic Tac Toe" text as h1 content', () => {
-    expect(header().find('h1').text()).toEqual('Tic Tac Toe');
+  it('displays "Tic Tac Toe" text as a content', () => {
+    expect(header().find('a').text()).toEqual('Tic Tac Toe');
   });
 
   it('header renders with default class', () => {
@@ -57,7 +56,7 @@ describe('Header', () => {
 
   it('h1 renders with default class', () => {
     const headerElement = header().find('header');
-    const hElement = headerElement.find('h1');
-    expect(hElement.hasClass('app-title')).toBeTruthy();
+    const aElement = headerElement.find('a');
+    expect(aElement.hasClass('app-title')).toBeTruthy();
   });
 });

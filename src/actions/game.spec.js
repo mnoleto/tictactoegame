@@ -25,11 +25,6 @@ describe('game actions', () => {
     });
   });
 
-  it('should create an action to new game failure', () => {
-    expect(GameCreators.newGameFailure).toBeDefined();
-    expect(GameCreators.newGameFailure()).toEqual({type: 'NEW_GAME_FAILURE'});
-  });
-
   // NEW ROUND ACTIONS
   it('should create an action to new round', () => {
     expect(GameCreators.newRound).toBeDefined();
@@ -53,11 +48,6 @@ describe('game actions', () => {
       turn: ''
     });
   });
-  
-  it('should create an action to new round failure', () => {
-    expect(GameCreators.newRoundFailure).toBeDefined();
-    expect(GameCreators.newRoundFailure()).toEqual({type: 'NEW_ROUND_FAILURE'});
-  });
 
   // SEND PLAYERS NAME ACTIONS
   it('should create an action to send the players name', () => {
@@ -79,11 +69,6 @@ describe('game actions', () => {
       turn: 'X'
     });
   });
-  
-  it('should create an action to send the players name failure', () => {
-    expect(GameCreators.sendPlayersNameFailure).toBeDefined();
-    expect(GameCreators.sendPlayersNameFailure()).toEqual({type: 'SEND_PLAYERS_NAME_FAILURE'});
-  });
 
   // REGISTER MOVE ACTIONS
   it('should create an action to register the player move', () => {
@@ -103,11 +88,6 @@ describe('game actions', () => {
       result: {status: 'running'},
       turn: 'O'
     });
-  });
-  
-  it('should create an action to register the player move failure', () => {
-    expect(GameCreators.registerMoveFailure).toBeDefined();
-    expect(GameCreators.registerMoveFailure()).toEqual({type: 'REGISTER_MOVE_FAILURE'});
   });
 });
 

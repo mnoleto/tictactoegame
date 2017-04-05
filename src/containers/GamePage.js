@@ -11,14 +11,26 @@ import PlayersCreators from '../actions/players';
 export class GamePage extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      status: ''
+    };
+
     this.renderContent = this.renderContent.bind(this);
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if(prevProps.game.players !== this.props.game.players || prevProps.game.result.status !== this.props.game.result.status) {
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.game.result && this.props.game.result && nextProps.game.result.status !== this.props.game.result.status) {
       const { fetchPlayers } = this.props.playersActions;
       fetchPlayers();
     }
+  }
+
+  componentWillUnmount() {
+    const { resetGame } = this.props.gameActions;
+    const { fetchPlayers } = this.props.playersActions;
+    resetGame();
+    fetchPlayers();
   }
 
   renderContent() {
@@ -38,10 +50,11 @@ export class GamePage extends Component {
         <div className="game-running">
           <PlayersForm
             onStartGame={sendPlayersName}
+            players={players}
             result={result}
             turn={turn} />
           
-          {(players && players.length === 2) &&
+          {(result.status === 'running') &&
           <GameBoard
             board={board}
             turn={turn}
@@ -66,7 +79,7 @@ export class GamePage extends Component {
       </div>
     );
   }
-};
+}
 
 GamePage.propTypes = {
   allPlayers: PropTypes.array,

@@ -1,0 +1,21 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_reduxSagaTesting = require('redux-saga-testing'); /* istanbul ignore next */var _reduxSagaTesting2 = _interopRequireDefault(_reduxSagaTesting);
+var /* istanbul ignore next */_effects = require('redux-saga/effects');
+var /* istanbul ignore next */_Game = require('../services/Game'); /* istanbul ignore next */var _Game2 = _interopRequireDefault(_Game);
+var /* istanbul ignore next */_sagas = require('../sagas'); /* istanbul ignore next */function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+var Api = new /* istanbul ignore next */_Game2.default();
+
+describe('gameSaga', function () {
+  it('should fetch players', function () {
+    var it = /* istanbul ignore next */(0, _reduxSagaTesting2.default)(Api.fetchPlayers({}));
+
+    it('should have called the API first, which will return some data', function (result) {
+      expect(result).toEqual( /* istanbul ignore next */(0, _effects.call)(Api, []));
+      return [];
+    });
+
+    // it('and then call the success action with the data returned by the API', result => {
+    //   expect(result).toEqual(put(actions.loginSuccess({ username: 'Ludo', email: 'ludo@ludo.com' })));
+    // });
+  });
+});

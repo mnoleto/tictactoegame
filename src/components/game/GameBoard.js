@@ -29,7 +29,7 @@ class GameBoard extends Component {
       </div>
     );
   }
-};
+}
 
 GameBoard.propTypes = {
   board: PropTypes.array,

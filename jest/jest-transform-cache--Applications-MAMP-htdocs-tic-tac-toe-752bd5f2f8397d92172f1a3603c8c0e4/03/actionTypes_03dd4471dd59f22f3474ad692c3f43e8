@@ -1,0 +1,17 @@
+/* istanbul ignore next */'use strict';Object.defineProperty(exports, "__esModule", { value: true });var /* istanbul ignore next */_reduxsauce = require('reduxsauce'); /* istanbul ignore next */
+
+// create the object representing action types
+exports.default = /* istanbul ignore next */(0, _reduxsauce.createTypes)( /* istanbul ignore next */'\n  FETCH_PLAYERS\n  FETCH_PLAYERS_SUCCESS\n  NEW_GAME\n  NEW_GAME_SUCCESS\n  NEW_ROUND\n  NEW_ROUND_SUCCESS\n  SEND_PLAYERS_NAME\n  SEND_PLAYERS_NAME_SUCCESS\n  REGISTER_MOVE\n  REGISTER_MOVE_SUCCESS\n  RESET_GAME\n  RESET_GAME_SUCCESS\n',
+
+
+
+
+
+
+
+
+
+
+
+
+{}); // options - the 2nd parameter is optional

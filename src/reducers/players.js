@@ -2,7 +2,7 @@ import { createReducer } from 'reduxsauce';
 import Types from './actionTypes';
 
 // initial state
-export const INITIAL_STATE = { error: false, data: [] };
+export const INITIAL_STATE = { data: [] };
 
 
 // REDUCERS
@@ -15,9 +15,7 @@ export const INITIAL_STATE = { error: false, data: [] };
  * @return newState: [Object]
  */
 export const fetchPlayersRequest = (state = INITIAL_STATE, actions) => {
-  return Object.assign({}, state, {
-    error: false
-  });
+  return Object.assign({}, state, {});
 };
 
 /*
@@ -29,31 +27,17 @@ export const fetchPlayersRequest = (state = INITIAL_STATE, actions) => {
 export const fetchPlayersSuccess = (state = INITIAL_STATE, actions) => {
   if(actions.data !== state.data) {
     return Object.assign({}, state, {
-      error: false,
       data: actions.data
     });
   }
   return state;
 };
 
-/*
- * function called when fetch players request fail
- * @param state [Object]: 
- * @param actions [Object]
- * @return newState: [Object]
- */
-export const fetchPlayersFailure = (state = INITIAL_STATE) => {
-  return Object.assign({}, state, {
-    error: true
-  });
-};
-
 
 // map action types to our reducer functions
 const HANDLERS = {
   [Types.FETCH_PLAYERS]: fetchPlayersRequest,
-  [Types.FETCH_PLAYERS_SUCCESS]: fetchPlayersSuccess,
-  [Types.FETCH_PLAYERS_FAILURE]: fetchPlayersFailure
+  [Types.FETCH_PLAYERS_SUCCESS]: fetchPlayersSuccess
 };
 
 export default createReducer(INITIAL_STATE, HANDLERS);

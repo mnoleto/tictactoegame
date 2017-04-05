@@ -303,6 +303,7 @@ class Game {
     this.activePlayers = [];
     this.moves = 0;
     this.emptyBoard();
+    this.players = [];
     this.result = {status: 'waiting'};
     this.turn = '';
   }
@@ -318,18 +319,11 @@ class Game {
   }
 
   /*
-   * public function that resets the array of players
-   */
-  resetPlayers() {
-    this.players = [];
-  }
-
-  /*
    * public function that start the game
    * @param players [Array]: playerX and playerO
    */
   startGame(playerX, playerO) {
-    this.resetGame();
+    this.resetRound();
 
     this.turn = 'X';
     this.result = {status: 'running'};

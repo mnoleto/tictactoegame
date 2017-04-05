@@ -8,18 +8,24 @@ ShallowWrapper {
   "length": 1,
   "node": <header
     className="app-header">
-    <h1
-        className="app-title">
+    <Link
+        className="app-title"
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/">
         Tic Tac Toe
-    </h1>
+    </Link>
 </header>,
   "nodes": Array [
     <header
       className="app-header">
-      <h1
-            className="app-title">
+      <Link
+            className="app-title"
+            onlyActiveOnIndex={false}
+            style={Object {}}
+            to="/">
             Tic Tac Toe
-      </h1>
+      </Link>
 </header>,
   ],
   "options": Object {},
@@ -58,18 +64,24 @@ ShallowWrapper {
       "_renderedComponent": NoopInternalComponent {
         "_currentElement": <header
           className="app-header">
-          <h1
-                    className="app-title">
+          <Link
+                    className="app-title"
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/">
                     Tic Tac Toe
-          </h1>
+          </Link>
 </header>,
         "_debugID": 2,
         "_renderedOutput": <header
           className="app-header">
-          <h1
-                    className="app-title">
+          <Link
+                    className="app-title"
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/">
                     Tic Tac Toe
-          </h1>
+          </Link>
 </header>,
       },
       "_renderedNodeType": 0,

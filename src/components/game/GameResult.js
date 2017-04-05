@@ -25,8 +25,7 @@ class GameResult extends Component {
       </div>
     );
   }
-
-};
+}
 
 GameResult.propTypes = {
   onNewGameClick: PropTypes.func,

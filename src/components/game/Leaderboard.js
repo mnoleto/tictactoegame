@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import LeaderboardTr from './LeaderboardTr';
 import '../../styles/game/Leaderboard.scss';
 
 class Leaderboard extends Component {
@@ -12,21 +13,21 @@ class Leaderboard extends Component {
     let playersItens;
     if(allPlayers && allPlayers.length > 0) {
       const orderedPlayers = allPlayers.sort((a, b) => {
-        let scoreA = (parseInt(a.wins)*3) + parseInt(a.draws),
-          scoreB = (parseInt(b.wins)*3) + parseInt(b.draws);
+        let scoreA = (parseInt(a.wins)*3) + parseInt(a.draws) - parseInt(a.defeats),
+          scoreB = (parseInt(b.wins)*3) + parseInt(b.draws) - parseInt(b.defeats);
         
         return scoreB - scoreA;
       });
 
       playersItens = orderedPlayers.map((value, index) => {
         return (
-          <tr key={'leaderboard_' + index}>
-            <td className="position">{index + 1}</td>
-            <td className="name">{value.name}</td>
-            <td className="wins">{value.wins}</td>
-            <td className="defeats">{value.defeats}</td>
-            <td className="draws">{value.draws}</td>
-          </tr>
+          <LeaderboardTr
+            key={'leaderboard_' + index}
+            position={index + 1}
+            name={value.name}
+            wins={value.wins}
+            defeats={value.defeats}
+            draws={value.draws} />
         );
       });
     }
@@ -50,7 +51,7 @@ class Leaderboard extends Component {
       </div>
     );
   }
-};
+}
 
 Leaderboard.propTypes = {
   allPlayers: PropTypes.array
