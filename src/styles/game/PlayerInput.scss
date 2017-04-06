@@ -5,7 +5,11 @@ $input-height: 50px;
 .player-input {
   display: block;
   margin: 0px 5px 10px;
-  // width: 50%;
+  opacity: 1;
+  filter: alpha(opacity=100);
+  transition: opacity 0.6s ease-in-out;
+  -moz-transition: opacity 0.6s ease-in-out;
+  -webkit-transition: opacity 0.6s ease-in-out;
   label {
     background-color: #fff;
     border-radius: 4px 0px 0px 4px;
@@ -20,6 +24,7 @@ $input-height: 50px;
     width: 15%;
   }
   input[type="text"] {
+    background-color: $white;
     border: 0px;
     border-radius: 0px 4px 4px 0px;
     color: $dark-blue;
@@ -28,8 +33,9 @@ $input-height: 50px;
     height: $input-height;
     width: 85%;
   }
-  &.inactive label, &.inactive input {
+  &.inactive {
     opacity: 0.5;
+    filter: alpha(opacity=50);
   }
   @media (min-width: 992px) {
     display: inline-block;

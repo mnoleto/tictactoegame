@@ -20,6 +20,9 @@
   font-weight: 200;
   padding: 0 10px;
   width: auto;
+  &:hover {
+    background-color: $dark-blue;
+  }
   @media (min-width: 992px) {
     font-size: 180%;
   }

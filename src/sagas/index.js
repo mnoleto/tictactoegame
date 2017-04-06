@@ -8,7 +8,7 @@ export function* fetchPlayers() {
     const data = yield apply(Api, Api.fetchPlayers);
     yield put({type: 'FETCH_PLAYERS_SUCCESS', data: data});
   } catch (e) {
-    throw new Erro('Player could not be fetch.');
+    throw new Error('Player could not be fetch.');
   }
 }
 

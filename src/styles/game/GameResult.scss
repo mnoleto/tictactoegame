@@ -29,8 +29,14 @@
 
 .new-round-button {
   background-color: lighten($blue, 40%);
+  &:hover {
+    background-color: lighten($blue, 60%);
+  }
 }
 
 .new-game-button {
   background-color: lighten($blue, 20%);
+  &:hover {
+    background-color: lighten($blue, 40%);
+  }
 }

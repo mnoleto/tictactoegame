@@ -1,0 +1,38 @@
+/* istanbul ignore next */'use strict';Object.defineProperty(exports, "__esModule", { value: true });var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+var /* istanbul ignore next */_reactAddonsCssTransitionGroup = require('react-addons-css-transition-group'); /* istanbul ignore next */var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+var /* istanbul ignore next */_Header = require('./Header'); /* istanbul ignore next */var _Header2 = _interopRequireDefault(_Header);
+/* istanbul ignore next */require('../styles/App.scss'); /* istanbul ignore next */function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+var pageTransitionName = "page";
+var repoTransitionName = "repo";
+var transitionClassName = "transition-group";
+var transitionDuration = 300;
+var transitionEnterTimeout = 2 * transitionDuration;
+
+/*
+                                                      * Stateless component responsible for render the App
+                                                      */
+var App = function App( /* istanbul ignore next */_ref) {/* istanbul ignore next */var children = _ref.children;
+  return (
+    /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'div', /* istanbul ignore next */{ className: 'app' },
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_Header2.default, /* istanbul ignore next */null),
+      children,
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_reactAddonsCssTransitionGroup2.default, /* istanbul ignore next */{
+          component: 'div',
+          className: transitionClassName,
+          transitionName: pageTransitionName,
+          transitionEnterTimeout: transitionEnterTimeout,
+          transitionLeaveTimeout: transitionDuration },
+        /* istanbul ignore next */_react2.default.cloneElement(children, {
+          key: getSubstringUntilNth(props.location.pathname, '/', 2) }))));
+
+
+
+
+};
+
+App.propTypes = {
+  children: /* istanbul ignore next */_react.PropTypes.element }; /* istanbul ignore next */exports.default =
+
+
+App;

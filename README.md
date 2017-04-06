@@ -14,7 +14,7 @@ Starter kit: [React Slingshot Project](https://github.com/coryhouse/react-slings
 2. **Install dependencies**. `npm install`
 3. **Run the setup script**. `npm run setup`
 4. **Run the app - dev mode**. `npm start -s`
-4. **Automated production build**. `npm run build`
+5. **Automated production build**. `npm run build`
 
 
 ## Initial Machine Setup

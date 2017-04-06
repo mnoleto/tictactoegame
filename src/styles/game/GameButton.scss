@@ -1,7 +1,7 @@
 @import '../_colors.scss';
 
 .game-button {
-  background-color: transparent;
+  background-color: $blue;
   border: 0px;
   border-bottom: 10px solid $dark-blue;
   border-right: 10px solid $dark-blue;
@@ -12,6 +12,9 @@
   height: 100px;
   padding: 0px;
   width: 32%;
+  &:hover {
+    background-color: lighten($blue, 5%);
+  }
   &:nth-child(3n+3) {
     border-right: 0px solid $dark-blue;
   }
