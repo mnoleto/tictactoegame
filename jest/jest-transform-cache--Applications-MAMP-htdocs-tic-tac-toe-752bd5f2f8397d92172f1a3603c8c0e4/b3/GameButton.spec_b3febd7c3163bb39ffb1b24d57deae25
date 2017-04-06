@@ -1,0 +1,61 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+var /* istanbul ignore next */_enzyme = require('enzyme');
+var /* istanbul ignore next */_sinon = require('sinon'); /* istanbul ignore next */var _sinon2 = _interopRequireDefault(_sinon);
+var /* istanbul ignore next */_GameButton = require('./GameButton'); /* istanbul ignore next */var _GameButton2 = _interopRequireDefault(_GameButton);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// GameButton is responsible for render the game grid buttons
+describe('<GameButton />', function () {
+  var props = /* istanbul ignore next */void 0,mountedGameButton = /* istanbul ignore next */void 0;
+  var gameButton = function gameButton() {
+    if (!mountedGameButton) {
+      mountedGameButton = /* istanbul ignore next */(0, _enzyme.mount)(
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_GameButton2.default, props));
+
+    }
+    return mountedGameButton;
+  };
+
+  beforeEach(function () {
+    props = {
+      index: 0,
+      label: 'E',
+      onClickButton: jest.fn() };
+
+    mountedGameButton = undefined;
+  });
+
+  it('render the GameButton', function () {
+    var gameButtonWrapper = /* istanbul ignore next */(0, _enzyme.shallow)( /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_GameButton2.default, props));
+    expect(gameButtonWrapper).toMatchSnapshot();
+  });
+
+  it('render a button as root element', function () {
+    var gameButtonElement = gameButton().find('button');
+    var wrappingDiv = gameButtonElement.first();
+    expect(wrappingDiv.children()).toEqual(gameButton().children());
+  });
+
+  it('should have a class game-button', function () {
+    var gameButtonElement = gameButton().find('button');
+    expect(gameButtonElement.hasClass('game-button')).toBeTruthy();
+  });
+
+  it('should have an empty content if gets a prop label with "E" value', function () {
+    var gameButtonElement = gameButton().find('button');
+    expect(gameButtonElement.text()).toEqual('');
+  });
+
+  it('should have display content if gets a prop label different from "E" value', function () {
+    props.label = 'X';
+    var gameButtonElement = gameButton().find('button');
+    expect(gameButtonElement.text()).toEqual('X');
+  });
+
+  it('simulate click', function () {
+    props.onClickButton = /* istanbul ignore next */_sinon2.default.spy();
+    var gameButtonElement = gameButton().find('button');
+
+    gameButtonElement.simulate('click');
+    expect(props.onClickButton.callCount).toEqual(1);
+  });
+});

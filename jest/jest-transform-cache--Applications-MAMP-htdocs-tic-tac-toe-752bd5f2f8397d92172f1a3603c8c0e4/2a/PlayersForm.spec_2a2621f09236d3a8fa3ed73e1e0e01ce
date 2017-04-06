@@ -1,0 +1,109 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+var /* istanbul ignore next */_enzyme = require('enzyme');
+var /* istanbul ignore next */_sinon = require('sinon'); /* istanbul ignore next */var _sinon2 = _interopRequireDefault(_sinon);
+var /* istanbul ignore next */_PlayersForm = require('./PlayersForm'); /* istanbul ignore next */var _PlayersForm2 = _interopRequireDefault(_PlayersForm);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// PlayersForm is responsible for render the players form
+describe('<PlayersForm />', function () {
+  var props = /* istanbul ignore next */void 0,mountedPlayersForm = /* istanbul ignore next */void 0;
+  var playersForm = function playersForm() {
+    if (!mountedPlayersForm) {
+      mountedPlayersForm = /* istanbul ignore next */(0, _enzyme.mount)(
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_PlayersForm2.default, props));
+
+    }
+    return mountedPlayersForm;
+  };
+
+  beforeEach(function () {
+    props = {
+      onStartGame: jest.fn(),
+      players: [],
+      result: { status: 'waiting' },
+      turn: '' };
+
+    mountedPlayersForm = undefined;
+  });
+
+  it('should render the PlayersForm', function () {
+    var playersFormWrapper = /* istanbul ignore next */(0, _enzyme.shallow)( /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_PlayersForm2.default, props));
+    expect(playersFormWrapper).toMatchSnapshot();
+  });
+
+  it('form contains everything else that gets rendered', function () {
+    var playersFormElement = playersForm().find('form');
+    var wrapping = playersFormElement.first();
+    expect(wrapping.hasClass('players-form')).toBeTruthy();
+    expect(wrapping.children()).toEqual(playersForm().children());
+  });
+
+  describe('legend', function () {
+    it('should render a legend inside the form if the result.status is not running', function () {
+      var playersFormRenderer = playersForm();
+      playersFormRenderer.setProps({ result: { status: 'waiting' } });
+      var legendElement = playersForm().find('legend');
+      expect(legendElement.length).toEqual(1);
+    });
+
+    it('should not render a legend inside the form if the result.status is running', function () {
+      var playersFormRenderer = playersForm();
+      playersFormRenderer.setProps({ result: { status: 'running' } });
+      var legendElement = playersForm().find('legend');
+      expect(legendElement.length).toEqual(0);
+    });
+  });
+
+  describe('div.player-input', function () {
+    it('should render two div.player-input', function () {
+      var inputElements = playersForm().find('div.player-input');
+      expect(inputElements.length).toEqual(2);
+    });
+  });
+
+  describe('start game button', function () {
+    it('should render the button.start-game-button inside the form if the result.status is not running', function () {
+      var playersFormRenderer = playersForm();
+      playersFormRenderer.setProps({ result: { status: 'waiting' } });
+      var buttonElement = playersForm().find('button');
+      expect(buttonElement.length).toEqual(1);
+    });
+
+    it('should not render the button.start-game-button inside the form if the result.status is running', function () {
+      var playersFormRenderer = playersForm();
+      playersFormRenderer.setProps({ result: { status: 'running' } });
+      var buttonElement = playersForm().find('button');
+      expect(buttonElement.length).toEqual(0);
+    });
+
+    it('simulate click event', function () {
+      props.onStartGame = /* istanbul ignore next */_sinon2.default.spy();
+      var buttonElement = playersForm().find('button');
+
+      buttonElement.simulate('click');
+      expect(props.onStartGame.callCount).toEqual(1);
+    });
+  });
+
+  describe('componentWillReceiveProps', function () {
+
+  });
+
+  describe('handleInputChange', function () {
+    var gamePageRenderer = /* istanbul ignore next */(0, _enzyme.shallow)( /* istanbul ignore next */_react2.default.createElement(GamePage, props));
+
+    gamePageRenderer.instance().handleInputChange('playerX', 'John');
+    expect(gamePageRenderer.state().playerX).toEqual('John');
+  });
+
+  describe('sendData', function () {
+
+  });
+
+  describe('renderFormFooter', function () {
+
+  });
+
+  describe('renderFormHeader', function () {
+
+  });
+});

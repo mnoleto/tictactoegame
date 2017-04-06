@@ -1,0 +1,115 @@
+/* istanbul ignore next */'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.GamePage = undefined;var _createClass = function () {function defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}return function (Constructor, protoProps, staticProps) {if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;};}();var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+var /* istanbul ignore next */_reactRedux = require('react-redux');
+var /* istanbul ignore next */_redux = require('redux');
+var /* istanbul ignore next */_PlayersForm = require('../components/game/PlayersForm'); /* istanbul ignore next */var _PlayersForm2 = _interopRequireDefault(_PlayersForm);
+var /* istanbul ignore next */_GameBoard = require('../components/game/GameBoard'); /* istanbul ignore next */var _GameBoard2 = _interopRequireDefault(_GameBoard);
+var /* istanbul ignore next */_GameResult = require('../components/game/GameResult'); /* istanbul ignore next */var _GameResult2 = _interopRequireDefault(_GameResult);
+var /* istanbul ignore next */_Leaderboard = require('../components/game/Leaderboard'); /* istanbul ignore next */var _Leaderboard2 = _interopRequireDefault(_Leaderboard);
+var /* istanbul ignore next */_game = require('../actions/game'); /* istanbul ignore next */var _game2 = _interopRequireDefault(_game);
+var /* istanbul ignore next */_players = require('../actions/players'); /* istanbul ignore next */var _players2 = _interopRequireDefault(_players);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self, call) {if (!self) {throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call && (typeof call === "object" || typeof call === "function") ? call : self;}function _inherits(subClass, superClass) {if (typeof superClass !== "function" && superClass !== null) {throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;}var
+
+GamePage = exports.GamePage = function (_Component) {_inherits(GamePage, _Component);
+  function /* istanbul ignore next */GamePage(props) {/* istanbul ignore next */_classCallCheck(this, GamePage);var _this = _possibleConstructorReturn(this, (GamePage.__proto__ || Object.getPrototypeOf(GamePage)).call(this,
+    props));
+
+    /* istanbul ignore next */_this.state = {
+      status: '' };
+
+
+    /* istanbul ignore next */_this.renderContent = /* istanbul ignore next */_this.renderContent.bind( /* istanbul ignore next */_this);
+    /* istanbul ignore next */_this.renderLeaderboard = /* istanbul ignore next */_this.renderLeaderboard.bind( /* istanbul ignore next */_this); /* istanbul ignore next */return _this;
+  }_createClass(GamePage, [{ key: 'componentWillReceiveProps', value: function componentWillReceiveProps(
+
+    nextProps) {
+      if (nextProps.game.result && this.props.game.result && nextProps.game.result.status !== this.props.game.result.status) {/* istanbul ignore next */var
+        fetchPlayers = this.props.playersActions.fetchPlayers;
+        fetchPlayers();
+      }
+    } }, { key: 'componentWillUnmount', value: function componentWillUnmount()
+
+    {/* istanbul ignore next */var
+      resetGame = this.props.gameActions.resetGame; /* istanbul ignore next */var
+      fetchPlayers = this.props.playersActions.fetchPlayers;
+      resetGame();
+      fetchPlayers();
+    } }, { key: 'renderContent', value: function renderContent()
+
+    {/* istanbul ignore next */var _props$gameActions =
+      this.props.gameActions,newGame = _props$gameActions.newGame,newRound = _props$gameActions.newRound,sendPlayersName = _props$gameActions.sendPlayersName,registerMove = _props$gameActions.registerMove; /* istanbul ignore next */var _props$game =
+      this.props.game,board = _props$game.board,players = _props$game.players,result = _props$game.result,turn = _props$game.turn;
+
+      if (result.status === 'finished' || result.status === 'draw') {
+        return (
+          /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_GameResult2.default, /* istanbul ignore next */{
+            onNewGameClick: newGame,
+            onNewRoundClick: newRound,
+            players: players,
+            result: result }));
+
+      } else {
+        return (
+          /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'div', /* istanbul ignore next */{ className: 'game-running' },
+            /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_PlayersForm2.default, /* istanbul ignore next */{
+              onStartGame: sendPlayersName,
+              players: players,
+              result: result,
+              turn: turn }),
+
+            result.status === 'running' &&
+            /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_GameBoard2.default, /* istanbul ignore next */{
+              board: board,
+              turn: turn,
+              onClickButton: registerMove })));
+
+
+
+      }
+    } }, { key: 'renderLeaderboard', value: function renderLeaderboard()
+
+    {
+      if (allPlayers && allPlayers.length > 0) {
+        return (
+          /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_Leaderboard2.default, /* istanbul ignore next */{
+            allPlayers: allPlayers }));
+
+      }
+    } }, { key: 'render', value: function render()
+
+    {/* istanbul ignore next */var
+      allPlayers = this.props.allPlayers;
+
+      return (
+        /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'div', /* istanbul ignore next */{ className: 'game-page' },
+          this.renderContent(),
+
+          this.renderLeaderboard()));
+
+
+    } }]);return GamePage;}(_react.Component);
+
+
+GamePage.propTypes = {
+  allPlayers: /* istanbul ignore next */_react.PropTypes.array,
+  game: /* istanbul ignore next */_react.PropTypes.object,
+  gameActions: /* istanbul ignore next */_react.PropTypes.object,
+  playersActions: /* istanbul ignore next */_react.PropTypes.object };
+
+
+function mapStateToProps(state) {
+  return {
+    allPlayers: state.allPlayers.data,
+    game: state.game };
+
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    gameActions: /* istanbul ignore next */(0, _redux.bindActionCreators)( /* istanbul ignore next */_game2.default, dispatch), //Turns an object whose values are action creators, into an object with the same keys, but with every action creator wrapped into a dispatch call so they may be invoked directly
+    playersActions: /* istanbul ignore next */(0, _redux.bindActionCreators)( /* istanbul ignore next */_players2.default, dispatch) };
+
+} /* istanbul ignore next */exports.default =
+
+/* istanbul ignore next */(0, _reactRedux.connect)(
+mapStateToProps,
+mapDispatchToProps)(
+GamePage);

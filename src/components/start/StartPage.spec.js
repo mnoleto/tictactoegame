@@ -2,14 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import StartPage from './StartPage';
 
-// StartPage is responsible for render the game grid
-// CONTRACTS
-// 1. Should render a StartPage
-// 2. Should render a div element as root element
-// 3. Should always render the root element with "start-page" as class
-// 4. Should always have a welcome message
-// 5. Should always have a link
-
+// StartPage is responsible for render the game first page
 describe('StartPage', () => {
   let props, mountedStartPage;
   const startPage = () => {

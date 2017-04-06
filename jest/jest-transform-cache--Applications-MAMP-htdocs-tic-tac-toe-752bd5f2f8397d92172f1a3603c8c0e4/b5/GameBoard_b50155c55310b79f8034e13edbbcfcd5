@@ -1,0 +1,32 @@
+/* istanbul ignore next */'use strict';Object.defineProperty(exports, "__esModule", { value: true });var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+var /* istanbul ignore next */_GameButton = require('./GameButton'); /* istanbul ignore next */var _GameButton2 = _interopRequireDefault(_GameButton);
+/* istanbul ignore next */require('../../styles/game/GameBoard.scss'); /* istanbul ignore next */function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// GameBoard is responsible for render the game board
+var GameBoard = function GameBoard( /* istanbul ignore next */_ref) {/* istanbul ignore next */var board = _ref.board,onClickButton = _ref.onClickButton;
+  var buttons = /* istanbul ignore next */void 0;
+  if (board) {
+    buttons = board.map(function (value, index) {
+      return (
+        /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_GameButton2.default, /* istanbul ignore next */{
+          key: 'button_' + index,
+          index: index,
+          label: value,
+          onClickButton: onClickButton }));
+
+    });
+  }
+
+  return (
+    /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */'div', /* istanbul ignore next */{ className: 'game-board' },
+      buttons));
+
+
+};
+
+GameBoard.propTypes = {
+  board: /* istanbul ignore next */_react.PropTypes.array.isRequired,
+  onClickButton: /* istanbul ignore next */_react.PropTypes.func.isRequired }; /* istanbul ignore next */exports.default =
+
+
+GameBoard;

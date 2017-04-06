@@ -3,11 +3,8 @@ import ReactDOM from'react-dom';
 import { mount, shallow } from 'enzyme';
 import App from './App';
 
-// App is responsible for render the game grid
-// CONTRACTS
-// 1. 
-
-describe('App', () => {
+// App is responsible for render the game
+describe('<App />', () => {
   let props, mountedApp;
   const app = () => {
     if(!mountedApp) {

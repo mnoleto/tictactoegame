@@ -1,22 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 
-class LeaderboardTr extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { defeats, draws, name, position, wins } = this.props;
-    return (
-      <tr>
-        <td className="position">{position}</td>
-        <td className="name">{name}</td>
-        <td className="wins">{wins}</td>
-        <td className="defeats">{defeats}</td>
-        <td className="draws">{draws}</td>
-      </tr>
-    );
-  }
+// LeaderboardTr is responsible for render the leaderboard table line
+const LeaderboardTr = ({ defeats, draws, name, position, wins }) => {
+  return (
+    <tr>
+      <td className="position">{position}</td>
+      <td className="name">{name}</td>
+      <td className="wins">{wins}</td>
+      <td className="defeats">{defeats}</td>
+      <td className="draws">{draws}</td>
+    </tr>
+  );
 }
 
 LeaderboardTr.propTypes = {

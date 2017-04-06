@@ -1,4 +1,4 @@
-exports[`PlayerInput should render the PlayerInput 1`] = `
+exports[`<PlayerInput /> should render the PlayerInput 1`] = `
 ShallowWrapper {
   "complexSelector": ComplexSelector {
     "buildPredicate": [Function],
@@ -58,7 +58,7 @@ ShallowWrapper {
         "_reactInternalInstance": [Circular],
         "context": Object {},
         "handleInputChange": [Function],
-        "isButtonDisabled": [Function],
+        "isInputDisabled": [Function],
         "props": Object {
           "label": "X",
           "onInputChange": [Function],

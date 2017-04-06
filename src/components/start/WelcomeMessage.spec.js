@@ -2,10 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import WelcomeMessage from './WelcomeMessage';
 
-// WelcomeMessage is responsible for render the game grid
-// CONTRACTS
-// 1. 
-
+// WelcomeMessage is responsible for render the game welcome message for the first page
 describe('WelcomeMessage', () => {
   let props, mountedWelcomeMessage;
   const welcomeMessage = () => {

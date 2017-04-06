@@ -1,0 +1,77 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+var /* istanbul ignore next */_enzyme = require('enzyme');
+var /* istanbul ignore next */_GamePage = require('./GamePage'); /* istanbul ignore next */function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// GamePage is responsible for render the game grid
+describe('GamePage dumb', function () {
+  var props = /* istanbul ignore next */void 0,mountedGamePage = /* istanbul ignore next */void 0;
+  var gamePage = function gamePage() {
+    if (!mountedGamePage) {
+      mountedGamePage = /* istanbul ignore next */(0, _enzyme.mount)(
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_GamePage.GamePage, props));
+
+    }
+    return mountedGamePage;
+  };
+
+  beforeEach(function () {
+    props = {
+      allPlayers: [],
+      game: {
+        board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],
+        players: [],
+        result: { status: 'waiting' },
+        turn: '' },
+
+      gameActions: {
+        newGame: jest.fn(),
+        newRound: jest.fn(),
+        registerMove: jest.fn(),
+        resetGame: jest.fn(),
+        sendPlayersName: jest.fn() },
+
+      playersActions: {
+        fetchPlayers: jest.fn() } };
+
+
+    mountedGamePage = undefined;
+  });
+
+  it('render the GamePage component', function () {
+    var gamePageWrapper = /* istanbul ignore next */(0, _enzyme.shallow)( /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_GamePage.GamePage, props));
+    expect(gamePageWrapper).toMatchSnapshot();
+  });
+
+  it('render a div as root element', function () {
+    var gamePageElement = gamePage().find('div');
+    var wrappingDiv = gamePageElement.first();
+    expect(wrappingDiv.children()).toEqual(gamePage().children());
+  });
+
+  describe('render content', function () {
+    it('should render the players form if status is not equal finished or draw', function () {
+      props.game.result = { status: 'running' };
+      var gamePageElement = gamePage().find('div');
+      var playersForm = gamePageElement.find('div.players-form');
+      expect(playersForm.length).toEqual(1);
+    });
+
+    it('should render the game board if status is not equal finished or draw and equal to running', function () {
+
+    });
+
+    it('should render the game result if status is equal finished or draw', function () {
+
+    });
+  });
+
+  describe('render leaderboard', function () {
+    it('should not render the leaderboard if allPlayers length is equal 0', function () {
+
+    });
+
+    it('should render the leaderboard if allPlayers length is higher than 0', function () {
+
+    });
+  });
+});

@@ -11,12 +11,9 @@ import PlayersCreators from '../actions/players';
 export class GamePage extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      status: ''
-    };
-
+    
     this.renderContent = this.renderContent.bind(this);
+    this.renderLeaderboard = this.renderLeaderboard.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -65,17 +62,22 @@ export class GamePage extends Component {
     }
   }
 
-  render() {
+  renderLeaderboard() {
     const { allPlayers } = this.props;
 
+    if(allPlayers && allPlayers.length > 0) {
+      return (
+        <Leaderboard
+          allPlayers={allPlayers} />
+      );
+    }
+  }
+
+  render() {
     return (
       <div className="game-page">
         {this.renderContent()}
-
-        {(allPlayers && allPlayers.length > 0) &&
-          <Leaderboard
-            allPlayers={allPlayers} />
-        }
+        {this.renderLeaderboard()}
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import '../../styles/game/PlayerInput.scss';
 
+// PlayerInput is responsible for render the player input field
 class PlayerInput extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +12,7 @@ class PlayerInput extends Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.isButtonDisabled = this.isButtonDisabled.bind(this);
+    this.isInputDisabled = this.isInputDisabled.bind(this);
     this.setClass = this.setClass.bind(this);
   }
 
@@ -20,7 +21,7 @@ class PlayerInput extends Component {
       this.setClass();
     }
     if(this.props.result.status && prevProps.result.status !== this.props.result.status) {
-      this.isButtonDisabled();
+      this.isInputDisabled();
     }
   }
 
@@ -29,7 +30,7 @@ class PlayerInput extends Component {
     onInputChange(player, event.target.value);
   }
 
-  isButtonDisabled() {
+  isInputDisabled() {
     const { result } = this.props;
     if(result.status && (result.status === 'running' || result.status === 'finished')) {
       this.setState({disabled: true});

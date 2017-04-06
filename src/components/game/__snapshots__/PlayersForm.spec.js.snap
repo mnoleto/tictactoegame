@@ -1,4 +1,4 @@
-exports[`PlayersForm should render the PlayersForm 1`] = `
+exports[`<PlayersForm /> should render the PlayersForm 1`] = `
 ShallowWrapper {
   "complexSelector": ComplexSelector {
     "buildPredicate": [Function],

@@ -1,4 +1,4 @@
-exports[`Header always render the Header 1`] = `
+exports[`<Header /> always render the Header 1`] = `
 ShallowWrapper {
   "complexSelector": ComplexSelector {
     "buildPredicate": [Function],

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PlayerInput from './PlayerInput';
 import '../../styles/game/PlayersForm.scss';
 
+// PlayersForm is responsible for render the players form
 class PlayersForm extends Component {
   constructor(props) {
     super(props);

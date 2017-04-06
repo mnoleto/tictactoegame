@@ -1,0 +1,24 @@
+/* istanbul ignore next */"use strict";Object.defineProperty(exports, "__esModule", { value: true });var /* istanbul ignore next */_react = require("react"); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// LeaderboardTr is responsible for render the leaderboard table line
+var LeaderboardTr = function LeaderboardTr( /* istanbul ignore next */_ref) {/* istanbul ignore next */var defeats = _ref.defeats,draws = _ref.draws,name = _ref.name,position = _ref.position,wins = _ref.wins;
+  return (
+    /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */"tr", /* istanbul ignore next */null,
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */"td", /* istanbul ignore next */{ className: "position" }, position),
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */"td", /* istanbul ignore next */{ className: "name" }, name),
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */"td", /* istanbul ignore next */{ className: "wins" }, wins),
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */"td", /* istanbul ignore next */{ className: "defeats" }, defeats),
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */"td", /* istanbul ignore next */{ className: "draws" }, draws)));
+
+
+};
+
+LeaderboardTr.propTypes = {
+  defeats: /* istanbul ignore next */_react.PropTypes.number.isRequired,
+  draws: /* istanbul ignore next */_react.PropTypes.number.isRequired,
+  name: /* istanbul ignore next */_react.PropTypes.string.isRequired,
+  position: /* istanbul ignore next */_react.PropTypes.number.isRequired,
+  wins: /* istanbul ignore next */_react.PropTypes.number.isRequired }; /* istanbul ignore next */exports.default =
+
+
+LeaderboardTr;

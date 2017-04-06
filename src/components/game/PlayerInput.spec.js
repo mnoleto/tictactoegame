@@ -3,8 +3,8 @@ import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
 import PlayerInput from './PlayerInput';
 
-// PlayerInput is responsible for render the game grid
-describe('PlayerInput', () => {
+// PlayerInput is responsible for render the player input field
+describe('<PlayerInput />', () => {
   let props, mountedPlayerInput;
   const playerInput = () => {
     if(!mountedPlayerInput) {
@@ -28,36 +28,36 @@ describe('PlayerInput', () => {
   });
 
   it('should render the PlayerInput', () => {
-    let playerInputWrapper = shallow(<PlayerInput {...props} />);
+    const playerInputWrapper = shallow(<PlayerInput {...props} />);
     expect(playerInputWrapper).toMatchSnapshot();
   });
 
   it('div contains everything else that gets rendered', () => {
-    let playerInputElement = playerInput().find('div');
-    let wrapping = playerInputElement.first();
+    const playerInputElement = playerInput().find('div');
+    const wrapping = playerInputElement.first();
     expect(wrapping.children()).toEqual(playerInput().children());
   });
 
   it('should render a label', () => {
-    let playerInputElement = playerInput().find('label');
+    const playerInputElement = playerInput().find('label');
     expect(playerInputElement.length).toEqual(1);
   });
 
   it('should displays the label prop as label text', () => {
-    let playerInputElement = playerInput().find('label');
+    const playerInputElement = playerInput().find('label');
     expect(playerInputElement.text()).toEqual(props.label);
   });
 
   describe('css classes', () => {
     it('should render a default class player-input', () => {
-      let playerInputElement = playerInput().find('div');
-      let wrapping = playerInputElement.first();
+      const playerInputElement = playerInput().find('div');
+      const wrapping = playerInputElement.first();
       expect(wrapping.hasClass('player-input')).toBeTruthy();
     });
 
     it('should render an active class when its his turn', () => {
-      let inputRenderer = playerInput();
-      let wrapping = playerInput().find('div').first();
+      const inputRenderer = playerInput();
+      const wrapping = playerInput().find('div').first();
       inputRenderer.setProps({turn: 'X'});
       expect(inputRenderer.state().class).toEqual('active');
       expect(wrapping.hasClass('active')).toBeTruthy();
@@ -65,8 +65,8 @@ describe('PlayerInput', () => {
     });
 
     it('should render an active class when its not his turn', () => {
-      let inputRenderer = playerInput();
-      let wrapping = playerInput().find('div').first();
+      const inputRenderer = playerInput();
+      const wrapping = playerInput().find('div').first();
       inputRenderer.setProps({turn: 'O'});
       expect(inputRenderer.state().class).toEqual('inactive');
       expect(wrapping.hasClass('inactive')).toBeTruthy();
@@ -76,13 +76,13 @@ describe('PlayerInput', () => {
 
   describe('input type=text', () => {
     it('should render a input type=text', () => {
-      let playerInputElement = playerInput().find('input');
+      const playerInputElement = playerInput().find('input');
       expect(playerInputElement.length).toEqual(1);
     });
 
     it('should change its value when change props', () => {
-      let inputRenderer = playerInput();
-      let inputElement = playerInput().find('input').first();
+      const inputRenderer = playerInput();
+      const inputElement = playerInput().find('input').first();
 
       inputRenderer.setProps({value: 'Player 1'});
       expect(inputElement.props().value).toEqual('Player 1');
@@ -93,26 +93,66 @@ describe('PlayerInput', () => {
 
     it('simulate change event', () => {
       props.onInputChange = sinon.spy();
-      let inputElement = playerInput().find('input').first();
+      const inputElement = playerInput().find('input').first();
 
       inputElement.simulate('change');
       expect(props.onInputChange.callCount).toEqual(1);
     });
 
     it('should be disabled when the status is running', () => {
-      let inputRenderer = playerInput();
-      let inputElement = playerInput().find('input').first();
+      const inputRenderer = playerInput();
+      const inputElement = playerInput().find('input').first();
       inputRenderer.setProps({result: {status: 'running'}});
       expect(inputRenderer.state().disabled).toBeTruthy();
       expect(inputElement.props().disabled).toBeTruthy();
     });
 
     it('should be enabled when the status is not running', () => {
-      let inputRenderer = playerInput();
-      let inputElement = playerInput().find('input').first();
+      const inputRenderer = playerInput();
+      const inputElement = playerInput().find('input').first();
       inputRenderer.setProps({result: {status: 'waiting'}});
       expect(inputRenderer.state().disabled).toBeFalsy();
       expect(inputElement.props().disabled).toBeFalsy();
+    });
+  });
+
+  describe('Test methods', () => {
+    let playerInputRenderer;
+    beforeEach(() => {
+      playerInputRenderer = shallow(<PlayerInput {...props} />);
+    });
+
+    describe('componentDidUpdate', () => {
+      it('should change the class state when change turn', () => {
+        playerInputRenderer.setProps({turn: 'O'});
+        playerInputRenderer.instance().componentDidUpdate({turn: 'X', result: {status: 'running'}});
+        expect(playerInputRenderer.state().class).toEqual('inactive');
+      });
+
+      it('should change the disabled state when change turn', () => {
+        playerInputRenderer.setProps({result: {status: 'running'}});
+        playerInputRenderer.instance().componentDidUpdate({turn: 'X', result: {status: 'waiting'}});
+        expect(playerInputRenderer.state().disabled).toBeTruthy();
+      });
+    });
+
+    describe('handleInputChange', () => {
+      it('should call onInputChange', () => {
+        props.onInputChange = sinon.spy();
+
+      });
+    });
+
+    describe('isInputDisabled', () => {
+      it('should change the disabled state when change turn', () => {
+        
+      });
+    });
+
+    describe('setClass', () => {
+      it('should change the class state when change turn', () => {
+
+      });
     });
   });
 });

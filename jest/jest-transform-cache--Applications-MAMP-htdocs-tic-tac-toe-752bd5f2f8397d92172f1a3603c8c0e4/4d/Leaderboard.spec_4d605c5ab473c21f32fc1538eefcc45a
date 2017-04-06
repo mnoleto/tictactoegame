@@ -1,0 +1,94 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+var /* istanbul ignore next */_enzyme = require('enzyme');
+var /* istanbul ignore next */_Leaderboard = require('./Leaderboard'); /* istanbul ignore next */var _Leaderboard2 = _interopRequireDefault(_Leaderboard);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// Leaderboard is responsible for render the players leaderboard
+describe('Leaderboard', function () {
+  var props = /* istanbul ignore next */void 0,mountedLeaderboard = /* istanbul ignore next */void 0;
+  var leaderboard = function leaderboard() {
+    if (!mountedLeaderboard) {
+      mountedLeaderboard = /* istanbul ignore next */(0, _enzyme.mount)(
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_Leaderboard2.default, props));
+
+    }
+    return mountedLeaderboard;
+  };
+
+  beforeEach(function () {
+    props = {
+      allPlayers: [] };
+
+    mountedLeaderboard = undefined;
+  });
+
+  it('should render the Leaderboard', function () {
+    var leaderboardWrapper = /* istanbul ignore next */(0, _enzyme.shallow)( /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_Leaderboard2.default, /* istanbul ignore next */null));
+    expect(leaderboardWrapper).toMatchSnapshot();
+  });
+
+  it('div contains everything else that gets rendered', function () {
+    var leaderboardElement = leaderboard().find('div');
+    var wrappingDiv = leaderboardElement.first();
+    expect(wrappingDiv.hasClass('leaderboard')).toBeTruthy();
+    expect(wrappingDiv.children()).toEqual(leaderboard().children());
+  });
+
+  it('should have a title h4 with content Leaderboard', function () {
+    var titleElement = leaderboard().find('h4');
+    expect(titleElement.length).toEqual(1);
+    expect(titleElement.text()).toEqual('Leaderboard');
+  });
+
+
+  it('should have a table', function () {
+    var tableElement = leaderboard().find('table');
+    expect(tableElement.length).toEqual(1);
+  });
+
+  it('should have a thead', function () {
+    var theadElement = leaderboard().find('thead');
+    expect(theadElement.length).toEqual(1);
+  });
+
+  it('should have a tr inside thead', function () {
+    var theadElement = leaderboard().find('thead');
+    var trElement = theadElement.find('tr');
+    expect(trElement.length).toEqual(1);
+  });
+
+  it('should have 4 th inside thead', function () {
+    var theadElement = leaderboard().find('thead');
+    var thElements = theadElement.find('th');
+    expect(thElements.length).toEqual(4);
+  });
+
+  it('should have a tbody', function () {
+    var tbodyElement = leaderboard().find('tbody');
+    expect(tbodyElement.length).toEqual(1);
+  });
+
+  it('should have a 0 trs inside tbody', function () {
+    var tbodyElement = leaderboard().find('tbody');
+    var trElement = tbodyElement.find('tr');
+    expect(trElement.length).toEqual(0);
+  });
+
+  describe('allPlayers props filled', function () {
+    beforeEach(function () {
+      props.allPlayers = [{ name: 'Player 1', wins: 0, defeats: 0, draws: 0 }, { name: 'Player 2', wins: 3, defeats: 0, draws: 0 }];
+    });
+
+    it('should have as many tr as allPlayers props length', function () {
+      var tbodyElement = leaderboard().find('tbody');
+      var trElement = tbodyElement.find('tr');
+      expect(trElement.length).toEqual(2);
+    });
+
+    it('should order the players by score', function () {
+      var tbodyElement = leaderboard().find('tbody');
+      var trElement = tbodyElement.childAt(0);
+      var tdElement = trElement.childAt(1);
+      expect(tdElement.text()).toEqual('Player 2');
+    });
+  });
+});

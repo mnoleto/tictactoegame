@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import '../../styles/game/GameButton.scss';
 
+// GameButton is responsible for render the game grid buttons
 class GameButton extends Component {
   constructor(props) {
     super(props);
@@ -22,9 +23,9 @@ class GameButton extends Component {
 }
 
 GameButton.propTypes = {
-  label: PropTypes.string,
-  index: PropTypes.number,
-  onClickButton: PropTypes.func
+  index: PropTypes.number.isRequired,
+  label: PropTypes.string.isRequired,
+  onClickButton: PropTypes.func.isRequired
 }
 
 export default GameButton;

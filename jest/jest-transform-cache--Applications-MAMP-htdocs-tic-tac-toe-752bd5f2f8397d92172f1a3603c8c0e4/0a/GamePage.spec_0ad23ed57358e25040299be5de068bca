@@ -1,0 +1,54 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+var /* istanbul ignore next */_enzyme = require('enzyme');
+var /* istanbul ignore next */_GamePage = require('./GamePage'); /* istanbul ignore next */function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// GamePage is responsible for render the game grid
+// CONTRACTS
+// 1. Should render the GamePage
+// 2. Should render a div as root element
+
+describe('GamePage', function () {
+  var props = /* istanbul ignore next */void 0,mountedGamePage = /* istanbul ignore next */void 0;
+  var gamePage = function gamePage() {
+    if (!mountedGamePage) {
+      mountedGamePage = /* istanbul ignore next */(0, _enzyme.mount)(
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_GamePage.GamePage, props));
+
+    }
+    return mountedGamePage;
+  };
+
+  beforeEach(function () {
+    props = {
+      allPlayers: [],
+      game: {
+        board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],
+        players: [],
+        result: { status: 'waiting' },
+        turn: '' },
+
+      gameActions: {
+        newGame: jest.fn(),
+        newRound: jest.fn(),
+        registerMove: jest.fn(),
+        resetGame: jest.fn(),
+        sendPlayersName: jest.fn() },
+
+      playersActions: {
+        fetchPlayers: jest.fn() } };
+
+
+    mountedGamePage = undefined;
+  });
+
+  it('render the GamePage dumb component', function () {
+    var gamePageWrapper = /* istanbul ignore next */(0, _enzyme.shallow)( /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_GamePage.GamePage, props));
+    expect(gamePageWrapper).toMatchSnapshot();
+  });
+
+  it('render a div as root element', function () {
+    var gamePageElement = gamePage().find('div');
+    var wrappingDiv = gamePageElement.first();
+    expect(wrappingDiv.children()).toEqual(gamePage().children());
+  });
+});

@@ -3,15 +3,7 @@ import { mount, shallow } from 'enzyme';
 import Header from './Header';
 
 // Header is responsible for render the game title
-// CONTRACTS
-// 1. Should always render the component
-// 2. Should render a header element as root element
-// 3. Should header a header with the default class
-// 4. Should render a h1 element inside the header
-// 5. Should render the h1 if the default class
-// 6. Should have the content Tic Tac Toe Game inside the h1 element
-
-describe('Header', () => {
+describe('<Header />', () => {
   let props, mountedHeader;
   const header = () => {
     if(!mountedHeader) {

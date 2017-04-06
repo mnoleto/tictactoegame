@@ -1,5 +1,4 @@
 import {createStore, compose, applyMiddleware} from 'redux';
-import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import gameSaga from '../sagas';
@@ -10,8 +9,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 function configureStoreProd(initialState) {
   const middlewares = [
-    // Add other middleware on this line...
-    sagaMiddleware,
+    sagaMiddleware
   ];
 
   const store = createStore(rootReducer, initialState, compose(
@@ -27,12 +25,8 @@ function configureStoreProd(initialState) {
 
 function configureStoreDev(initialState) {
   const middlewares = [
-    // Add other middleware on this line...
     logger,
-
-    // Redux middleware that spits an error on you when you try to mutate your state either inside a dispatch or between dispatches.
-    // reduxImmutableStateInvariant(),
-    sagaMiddleware,
+    sagaMiddleware
   ];
 
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools

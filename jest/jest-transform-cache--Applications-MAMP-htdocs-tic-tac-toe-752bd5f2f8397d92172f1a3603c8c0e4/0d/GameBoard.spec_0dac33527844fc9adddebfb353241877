@@ -1,0 +1,40 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+var /* istanbul ignore next */_enzyme = require('enzyme');
+var /* istanbul ignore next */_GameBoard = require('./GameBoard'); /* istanbul ignore next */var _GameBoard2 = _interopRequireDefault(_GameBoard);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// GameBoard is responsible for render the game board
+describe('GameBoard', function () {
+  var props = /* istanbul ignore next */void 0,mountedGameBoard = /* istanbul ignore next */void 0;
+  var gameBoard = function gameBoard() {
+    if (!mountedGameBoard) {
+      mountedGameBoard = /* istanbul ignore next */(0, _enzyme.mount)(
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_GameBoard2.default, props));
+
+    }
+    return mountedGameBoard;
+  };
+
+  beforeEach(function () {
+    props = {
+      board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],
+      onClickButton: jest.fn() };
+
+    mountedGameBoard = undefined;
+  });
+
+  it('should render the GameBoard', function () {
+    var gameBoardWrapper = /* istanbul ignore next */(0, _enzyme.shallow)( /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_GameBoard2.default, props));
+    expect(gameBoardWrapper).toMatchSnapshot();
+  });
+
+  it('should render a div as root element', function () {
+    var gameBoardElement = gameBoard().find('div');
+    var wrappingDiv = gameBoardElement.first();
+    expect(wrappingDiv.children()).toEqual(gameBoard().children());
+  });
+
+  it('should render 9 buttons', function () {
+    var buttonElements = gameBoard().find('button');
+    expect(buttonElements.length).toEqual(9);
+  });
+});

@@ -2,8 +2,8 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import GameBoard from './GameBoard';
 
-// GameBoard is responsible for render the game grid
-describe('GameBoard', () => {
+// GameBoard is responsible for render the game board
+describe('<GameBoard/>', () => {
   let props, mountedGameBoard;
   const gameBoard = () => {
     if(!mountedGameBoard) {
@@ -29,7 +29,8 @@ describe('GameBoard', () => {
 
   it('should render a div as root element', () => {
     const gameBoardElement = gameBoard().find('div');
-    let wrappingDiv = gameBoardElement.first();
+    const wrappingDiv = gameBoardElement.first();
+    expect(wrappingDiv.hasClass('game-board')).toBeTruthy();
     expect(wrappingDiv.children()).toEqual(gameBoard().children());
   });
 

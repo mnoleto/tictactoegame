@@ -1,0 +1,199 @@
+/* istanbul ignore next */'use strict';var /* istanbul ignore next */_react = require('react'); /* istanbul ignore next */var _react2 = _interopRequireDefault(_react);
+var /* istanbul ignore next */_enzyme = require('enzyme');
+var /* istanbul ignore next */_sinon = require('sinon'); /* istanbul ignore next */var _sinon2 = _interopRequireDefault(_sinon);
+var /* istanbul ignore next */_reactRedux = require('react-redux');
+var /* istanbul ignore next */_reduxMockStore = require('redux-mock-store'); /* istanbul ignore next */var _reduxMockStore2 = _interopRequireDefault(_reduxMockStore);
+var /* istanbul ignore next */_reduxLogger = require('redux-logger'); /* istanbul ignore next */var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
+var /* istanbul ignore next */_reduxSaga = require('redux-saga'); /* istanbul ignore next */var _reduxSaga2 = _interopRequireDefault(_reduxSaga);
+
+var /* istanbul ignore next */_GamePage = require('./GamePage');
+var /* istanbul ignore next */_PlayersForm = require('../components/game/PlayersForm'); /* istanbul ignore next */var _PlayersForm2 = _interopRequireDefault(_PlayersForm);
+var /* istanbul ignore next */_GameBoard = require('../components/game/GameBoard'); /* istanbul ignore next */var _GameBoard2 = _interopRequireDefault(_GameBoard);
+var /* istanbul ignore next */_GameResult = require('../components/game/GameResult'); /* istanbul ignore next */var _GameResult2 = _interopRequireDefault(_GameResult);
+var /* istanbul ignore next */_Leaderboard = require('../components/game/Leaderboard'); /* istanbul ignore next */var _Leaderboard2 = _interopRequireDefault(_Leaderboard);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// create the saga middleware
+var sagaMiddleware = /* istanbul ignore next */(0, _reduxSaga2.default)();
+var middlewares = [/* istanbul ignore next */_reduxLogger2.default,
+
+sagaMiddleware];
+
+
+// Use the same middlewares you use with Redux's applyMiddleware
+var mockStore = /* istanbul ignore next */(0, _reduxMockStore2.default)(middlewares);
+
+// Setup the entire state, not just the part Redux passes to the connected component.
+var initialState = mockStore({
+  allPlayers: {},
+  game: {},
+  routing: {} });
+
+
+// GamePage is responsible for render the game grid
+describe('<GamePage />', function () {
+  var props = /* istanbul ignore next */void 0,mountedGamePage = /* istanbul ignore next */void 0;
+
+  var gamePage = function gamePage() {
+    if (!mountedGamePage) {
+      mountedGamePage = /* istanbul ignore next */(0, _enzyme.mount)(
+      /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_reactRedux.Provider, /* istanbul ignore next */{ store: initialState },
+        /* istanbul ignore next */_react2.default.createElement( /* istanbul ignore next */_GamePage.GamePage, props)));
+
+
+    }
+    return mountedGamePage;
+  };
+
+  beforeEach(function () {
+    props = {
+      allPlayers: [],
+      game: {
+        board: ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],
+        players: [],
+        result: { status: 'running' },
+        turn: '' },
+
+      gameActions: {
+        newGame: jest.fn(),
+        newRound: jest.fn(),
+        registerMove: jest.fn(),
+        resetGame: jest.fn(),
+        sendPlayersName: jest.fn() },
+
+      playersActions: {
+        fetchPlayers: jest.fn() } };
+
+
+    mountedGamePage = undefined;
+  });
+
+
+  describe('componentWillReceiveProps', function () {
+    it('should fetch players', function () {
+
+    });
+
+    it('should reset the game and fetch players when componentWillUnmount', function () {
+
+    });
+  });
+
+  describe('componentWillUnmount', function () {
+    it('should reset the game and fetch players when componentWillUnmount', function () {
+      // props.gameActions.resetGame = sinon.spy();
+      // props.playersActions.fetchPlayers = sinon.spy();
+      // let gamePageRenderer = gamePage().find(GamePage);
+
+      // gamePageRenderer.instance().componentWillUnmount();
+      // expect(props.gameActions.resetGame.callCount).toEqual(1);
+      // expect(props.playersActions.fetchPlayers.callCount).toEqual(1);
+    });
+  });
+
+  describe('render', function () {
+    it('render the GamePage component', function () {
+      var gamePageProvider = gamePage();
+      expect(gamePageProvider).toMatchSnapshot();
+    });
+
+    it('render a div as root element', function () {
+      var gamePageElement = gamePage().find('div');
+      var wrappingDiv = gamePageElement.first();
+      expect(wrappingDiv.children()).toEqual(gamePage().children());
+    });
+
+    it('should wrapper has the class game-page', function () {
+      var gamePageElement = gamePage().find('div');
+      var wrappingDiv = gamePageElement.first();
+      expect(wrappingDiv.hasClass('game-page')).toBeTruthy();
+    });
+
+    describe('renderContent()', function () {
+      it('should render the players form if status is not equal finished or draw', function () {
+        var gamePageRenderer = gamePage().find( /* istanbul ignore next */_GamePage.GamePage);
+        var playersForm = gamePageRenderer.find( /* istanbul ignore next */_PlayersForm2.default);
+        expect(playersForm.length).toEqual(1);
+
+        props.game.result = { status: 'waiting' };
+        gamePageRenderer = gamePage().find( /* istanbul ignore next */_GamePage.GamePage);
+        playersForm = gamePageRenderer.find( /* istanbul ignore next */_PlayersForm2.default);
+        expect(playersForm.length).toEqual(1);
+      });
+
+      it('should not render the players form if status is finished or draw', function () {
+        props.game.result = { status: 'finished' };
+        var gamePageRenderer = gamePage().find( /* istanbul ignore next */_GamePage.GamePage);
+        var playersForm = gamePageRenderer.find( /* istanbul ignore next */_PlayersForm2.default);
+        expect(playersForm.length).toEqual(0);
+
+        props.game.result = { status: 'draw' };
+        gamePageRenderer = gamePage().find( /* istanbul ignore next */_GamePage.GamePage);
+        playersForm = gamePageRenderer.find( /* istanbul ignore next */_PlayersForm2.default);
+        expect(playersForm.length).toEqual(0);
+      });
+
+      it('should render the game board if status is equal to running', function () {
+        props.game.result = { status: 'running' };
+        var gamePageRenderer = gamePage().find( /* istanbul ignore next */_GamePage.GamePage);
+        var gameBoard = gamePageRenderer.find( /* istanbul ignore next */_GameBoard2.default);
+        expect(gameBoard.length).toEqual(1);
+      });
+
+      it('should not render the game board if status is not running', function () {
+        props.game.result = { status: 'finished' };
+        var gamePageRenderer = gamePage().find( /* istanbul ignore next */_GamePage.GamePage);
+        var gameBoard = gamePageRenderer.find( /* istanbul ignore next */_GameBoard2.default);
+        expect(gameBoard.length).toEqual(0);
+
+        props.game.result = { status: 'draw' };
+        gamePageRenderer = gamePage().find( /* istanbul ignore next */_GamePage.GamePage);
+        gameBoard = gamePageRenderer.find( /* istanbul ignore next */_GameBoard2.default);
+        expect(gameBoard.length).toEqual(0);
+
+        props.game.result = { status: 'waiting' };
+        gamePageRenderer = gamePage().find( /* istanbul ignore next */_GamePage.GamePage);
+        gameBoard = gamePageRenderer.find( /* istanbul ignore next */_GameBoard2.default);
+        expect(gameBoard.length).toEqual(0);
+      });
+
+      it('should render the game result if status is equal finished or draw', function () {
+        props.game.result = { status: 'finished' };
+        var gamePageRenderer = gamePage().find( /* istanbul ignore next */_GamePage.GamePage);
+        var gameResult = gamePageRenderer.find( /* istanbul ignore next */_GameResult2.default);
+        expect(gameResult.length).toEqual(1);
+
+        props.game.result = { status: 'draw' };
+        gamePageRenderer = gamePage().find( /* istanbul ignore next */_GamePage.GamePage);
+        gameResult = gamePageRenderer.find( /* istanbul ignore next */_GameResult2.default);
+        expect(gameResult.length).toEqual(1);
+      });
+
+      it('should not render the game result if status is not finished or draw', function () {
+        props.game.result = { status: 'running' };
+        var gamePageRenderer = gamePage().find( /* istanbul ignore next */_GamePage.GamePage);
+        var gameResult = gamePageRenderer.find( /* istanbul ignore next */_GameResult2.default);
+        expect(gameResult.length).toEqual(0);
+
+        props.game.result = { status: 'waiting' };
+        gamePageRenderer = gamePage().find( /* istanbul ignore next */_GamePage.GamePage);
+        gameResult = gamePageRenderer.find( /* istanbul ignore next */_GameResult2.default);
+        expect(gameResult.length).toEqual(0);
+      });
+    });
+
+    describe('renderLeaderboard()', function () {
+      it('should not render the leaderboard if allPlayers length is equal 0', function () {
+        var gamePageRenderer = gamePage().find( /* istanbul ignore next */_GamePage.GamePage);
+        var leaderboard = gamePageRenderer.find( /* istanbul ignore next */_Leaderboard2.default);
+        expect(leaderboard.length).toEqual(0);
+      });
+
+      it('should render the leaderboard if allPlayers length is higher than 0', function () {
+        props.allPlayers = [{ name: 'Player 1', wins: 0, defeats: 0, draws: 0 }];
+        var gamePageRenderer = gamePage().find( /* istanbul ignore next */_GamePage.GamePage);
+        var leaderboard = gamePageRenderer.find( /* istanbul ignore next */_Leaderboard2.default);
+        expect(leaderboard.length).toEqual(1);
+      });
+    });
+  });
+});

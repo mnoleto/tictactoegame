@@ -1,4 +1,4 @@
-exports[`LeaderboardTr should render the LeaderboardTr 1`] = `
+exports[`<LeaderboardTr /> should render the LeaderboardTr 1`] = `
 ShallowWrapper {
   "complexSelector": ComplexSelector {
     "buildPredicate": [Function],

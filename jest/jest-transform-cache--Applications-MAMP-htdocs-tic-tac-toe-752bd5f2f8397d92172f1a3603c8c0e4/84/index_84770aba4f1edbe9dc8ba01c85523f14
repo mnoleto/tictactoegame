@@ -1,0 +1,10 @@
+/* istanbul ignore next */'use strict';Object.defineProperty(exports, "__esModule", { value: true });
+var /* istanbul ignore next */_redux = require('redux');
+var /* istanbul ignore next */_reactRouterRedux = require('react-router-redux');
+var /* istanbul ignore next */_game = require('./game'); /* istanbul ignore next */var _game2 = _interopRequireDefault(_game);
+var /* istanbul ignore next */_players = require('./players'); /* istanbul ignore next */var _players2 = _interopRequireDefault(_players);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} // Set up your root reducer here...
+exports.default =
+/* istanbul ignore next */(0, _redux.combineReducers)({
+  routing: /* istanbul ignore next */_reactRouterRedux.routerReducer,
+  game: /* istanbul ignore next */_game2.default,
+  allPlayers: /* istanbul ignore next */_players2.default });

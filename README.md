@@ -13,8 +13,9 @@ Starter kit: [React Slingshot Project](https://github.com/coryhouse/react-slings
 1. **Clone the project**. `git clone https://github.com/mnoleto/tictactoegame.git`.
 2. **Install dependencies**. `npm install`
 3. **Run the setup script**. `npm run setup`
-4. **Run the app**. `npm start -s`
-This will run the automated build process, start up a webserver, and open the application in your default browser.
+4. **Run the app - dev mode**. `npm start -s`
+4. **Automated production build**. `npm run build`
+
 
 ## Initial Machine Setup
 1. **Install [Node 4.0.0 or greater](https://nodejs.org)** - (5.0 or greater is recommended for optimal build performance). Need to run multiple versions of Node? Use [nvm](https://github.com/creationix/nvm).

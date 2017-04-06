@@ -1,0 +1,285 @@
+exports[`<GamePage /> render render the GamePage component 1`] = `
+ShallowWrapper {
+  "complexSelector": ComplexSelector {
+    "buildPredicate": [Function],
+    "childrenOfNode": [Function],
+    "findWhereUnwrapped": [Function],
+  },
+  "length": 1,
+  "node": <div
+    className="game-page">
+    <div
+        className="game-running">
+        <PlayersForm
+            onStartGame={[Function]}
+            players={Array []}
+            result={
+                Object {
+                    "status": "running",
+                  }
+            }
+            turn="" />
+        <GameBoard
+            board={
+                Array [
+                    "E",
+                    "E",
+                    "E",
+                    "E",
+                    "E",
+                    "E",
+                    "E",
+                    "E",
+                    "E",
+                  ]
+            }
+            onClickButton={[Function]}
+            turn="" />
+    </div>
+</div>,
+  "nodes": Array [
+    <div
+      className="game-page">
+      <div
+            className="game-running">
+            <PlayersForm
+                  onStartGame={[Function]}
+                  players={Array []}
+                  result={
+                        Object {
+                              "status": "running",
+                            }
+                  }
+                  turn="" />
+            <GameBoard
+                  board={
+                        Array [
+                              "E",
+                              "E",
+                              "E",
+                              "E",
+                              "E",
+                              "E",
+                              "E",
+                              "E",
+                              "E",
+                            ]
+                  }
+                  onClickButton={[Function]}
+                  turn="" />
+      </div>
+</div>,
+  ],
+  "options": Object {},
+  "renderer": ReactShallowRenderer {
+    "_instance": ShallowComponentWrapper {
+      "_calledComponentWillUnmount": false,
+      "_compositeType": 0,
+      "_context": Object {},
+      "_currentElement": <GamePage
+        allPlayers={Array []}
+        game={
+                Object {
+                        "board": Array [
+                          "E",
+                          "E",
+                          "E",
+                          "E",
+                          "E",
+                          "E",
+                          "E",
+                          "E",
+                          "E",
+                        ],
+                        "players": Array [],
+                        "result": Object {
+                          "status": "running",
+                        },
+                        "turn": "",
+                      }
+        }
+        gameActions={
+                Object {
+                        "newGame": [Function],
+                        "newRound": [Function],
+                        "registerMove": [Function],
+                        "resetGame": [Function],
+                        "sendPlayersName": [Function],
+                      }
+        }
+        playersActions={
+                Object {
+                        "fetchPlayers": [Function],
+                      }
+        } />,
+      "_debugID": 5,
+      "_hostContainerInfo": null,
+      "_hostParent": null,
+      "_instance": GamePage {
+        "_reactInternalInstance": [Circular],
+        "context": Object {},
+        "props": Object {
+          "allPlayers": Array [],
+          "game": Object {
+            "board": Array [
+              "E",
+              "E",
+              "E",
+              "E",
+              "E",
+              "E",
+              "E",
+              "E",
+              "E",
+            ],
+            "players": Array [],
+            "result": Object {
+              "status": "running",
+            },
+            "turn": "",
+          },
+          "gameActions": Object {
+            "newGame": [Function],
+            "newRound": [Function],
+            "registerMove": [Function],
+            "resetGame": [Function],
+            "sendPlayersName": [Function],
+          },
+          "playersActions": Object {
+            "fetchPlayers": [Function],
+          },
+        },
+        "refs": Object {},
+        "renderContent": [Function],
+        "renderLeaderboard": [Function],
+        "state": null,
+        "updater": Object {
+          "enqueueCallback": [Function],
+          "enqueueCallbackInternal": [Function],
+          "enqueueElementInternal": [Function],
+          "enqueueForceUpdate": [Function],
+          "enqueueReplaceState": [Function],
+          "enqueueSetState": [Function],
+          "isMounted": [Function],
+          "validateCallback": [Function],
+        },
+      },
+      "_mountOrder": 3,
+      "_pendingCallbacks": null,
+      "_pendingElement": null,
+      "_pendingForceUpdate": false,
+      "_pendingReplaceState": false,
+      "_pendingStateQueue": null,
+      "_renderedComponent": NoopInternalComponent {
+        "_currentElement": <div
+          className="game-page">
+          <div
+                    className="game-running">
+                    <PlayersForm
+                              onStartGame={[Function]}
+                              players={Array []}
+                              result={
+                                        Object {
+                                                  "status": "running",
+                                                }
+                              }
+                              turn="" />
+                    <GameBoard
+                              board={
+                                        Array [
+                                                  "E",
+                                                  "E",
+                                                  "E",
+                                                  "E",
+                                                  "E",
+                                                  "E",
+                                                  "E",
+                                                  "E",
+                                                  "E",
+                                                ]
+                              }
+                              onClickButton={[Function]}
+                              turn="" />
+          </div>
+</div>,
+        "_debugID": 6,
+        "_renderedOutput": <div
+          className="game-page">
+          <div
+                    className="game-running">
+                    <PlayersForm
+                              onStartGame={[Function]}
+                              players={Array []}
+                              result={
+                                        Object {
+                                                  "status": "running",
+                                                }
+                              }
+                              turn="" />
+                    <GameBoard
+                              board={
+                                        Array [
+                                                  "E",
+                                                  "E",
+                                                  "E",
+                                                  "E",
+                                                  "E",
+                                                  "E",
+                                                  "E",
+                                                  "E",
+                                                  "E",
+                                                ]
+                              }
+                              onClickButton={[Function]}
+                              turn="" />
+          </div>
+</div>,
+      },
+      "_renderedNodeType": 0,
+      "_rootNodeID": 0,
+      "_topLevelWrapper": null,
+      "_updateBatchNumber": null,
+      "_warnedAboutRefsInRender": false,
+    },
+    "getRenderOutput": [Function],
+    "render": [Function],
+  },
+  "root": [Circular],
+  "unrendered": <GamePage
+    allPlayers={Array []}
+    game={
+        Object {
+            "board": Array [
+              "E",
+              "E",
+              "E",
+              "E",
+              "E",
+              "E",
+              "E",
+              "E",
+              "E",
+            ],
+            "players": Array [],
+            "result": Object {
+              "status": "running",
+            },
+            "turn": "",
+          }
+    }
+    gameActions={
+        Object {
+            "newGame": [Function],
+            "newRound": [Function],
+            "registerMove": [Function],
+            "resetGame": [Function],
+            "sendPlayersName": [Function],
+          }
+    }
+    playersActions={
+        Object {
+            "fetchPlayers": [Function],
+          }
+    } />,
+}
+`;
