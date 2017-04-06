@@ -14,7 +14,7 @@ export const INITIAL_STATE = { board: [], players: [], result: {}, turn: '' };
  * @param actions [Object]
  * @return newState: [Object]
  */
-export const request = (state = INITIAL_STATE, actions) => {
+export const request = (state = INITIAL_STATE) => {
   return state;
 };
 

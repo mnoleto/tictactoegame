@@ -37,5 +37,5 @@ describe('<GameBoard/>', () => {
   it('should render 9 buttons', () => {
     const buttonElements = gameBoard().find('button');
     expect(buttonElements.length).toEqual(9);
-  })
+  });
 });

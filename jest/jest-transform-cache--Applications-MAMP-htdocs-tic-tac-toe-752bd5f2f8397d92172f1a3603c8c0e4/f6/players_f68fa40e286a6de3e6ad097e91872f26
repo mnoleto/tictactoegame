@@ -1,0 +1,43 @@
+/* istanbul ignore next */'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.fetchPlayersSuccess = exports.fetchPlayersRequest = exports.INITIAL_STATE = undefined;var _HANDLERS;var /* istanbul ignore next */_reduxsauce = require('reduxsauce');
+var /* istanbul ignore next */_actionTypes = require('./actionTypes'); /* istanbul ignore next */var _actionTypes2 = _interopRequireDefault(_actionTypes);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
+
+// initial state
+var INITIAL_STATE = /* istanbul ignore next */exports.INITIAL_STATE = { data: [] };
+
+
+// REDUCERS
+// - all reducers fire in response to actions
+
+/*
+ * function to fetch all players
+ * @param state [Object]: 
+ * @param actions [Object]
+ * @return newState: [Object]
+ */
+var fetchPlayersRequest = /* istanbul ignore next */exports.fetchPlayersRequest = function fetchPlayersRequest() {/* istanbul ignore next */var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
+  return Object.assign({}, state, {});
+};
+
+/*
+    * function called when the fetch players request return succesfully
+    * @param state [Object]: 
+    * @param actions [Object]
+    * @return newState: [Object]
+    */
+var fetchPlayersSuccess = /* istanbul ignore next */exports.fetchPlayersSuccess = function fetchPlayersSuccess() {/* istanbul ignore next */var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE; /* istanbul ignore next */var actions = arguments[1];
+  if (actions.data !== state.data) {
+    return Object.assign({}, state, {
+      data: actions.data });
+
+  }
+  return state;
+};
+
+
+// map action types to our reducer functions
+var HANDLERS = /* istanbul ignore next */(_HANDLERS = {}, _defineProperty(_HANDLERS,
+/* istanbul ignore next */_actionTypes2.default.FETCH_PLAYERS, fetchPlayersRequest), _defineProperty(_HANDLERS,
+/* istanbul ignore next */_actionTypes2.default.FETCH_PLAYERS_SUCCESS, fetchPlayersSuccess), _HANDLERS); /* istanbul ignore next */exports.default =
+
+
+/* istanbul ignore next */(0, _reduxsauce.createReducer)(INITIAL_STATE, HANDLERS);

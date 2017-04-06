@@ -1,7 +1,7 @@
 import {createStore, compose, applyMiddleware} from 'redux';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
-import gameSaga from '../sagas';
+import saga from '../sagas';
 import rootReducer from '../reducers';
 
 // create the saga middleware
@@ -18,7 +18,7 @@ function configureStoreProd(initialState) {
   );
 
   // then run the saga
-  sagaMiddleware.run(gameSaga);
+  sagaMiddleware.run(saga);
 
   return store;
 }
@@ -36,7 +36,7 @@ function configureStoreDev(initialState) {
   );
 
   // then run the saga
-  sagaMiddleware.run(gameSaga);
+  sagaMiddleware.run(saga);
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

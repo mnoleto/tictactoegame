@@ -1,5 +1,5 @@
 import sagaHelper from 'redux-saga-testing';
-import { apply, call, put, takeLatest } from 'redux-saga/effects';
+import { apply, put } from 'redux-saga/effects';
 import playersActions from '../actions/players';
 import gameActions from '../actions/game';
 import GameApi from '../services/Game';
@@ -7,7 +7,6 @@ import GameApi from '../services/Game';
 import { fetchPlayers, newGame, newRound, registerMove, sendPlayersName } from '../sagas';
 
 const Api = new GameApi();
-const fetchPlayersMock = () => ['Player 1', 'Player 2'];
 
 describe('fetchPlayers', () => {
   const it = sagaHelper(fetchPlayers());

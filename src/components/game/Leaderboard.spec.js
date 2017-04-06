@@ -75,7 +75,7 @@ describe('<Leaderboard />', () => {
 
   describe('allPlayers props filled', () => {
     beforeEach(() => {
-      props.allPlayers = [{name: 'Player 1', wins: 0, defeats: 0, draws: 0}, {name: 'Player 2', wins: 3, defeats: 0, draws: 0}]
+      props.allPlayers = [{name: 'Player 1', wins: 0, defeats: 0, draws: 0}, {name: 'Player 2', wins: 3, defeats: 0, draws: 0}];
     });
 
     it('should have as many tr as allPlayers props length', () => {

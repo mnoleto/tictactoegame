@@ -1,6 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-// LeaderboardTr is responsible for render the leaderboard table line
+/*
+ * Stateless component for render the LeaderboardTr
+ */
 const LeaderboardTr = ({ defeats, draws, name, position, wins }) => {
   return (
     <tr>
@@ -11,7 +13,7 @@ const LeaderboardTr = ({ defeats, draws, name, position, wins }) => {
       <td className="draws">{draws}</td>
     </tr>
   );
-}
+};
 
 LeaderboardTr.propTypes = {
   defeats: PropTypes.number.isRequired,

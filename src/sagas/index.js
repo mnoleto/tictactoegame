@@ -3,16 +3,16 @@ import GameApi from '../services/Game';
 
 const Api = new GameApi();
 
-export function* fetchPlayers(action) {
+export function* fetchPlayers() {
   try {
     const data = yield apply(Api, Api.fetchPlayers);
     yield put({type: 'FETCH_PLAYERS_SUCCESS', data: data});
   } catch (e) {
-    trow
+    throw new Erro('Player could not be fetch.');
   }
 }
 
-export function* newGame(action) {
+export function* newGame() {
   try {
     const data = yield apply(Api, Api.newGame);
     yield put({type: 'NEW_GAME_SUCCESS', board: data.board, players: data.players, result: data.result, turn: data.turn});
@@ -21,7 +21,7 @@ export function* newGame(action) {
   }
 }
 
-export function* newRound(action) {
+export function* newRound() {
   try {
     const data = yield apply(Api, Api.newRound);
     yield put({type: 'NEW_ROUND_SUCCESS', board: data.board, players: data.players, result: data.result, turn: data.turn});
@@ -39,7 +39,7 @@ export function* registerMove(action) {
   }
 }
 
-export function* resetGame(action) {
+export function* resetGame() {
   try {
     const data = yield apply(Api, Api.newGame);
     yield put({type: 'RESET_GAME_SUCCESS', board: data.board, players: data.players, result: data.result, turn: data.turn});

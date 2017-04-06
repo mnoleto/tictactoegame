@@ -14,7 +14,7 @@ export const INITIAL_STATE = { data: [] };
  * @param actions [Object]
  * @return newState: [Object]
  */
-export const fetchPlayersRequest = (state = INITIAL_STATE, actions) => {
+export const fetchPlayersRequest = (state = INITIAL_STATE) => {
   return Object.assign({}, state, {});
 };
 

@@ -1,13 +1,19 @@
 import React, { Component, PropTypes } from 'react';
 import '../../styles/game/GameResult.scss';
 
-// GameResult is responsible for render the game result
+/*
+ * Class responsible for render the GameResult
+ */
 class GameResult extends Component {
   constructor(props) {
     super(props);
     this.renderMessage = this.renderMessage.bind(this);
   }
 
+  /*
+   * Function to render the result message to be displayed
+   * - Should display a message for the winner or a message for a draw
+   */
   renderMessage() {
     const { players, result } = this.props;
     if(result.status === 'draw') {
@@ -15,7 +21,7 @@ class GameResult extends Component {
       return draw.map((value, index) => <span key={'message_' + index}>{value}</span>);
     } else {
       const winnerName = (!result.draw && result.winner === 'X') ? players[0] : players[1];
-      const winner = ['The winner is ', <strong>{winnerName}</strong>, '.'];
+      const winner = ['The winner is ', <strong key="winner">{winnerName}</strong>, '.'];
       return winner.map((value, index) => <span key={'message_' + index}>{value}</span>);
     }
   }
@@ -40,6 +46,6 @@ GameResult.propTypes = {
   onNewRoundClick: PropTypes.func.isRequired,
   players: PropTypes.array.isRequired,
   result: PropTypes.object.isRequired
-}
+};
 
 export default GameResult;

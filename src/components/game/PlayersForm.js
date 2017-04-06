@@ -2,11 +2,14 @@ import React, { Component, PropTypes } from 'react';
 import PlayerInput from './PlayerInput';
 import '../../styles/game/PlayersForm.scss';
 
-// PlayersForm is responsible for render the players form
+/*
+ * Class responsible for render the PlayersForm
+ */
 class PlayersForm extends Component {
   constructor(props) {
     super(props);
 
+    // playerX and playerO state used to update the PlayerInput component
     this.state = {
       playerX: '',
       playerO: ''
@@ -19,7 +22,9 @@ class PlayersForm extends Component {
   }
 
   componentWillReceiveProps() {
+    // check if the players props changed before update the state
     if(this.props.players.length > 0 && this.props.players[0] !== this.state.playerX  && this.props.players[1] !== this.state.playerO ) {
+      // update the playerX and playerO state 
       this.setState({
         playerX: this.props.players[0],
         playerO: this.props.players[1]
@@ -27,10 +32,18 @@ class PlayersForm extends Component {
     }
   }
 
+  /*
+   * Function to handle all the input changes and update the state
+   * @param name [String]: name of the state to be updated
+   * @param value [String]: value to update the state
+   */
   handleInputChange(name, value) {
     this.setState({[name]: value});
   }
 
+  /*
+   * Function to send the players name to the parent component when the user hit the "start game button"
+   */
   sendData() {
     const { onStartGame } = this.props;
     let playerX = this.state.playerX,
@@ -39,6 +52,10 @@ class PlayersForm extends Component {
     onStartGame(playerX, playerO);
   }
 
+  /*
+   * Function to render the form footer
+   * - Should render the player turn when the game is running ou the start game button when the game isn`t running
+   */
   renderFormFooter() {
     const { result, turn } = this.props;
     if(result.status && (result.status && result.status === 'running')) {
@@ -52,6 +69,10 @@ class PlayersForm extends Component {
     }
   }
 
+  /*
+   * Function to render the form header
+   * - Should render legend text when the game isn`t running
+   */
   renderFormHeader() {
     const { result } = this.props;
     if(!result.status || (result.status && result.status !== 'running')) {

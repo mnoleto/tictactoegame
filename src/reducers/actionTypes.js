@@ -1,4 +1,4 @@
-import { createTypes } from 'reduxsauce'
+import { createTypes } from 'reduxsauce';
 
 // create the object representing action types
 export default createTypes(`
@@ -14,4 +14,4 @@ export default createTypes(`
   REGISTER_MOVE_SUCCESS
   RESET_GAME
   RESET_GAME_SUCCESS
-`, {}) // options - the 2nd parameter is optional
+`, {}); // options - the 2nd parameter is optional

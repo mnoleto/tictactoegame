@@ -119,6 +119,7 @@ describe('<PlayerInput />', () => {
   describe('Test methods', () => {
     let playerInputRenderer;
     beforeEach(() => {
+      props.onInputChange = sinon.spy();
       playerInputRenderer = shallow(<PlayerInput {...props} />);
     });
 
@@ -138,20 +139,24 @@ describe('<PlayerInput />', () => {
 
     describe('handleInputChange', () => {
       it('should call onInputChange', () => {
-        props.onInputChange = sinon.spy();
-
+        playerInputRenderer.instance().handleInputChange({target: {value: 'Test'}});
+        expect(props.onInputChange.callCount).toEqual(1);
       });
     });
 
     describe('isInputDisabled', () => {
       it('should change the disabled state when change turn', () => {
-        
+        playerInputRenderer.setProps({result: {status: 'running'}});
+        playerInputRenderer.instance().isInputDisabled();
+        expect(playerInputRenderer.state().disabled).toBeTruthy();
       });
     });
 
     describe('setClass', () => {
       it('should change the class state when change turn', () => {
-
+        playerInputRenderer.setProps({turn: 'O'});
+        playerInputRenderer.instance().setClass();
+        expect(playerInputRenderer.state().class).toEqual('inactive');
       });
     });
   });

@@ -6,7 +6,7 @@ import routes from './routes';
 import configureStore from './store/configureStore';
 import { syncHistoryWithStore } from 'react-router-redux';
 
-// require('./favicon.ico'); // Tell webpack to load favicon.ico
+require('./favicon.ico'); // Tell webpack to load favicon.ico
 import './styles/styles.scss';
 
 const store = configureStore();

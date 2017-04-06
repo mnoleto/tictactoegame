@@ -1,18 +1,24 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import LeaderboardTr from './LeaderboardTr';
 import '../../styles/game/Leaderboard.scss';
 
-// Leaderboard is responsible for render the players leaderboard
+/*
+ * Stateless component responsible for render the Leaderboard
+ */
 const Leaderboard = ({ allPlayers }) => {
   let playersItens;
   if(allPlayers && allPlayers.length > 0) {
+    // Order players by the number of wins, defeats or draws to show the players with the best scores first
+    // 3 points for a win
+    // 1 point for a draw
+    // -1 point for a defeat
     const orderedPlayers = allPlayers.sort((a, b) => {
       let scoreA = (parseInt(a.wins)*3) + parseInt(a.draws) - parseInt(a.defeats),
         scoreB = (parseInt(b.wins)*3) + parseInt(b.draws) - parseInt(b.defeats);
-      
       return scoreB - scoreA;
     });
 
+    // build an array of table lines
     playersItens = orderedPlayers.map((value, index) => {
       return (
         <LeaderboardTr
@@ -44,7 +50,7 @@ const Leaderboard = ({ allPlayers }) => {
       </table>
     </div>
   );
-}
+};
 
 Leaderboard.propTypes = {
   allPlayers: PropTypes.array

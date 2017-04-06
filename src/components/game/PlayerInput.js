@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import '../../styles/game/PlayerInput.scss';
 
-// PlayerInput is responsible for render the player input field
+/*
+ * Class responsible for render the PlayerInput
+ */
 class PlayerInput extends Component {
   constructor(props) {
     super(props);
@@ -17,19 +19,27 @@ class PlayerInput extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    // test if the turn prop was changed
     if(this.props.turn !== '' && prevProps.turn !== this.props.turn) {
-      this.setClass();
+      this.setClass(); // update the class state
     }
+    // check if the result.status prop was changed
     if(this.props.result.status && prevProps.result.status !== this.props.result.status) {
-      this.isInputDisabled();
+      this.isInputDisabled(); // update the disabled state
     }
   }
 
+  /*
+   * Function to handle all the input change and call the onInputChange method to send the value to the parent component
+   */
   handleInputChange(event) {
     const { onInputChange, player } = this.props;
     onInputChange(player, event.target.value);
   }
 
+  /*
+   * Function to update the disabled state when the result.status changes
+   */
   isInputDisabled() {
     const { result } = this.props;
     if(result.status && (result.status === 'running' || result.status === 'finished')) {
@@ -39,6 +49,9 @@ class PlayerInput extends Component {
     }
   }
 
+  /*
+   * Function to update the class state when the turn prop changes
+   */
   setClass() {
     const { label, turn } = this.props;
     if(label === 'O') {
